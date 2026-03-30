@@ -1,7 +1,8 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from "next"
 
 const nextConfig: NextConfig = {
-  /* config options here */
-};
+  // Serverless-kompatibel: Prisma Client nicht bundlen
+  serverExternalPackages: ["@prisma/client"],
+}
 
-export default nextConfig;
+export default nextConfig

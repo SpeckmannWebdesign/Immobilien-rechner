@@ -1,6 +1,9 @@
 import { PrismaClient } from "../src/generated/prisma/client"
+import { PrismaPg } from "@prisma/adapter-pg"
 
-const prisma = new PrismaClient()
+const connectionString = process.env.DATABASE_URL!
+const adapter = new PrismaPg(connectionString)
+const prisma = new PrismaClient({ adapter })
 
 // Grunderwerbsteuer-Sätze pro Bundesland (Stand 2026)
 const grunderwerbsteuerSaetze = [

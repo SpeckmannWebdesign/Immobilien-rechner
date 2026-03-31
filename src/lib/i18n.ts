@@ -40,7 +40,7 @@ const translations = {
       monthly: "Monatlich",
       yearly: "Jährlich",
       yearlyDiscount: "20% sparen",
-      startTrial: "14 Tage kostenlos testen",
+      startTrial: "7 Tage kostenlos testen",
       perMonth: "/ Monat",
       includingVat: "inkl. 19% MwSt",
     },

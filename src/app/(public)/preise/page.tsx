@@ -8,7 +8,7 @@ import { PricingToggle, FaqAccordion } from "./pricing-toggle"
 export const metadata: Metadata = {
   title: "Preise | Professioneller Immobilien-Rechner",
   description:
-    "Transparente Preise für 16 professionelle Immobilien-Rechner. Ab 19 € im Monat. 14 Tage kostenlos testen.",
+    "Transparente Preise für 16 professionelle Immobilien-Rechner. Ab 19 € im Monat. 7 Tage kostenlos testen.",
 }
 
 /* ─────────────────────── Feature-Vergleichstabelle ─────────────────────── */
@@ -67,7 +67,7 @@ const faqs = [
   {
     question: "Gibt es eine kostenlose Testphase?",
     answer:
-      "Ja, Sie können alle Funktionen 14 Tage lang kostenlos testen — inklusive Einbettung und PDF-Export. Sie brauchen keine Kreditkarte. Nach Ablauf der Testphase wählen Sie einen passenden Plan oder Ihr Account wird automatisch pausiert.",
+      "Ja, Sie können alle Funktionen 7 Tage lang kostenlos testen — inklusive Einbettung und PDF-Export. Sie brauchen keine Kreditkarte. Nach Ablauf der Testphase wählen Sie einen passenden Plan oder Ihr Account wird automatisch pausiert.",
   },
   {
     question: "Kann ich jederzeit kündigen?",
@@ -209,7 +209,7 @@ export default function PreisePage() {
           </h1>
           <p className="mt-4 text-lg text-[#4B5563] max-w-[640px] mx-auto">
             16 professionelle Rechner für Makler, Investoren und
-            Hausverwaltungen. 14 Tage kostenlos testen — keine Kreditkarte
+            Hausverwaltungen. 7 Tage kostenlos testen — keine Kreditkarte
             nötig.
           </p>
         </div>
@@ -292,14 +292,14 @@ export default function PreisePage() {
             Bereit für professionelle Immobilien-Rechner?
           </h2>
           <p className="text-[#94A3B8] mb-8">
-            Testen Sie alle 16 Rechner 14 Tage lang kostenlos. Keine
+            Testen Sie alle 16 Rechner 7 Tage lang kostenlos. Keine
             Kreditkarte, keine Verpflichtung.
           </p>
           <Link
             href="/anmelden"
             className="inline-flex items-center gap-2 bg-[#4338CA] text-white font-medium px-8 py-3.5 rounded-lg hover:bg-[#5B52E0] transition-colors duration-300"
           >
-            14 Tage kostenlos testen
+            7 Tage kostenlos testen
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>

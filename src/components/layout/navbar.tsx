@@ -2,7 +2,8 @@
 
 import Link from "next/link"
 import { useState, useEffect } from "react"
-import { Menu, X } from "lucide-react"
+import { useTheme } from "next-themes"
+import { Menu, X, Sun, Moon } from "lucide-react"
 import { Logo } from "@/components/ui/logo"
 import { motion, AnimatePresence } from "framer-motion"
 
@@ -15,6 +16,7 @@ export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [isHeroVisible, setIsHeroVisible] = useState(true)
+  const { theme, setTheme } = useTheme()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -108,6 +110,21 @@ export function Navbar() {
             >
               Anmelden
             </Link>
+            <button
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              className={`p-1.5 rounded-lg transition-colors ${
+                isDark
+                  ? "text-[#94A3B8] hover:text-[#F1F5F9]"
+                  : "text-[#9CA3AF] hover:text-[#111827]"
+              }`}
+              aria-label="Dark Mode umschalten"
+            >
+              {theme === "dark" ? (
+                <Sun className="h-4 w-4" />
+              ) : (
+                <Moon className="h-4 w-4" />
+              )}
+            </button>
             <Link
               href="/anmelden"
               className="bg-[#4338CA] text-white px-4 py-1.5 rounded-lg text-xs font-medium

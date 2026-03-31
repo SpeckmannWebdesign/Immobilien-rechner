@@ -64,7 +64,7 @@ export default function AGBPage() {
 
         <h2>§ 4 Kostenloser Testzeitraum</h2>
         <p>
-          (1) Neue Kunden erhalten einen kostenlosen Testzeitraum von 14 Tagen
+          (1) Neue Kunden erhalten einen kostenlosen Testzeitraum von 7 Tagen
           mit Zugang zu allen Funktionen.
         </p>
         <p>

@@ -93,7 +93,7 @@ export default async function RechnerPage({ params }: { params: Params }) {
       "@type": "Offer",
       price: "0",
       priceCurrency: "EUR",
-      description: "14 Tage kostenlos testen",
+      description: "7 Tage kostenlos testen",
     },
   }
 
@@ -144,7 +144,7 @@ export default async function RechnerPage({ params }: { params: Params }) {
               className="inline-flex items-center gap-2 bg-[#4338CA] text-white px-8 py-3.5 rounded-full text-lg font-medium
                          hover:bg-[#5B52E0] transition-colors duration-300"
             >
-              14 Tage kostenlos testen
+              7 Tage kostenlos testen
               <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
@@ -252,7 +252,7 @@ export default async function RechnerPage({ params }: { params: Params }) {
             Jetzt {tool.shortName} berechnen
           </h2>
           <p className="text-[#94A3B8] text-lg mb-8">
-            Testen Sie alle 16 professionellen Immobilien-Rechner 14 Tage lang kostenlos.
+            Testen Sie alle 16 professionellen Immobilien-Rechner 7 Tage lang kostenlos.
             Keine Kreditkarte noetig.
           </p>
           <Link
@@ -260,7 +260,7 @@ export default async function RechnerPage({ params }: { params: Params }) {
             className="inline-flex items-center gap-2 bg-[#4338CA] text-white px-8 py-3.5 rounded-full text-lg font-medium
                        hover:bg-[#5B52E0] transition-colors duration-300"
           >
-            14 Tage kostenlos testen
+            7 Tage kostenlos testen
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>

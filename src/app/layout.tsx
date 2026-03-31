@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import { Geist } from "next/font/google"
+import { ThemeProvider } from "next-themes"
 import { Toaster } from "@/components/ui/sonner"
 import { TooltipProvider } from "@/components/ui/tooltip"
 import { CookieConsent } from "@/components/layout/cookie-consent"
@@ -33,13 +34,15 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="de" className={`${geistSans.variable} h-full antialiased`}>
+    <html lang="de" className={`${geistSans.variable} h-full antialiased`} suppressHydrationWarning>
       <body className="min-h-full flex flex-col font-[family-name:var(--font-geist-sans)]">
-        <TooltipProvider>
-          {children}
-        </TooltipProvider>
-        <CookieConsent />
-        <Toaster position="top-right" richColors />
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
+          <TooltipProvider>
+            {children}
+          </TooltipProvider>
+          <CookieConsent />
+          <Toaster position="top-right" richColors />
+        </ThemeProvider>
       </body>
     </html>
   )

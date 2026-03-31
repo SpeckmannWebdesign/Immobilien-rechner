@@ -13,6 +13,10 @@ import { ObjektvergleichRechner } from "@/components/rechner/objektvergleich-rec
 import { TilgungsplanRechner } from "@/components/rechner/tilgungsplan-rechner"
 import { NebenkostenRechner } from "@/components/rechner/nebenkosten-rechner"
 import { MieterhoehungsRechner } from "@/components/rechner/mieterhoehungs-rechner"
+import { KaufenVsMietenRechner } from "@/components/rechner/kaufen-vs-mieten-rechner"
+import { VorfaelligkeitsRechner } from "@/components/rechner/vorfaelligkeits-rechner"
+import { BeleihungswertRechner } from "@/components/rechner/beleihungswert-rechner"
+import { WohnflaechenRechner } from "@/components/rechner/wohnflaechen-rechner"
 import type { ComponentType } from "react"
 
 const rechnerMap: Record<string, ComponentType> = {
@@ -28,6 +32,10 @@ const rechnerMap: Record<string, ComponentType> = {
   "tilgungsplan-generator": TilgungsplanRechner,
   "nebenkostenabrechnung-rechner": NebenkostenRechner,
   "mieterhoehungs-rechner": MieterhoehungsRechner,
+  "kaufen-vs-mieten": KaufenVsMietenRechner,
+  "vorfaelligkeitsentschaedigung-rechner": VorfaelligkeitsRechner,
+  "beleihungswert-rechner": BeleihungswertRechner,
+  "wohnflaechenberechnung": WohnflaechenRechner,
 }
 
 interface EmbedWrapperProps {
@@ -82,16 +90,16 @@ export function EmbedWrapper({ toolSlug, styling }: EmbedWrapperProps) {
         <RechnerComponent />
       </div>
 
-      {/* Powered-by Footer */}
-      <div className="border-t px-4 py-3 text-center">
+      {/* Powered-by Footer — dofollow Link für SEO */}
+      <div className="border-t px-4 py-2.5 text-center">
         <a
-          href="https://immobilien-rechner.net?ref=embed"
+          href="https://www.immobilien-rechner.net?ref=embed"
           target="_blank"
-          rel="noopener noreferrer"
-          className="text-xs text-muted-foreground hover:text-foreground transition-colors"
+          rel="noopener"
+          className="text-[11px] text-muted-foreground/60 hover:text-muted-foreground transition-colors"
         >
-          Berechnet mit{" "}
-          <span className="font-medium text-foreground">
+          Powered by{" "}
+          <span className="font-medium">
             immobilien-rechner.net
           </span>
         </a>

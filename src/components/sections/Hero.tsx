@@ -86,7 +86,7 @@ export function HeroSection() {
             className="bg-[#4338CA] text-white px-8 py-3.5 rounded-full text-lg font-medium
                        hover:bg-[#5B52E0] transition-colors duration-300 flex items-center gap-2"
           >
-            14 Tage kostenlos testen
+            7 Tage kostenlos testen
             <ArrowRight className="h-4 w-4" />
           </Link>
           <Link

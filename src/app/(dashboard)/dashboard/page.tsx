@@ -34,7 +34,7 @@ export default function DashboardPage() {
           <CardContent>
             <div className="text-2xl font-bold">Trial</div>
             <p className="text-xs text-muted-foreground">
-              Endet in 14 Tagen
+              Endet in 7 Tagen
             </p>
           </CardContent>
         </Card>

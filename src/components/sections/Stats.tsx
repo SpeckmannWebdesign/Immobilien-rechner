@@ -33,7 +33,7 @@ export function StatsSection() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-[#E3E5EB] border border-[#E3E5EB] rounded-2xl overflow-hidden">
           <StatItem value={16} suffix="" label="Profi-Rechner" />
           <StatItem value={16} suffix="" label="Bundesländer" />
-          <StatItem value={14} suffix=" Tage" label="Kostenloser Test" />
+          <StatItem value={7} suffix=" Tage" label="Kostenloser Test" />
           <StatItem value={100} suffix="%" label="DSGVO-konform" />
         </div>
       </div>

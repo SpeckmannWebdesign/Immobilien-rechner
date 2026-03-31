@@ -26,7 +26,7 @@ export function TeaserOverlay({ children, showOverlay }: TeaserOverlayProps) {
           <div>
             <h3 className="font-semibold text-lg">Exaktes Ergebnis freischalten</h3>
             <p className="text-sm text-muted-foreground mt-1">
-              Registrieren Sie sich kostenlos und testen Sie alle Rechner 14 Tage lang.
+              Registrieren Sie sich kostenlos und testen Sie alle Rechner 7 Tage lang.
             </p>
           </div>
           <Link href="/anmelden">

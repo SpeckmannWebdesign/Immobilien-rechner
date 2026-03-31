@@ -71,7 +71,7 @@ export function PricingSection() {
             Einfache, transparente Preise.
           </h2>
           <p className="text-[1.1875rem] text-[#6B7280] max-w-[600px] mx-auto">
-            Starten Sie mit 14 Tagen kostenlosem Zugang zu allen Funktionen. Keine Kreditkarte nötig.
+            Starten Sie mit 7 Tagen kostenlosem Zugang zu allen Funktionen. Keine Kreditkarte nötig.
           </p>
         </div>
 

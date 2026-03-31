@@ -10,21 +10,31 @@ export function CtaSection() {
   return (
     <section
       ref={sectionRef}
-      className="py-[clamp(7rem,15vw,14rem)] px-6 bg-[#f5f5f7]"
+      className="relative py-[clamp(7rem,15vw,14rem)] px-6 bg-[#0B0D14] overflow-hidden"
     >
-      <div className="max-w-[800px] mx-auto text-center">
+      {/* Subtiler Gradient-Orb im Hintergrund */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full opacity-25"
+          style={{
+            background: "radial-gradient(circle, rgba(67, 56, 202, 0.35) 0%, transparent 70%)",
+          }}
+        />
+      </div>
+
+      <div className="relative z-10 max-w-[800px] mx-auto text-center">
         {/* Statement */}
         <h2
           data-reveal
-          className="text-[clamp(2rem,4vw,3.5rem)] font-bold leading-[1.1] tracking-[-0.02em] text-[#1d1d1f] mb-6"
+          className="text-[clamp(2rem,4vw,3.5rem)] font-bold leading-[1.1] tracking-[-0.02em] text-[#F1F5F9] mb-6"
         >
           Bereit für professionelle{" "}
-          <span className="text-gradient-blue">Immobilien-Rechner</span>?
+          <span className="text-gradient-hero">Immobilien-Rechner</span>?
         </h2>
 
         <p
           data-reveal
-          className="text-[1.1875rem] text-[#6e6e73] mb-10 max-w-[500px] mx-auto"
+          className="text-[1.1875rem] text-[#94A3B8] mb-10 max-w-[500px] mx-auto"
         >
           Starten Sie jetzt Ihren kostenlosen 14-Tage-Test. Keine Kreditkarte nötig. Keine Verpflichtung.
         </p>
@@ -32,16 +42,16 @@ export function CtaSection() {
         <div data-reveal className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link
             href="/anmelden"
-            className="bg-[#0066CC] text-white px-8 py-3.5 rounded-full text-lg font-medium
-                       hover:bg-[#0077ED] transition-colors duration-300 flex items-center gap-2"
+            className="bg-[#4338CA] text-white px-8 py-3.5 rounded-full text-lg font-medium
+                       hover:bg-[#5B52E0] transition-colors duration-300 flex items-center gap-2"
           >
             Jetzt kostenlos starten
             <ArrowRight className="h-4 w-4" />
           </Link>
           <Link
             href="/preise"
-            className="text-[#0066CC] text-lg font-medium
-                       hover:underline underline-offset-4 transition-all duration-300"
+            className="text-[#94A3B8] text-lg font-medium
+                       hover:text-[#F1F5F9] hover:underline underline-offset-4 transition-all duration-300"
           >
             Preise ansehen
           </Link>

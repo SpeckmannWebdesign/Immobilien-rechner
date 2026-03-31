@@ -13,7 +13,7 @@ const plans = [
     priceMonthly: 19,
     priceYearly: 15.2,
     features: [
-      { text: "Alle 12 Rechner im Dashboard", included: true },
+      { text: "Alle 16 Rechner im Dashboard", included: true },
       { text: "PDF-Export aller Ergebnisse", included: true },
       { text: "Ergebnisse per E-Mail versenden", included: true },
       { text: "Unbegrenzte Berechnungen", included: true },
@@ -43,7 +43,7 @@ const plans = [
     priceYearly: 55.2,
     features: [
       { text: "Alles aus Pro", included: true },
-      { text: "Alle 12 Rechner einbetten", included: true },
+      { text: "Alle 16 Rechner einbetten", included: true },
       { text: "Unbegrenzt viele Domains", included: true },
       { text: "Eigene Farben & Dark Mode", included: true },
       { text: "Embed-Analytics", included: true },
@@ -64,23 +64,26 @@ export function PricingSection() {
       <div className="max-w-[1120px] mx-auto">
         {/* Header */}
         <div data-reveal className="text-center mb-6">
-          <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-bold tracking-[-0.02em] text-[#1d1d1f] mb-4">
+          <p className="text-sm font-semibold text-[#4338CA] uppercase tracking-wider mb-3">
+            Preise
+          </p>
+          <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-bold tracking-[-0.02em] text-[#111827] mb-4">
             Einfache, transparente Preise.
           </h2>
-          <p className="text-[1.1875rem] text-[#6e6e73] max-w-[600px] mx-auto">
+          <p className="text-[1.1875rem] text-[#6B7280] max-w-[600px] mx-auto">
             Starten Sie mit 14 Tagen kostenlosem Zugang zu allen Funktionen. Keine Kreditkarte nötig.
           </p>
         </div>
 
         {/* Toggle */}
         <div data-reveal className="flex items-center justify-center gap-3 mb-16">
-          <span className={`text-sm font-medium ${!yearly ? "text-[#1d1d1f]" : "text-[#86868b]"}`}>
+          <span className={`text-sm font-medium ${!yearly ? "text-[#111827]" : "text-[#9CA3AF]"}`}>
             Monatlich
           </span>
           <button
             onClick={() => setYearly(!yearly)}
             className={`relative w-12 h-7 rounded-full transition-colors duration-300 ${
-              yearly ? "bg-[#0066CC]" : "bg-[#e5e5ea]"
+              yearly ? "bg-[#4338CA]" : "bg-[#e5e5ea]"
             }`}
             aria-label={yearly ? "Zu monatlicher Zahlung wechseln" : "Zu jährlicher Zahlung wechseln"}
           >
@@ -90,12 +93,12 @@ export function PricingSection() {
               className="absolute top-[3px] w-[22px] h-[22px] bg-white rounded-full shadow-sm"
             />
           </button>
-          <span className={`text-sm font-medium ${yearly ? "text-[#1d1d1f]" : "text-[#86868b]"}`}>
+          <span className={`text-sm font-medium ${yearly ? "text-[#111827]" : "text-[#9CA3AF]"}`}>
             Jährlich
           </span>
           {yearly && (
-            <span className="text-xs font-medium text-[#0066CC] bg-[#0066CC]/8 px-2.5 py-1 rounded-full">
-              −20%
+            <span className="text-xs font-medium text-[#059669] bg-[#059669]/[0.08] px-2.5 py-1 rounded-lg">
+              -20%
             </span>
           )}
         </div>
@@ -105,16 +108,17 @@ export function PricingSection() {
           {plans.map((plan) => (
             <div
               key={plan.name}
-              className={`rounded-3xl p-8 flex flex-col ${
+              className={`rounded-2xl p-8 flex flex-col ${
                 plan.popular
-                  ? "bg-[#1d1d1f] text-white ring-2 ring-[#1d1d1f] relative"
-                  : "bg-[#f5f5f7] text-[#1d1d1f]"
+                  ? "bg-white border-[#4338CA] relative"
+                  : "bg-white border border-[#E3E5EB]"
               }`}
+              style={plan.popular ? { boxShadow: "0 0 0 2px #4338CA" } : undefined}
             >
               {/* Popular Badge */}
               {plan.popular && (
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                  <span className="bg-[#0066CC] text-white text-xs font-medium px-4 py-1.5 rounded-full">
+                  <span className="bg-[#4338CA] text-white text-xs font-medium px-4 py-1.5 rounded-lg">
                     Beliebtester Plan
                   </span>
                 </div>
@@ -122,8 +126,8 @@ export function PricingSection() {
 
               {/* Plan Name */}
               <div className="mb-6">
-                <h3 className="text-lg font-bold mb-1">{plan.name}</h3>
-                <p className={`text-sm ${plan.popular ? "text-white/60" : "text-[#86868b]"}`}>
+                <h3 className="text-lg font-bold text-[#111827] mb-1">{plan.name}</h3>
+                <p className="text-sm text-[#9CA3AF]">
                   {plan.description}
                 </p>
               </div>
@@ -131,14 +135,14 @@ export function PricingSection() {
               {/* Price */}
               <div className="mb-8">
                 <div className="flex items-baseline gap-1">
-                  <span className="text-[clamp(2.5rem,4vw,3.5rem)] font-bold tracking-[-0.03em]">
+                  <span className="text-[clamp(2.5rem,4vw,3.5rem)] font-bold tracking-[-0.03em] text-[#111827]">
                     {Math.round(yearly ? plan.priceYearly : plan.priceMonthly)} €
                   </span>
-                  <span className={`text-sm ${plan.popular ? "text-white/60" : "text-[#86868b]"}`}>
+                  <span className="text-sm text-[#9CA3AF]">
                     /Monat
                   </span>
                 </div>
-                <p className={`text-xs mt-1 ${plan.popular ? "text-white/40" : "text-[#86868b]"}`}>
+                <p className="text-xs mt-1 text-[#9CA3AF]">
                   inkl. 19% MwSt. {yearly ? "Jährliche Abrechnung." : "Monatlich kündbar."}
                 </p>
               </div>
@@ -146,10 +150,10 @@ export function PricingSection() {
               {/* CTA */}
               <Link
                 href="/anmelden"
-                className={`w-full py-3 rounded-full text-center font-medium text-sm transition-colors duration-300 mb-8 block ${
+                className={`w-full py-3 rounded-lg text-center font-medium text-sm transition-colors duration-300 mb-8 block ${
                   plan.popular
-                    ? "bg-white text-[#1d1d1f] hover:bg-white/90"
-                    : "bg-[#0066CC] text-white hover:bg-[#0077ED]"
+                    ? "bg-[#4338CA] text-white hover:bg-[#5B52E0]"
+                    : "border border-[#E3E5EB] text-[#111827] hover:bg-[#F9FAFB]"
                 }`}
               >
                 Kostenlos testen
@@ -160,15 +164,11 @@ export function PricingSection() {
                 {plan.features.map((feature) => (
                   <li key={feature.text} className="flex items-start gap-3 text-sm">
                     {feature.included ? (
-                      <Check className={`h-4 w-4 mt-0.5 flex-shrink-0 ${
-                        plan.popular ? "text-[#30d158]" : "text-[#0066CC]"
-                      }`} />
+                      <Check className="h-4 w-4 mt-0.5 flex-shrink-0 text-[#059669]" />
                     ) : (
-                      <X className={`h-4 w-4 mt-0.5 flex-shrink-0 ${
-                        plan.popular ? "text-white/20" : "text-[#d1d1d6]"
-                      }`} />
+                      <X className="h-4 w-4 mt-0.5 flex-shrink-0 text-[#d1d1d6]" />
                     )}
-                    <span className={!feature.included ? (plan.popular ? "text-white/30" : "text-[#d1d1d6]") : ""}>
+                    <span className={!feature.included ? "text-[#d1d1d6]" : "text-[#4B5563]"}>
                       {feature.text}
                     </span>
                   </li>
@@ -182,7 +182,7 @@ export function PricingSection() {
         <div data-reveal className="text-center mt-10">
           <Link
             href="/preise"
-            className="inline-flex items-center gap-2 text-[#0066CC] font-medium
+            className="inline-flex items-center gap-2 text-[#4338CA] font-medium
                        hover:underline underline-offset-4 transition-all duration-300"
           >
             Alle Details und FAQ ansehen

@@ -11,6 +11,9 @@ import {
   FileSpreadsheet,
   Receipt,
   ArrowUpRight,
+  Scale,
+  Ban,
+  Ruler,
   type LucideIcon,
 } from "lucide-react"
 
@@ -158,6 +161,42 @@ export const tools: Tool[] = [
     seoDescription:
       "Erstellen Sie einen detaillierten Tilgungsplan für Ihren Immobilienkredit. Mit Jahresübersicht und PDF-Export.",
   },
+  {
+    slug: "kaufen-vs-mieten",
+    name: "Kaufen vs. Mieten",
+    shortName: "Kaufen/Mieten",
+    description: "Vergleichen Sie die Gesamtkosten von Kaufen und Mieten über einen beliebigen Zeitraum",
+    category: "erweitert",
+    categoryLabel: "Investoren",
+    icon: Scale,
+    seoTitle: "Kaufen vs. Mieten | Professioneller Immobilien-Rechner",
+    seoDescription:
+      "Kaufen oder Mieten — was lohnt sich mehr? Vergleichen Sie Vermögensaufbau, Gesamtkosten und finden Sie den Break-Even-Punkt.",
+  },
+  {
+    slug: "vorfaelligkeitsentschaedigung-rechner",
+    name: "Vorfälligkeitsentschädigung-Rechner",
+    shortName: "Vorfälligkeit",
+    description: "Kosten für die vorzeitige Ablösung eines Immobilienkredits berechnen",
+    category: "erweitert",
+    categoryLabel: "Investoren",
+    icon: Ban,
+    seoTitle: "Vorfälligkeitsentschädigung berechnen | Professioneller Immobilien-Rechner",
+    seoDescription:
+      "Berechnen Sie die Vorfälligkeitsentschädigung bei vorzeitiger Kreditablösung. Mit Sondertilgungsrecht und Zinsmargenschaden.",
+  },
+  {
+    slug: "beleihungswert-rechner",
+    name: "Beleihungswert-Rechner",
+    shortName: "Beleihungswert",
+    description: "Beleihungswert, maximales Darlehen und Eigenkapitalbedarf berechnen",
+    category: "erweitert",
+    categoryLabel: "Investoren",
+    icon: Landmark,
+    seoTitle: "Beleihungswert berechnen | Professioneller Immobilien-Rechner",
+    seoDescription:
+      "Berechnen Sie den Beleihungswert Ihrer Immobilie, das maximale Darlehen und den Eigenkapitalbedarf für Ihre Finanzierung.",
+  },
 
   // Hausverwaltungs-Rechner
   {
@@ -185,6 +224,18 @@ export const tools: Tool[] = [
     seoTitle: "Mieterhöhungs-Rechner — Kappungsgrenze berechnen",
     seoDescription:
       "Berechnen Sie die zulässige Mieterhöhung unter Berücksichtigung der Kappungsgrenze (20% / 15% in angespannten Märkten).",
+  },
+  {
+    slug: "wohnflaechenberechnung",
+    name: "Wohnflächenberechnung",
+    shortName: "Wohnfläche",
+    description: "Wohnfläche nach WoFlV korrekt berechnen — mit Dachschrägen, Balkonen und Terrassen",
+    category: "hausverwaltung",
+    categoryLabel: "Hausverwaltungen",
+    icon: Ruler,
+    seoTitle: "Wohnflächenberechnung nach WoFlV | Professioneller Immobilien-Rechner",
+    seoDescription:
+      "Berechnen Sie die anrechenbare Wohnfläche nach der Wohnflächenverordnung (WoFlV). Mit Dachschrägen, Balkonen, Terrassen und Kellern.",
   },
 ]
 

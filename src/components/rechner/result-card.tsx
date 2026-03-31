@@ -1,6 +1,5 @@
 "use client"
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
 import { formatCurrency, formatPercent } from "@/lib/rechner/format"
 
@@ -21,11 +20,11 @@ interface ResultCardProps {
 
 export function ResultCard({ title, items, className }: ResultCardProps) {
   return (
-    <Card className={cn("bg-muted/30", className)}>
-      <CardHeader className="pb-3">
-        <CardTitle className="text-lg">{title}</CardTitle>
-      </CardHeader>
-      <CardContent className="space-y-3">
+    <div className={cn("bg-card border rounded-xl p-5", className)}>
+      <h3 className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-4">
+        {title}
+      </h3>
+      <div className="space-y-3">
         {items.map((item, index) => (
           <div
             key={index}
@@ -37,11 +36,10 @@ export function ResultCard({ title, items, className }: ResultCardProps) {
             <span className="text-sm text-muted-foreground">{item.label}</span>
             <span
               className={cn(
-                "font-medium tabular-nums",
-                item.color === "green" && "text-green-600 dark:text-green-400",
-                item.color === "red" && "text-red-600 dark:text-red-400",
-                item.color === "yellow" &&
-                  "text-yellow-600 dark:text-yellow-400"
+                "font-semibold tabular-nums",
+                item.color === "green" && "text-[#059669]",
+                item.color === "red" && "text-[#DC2626]",
+                item.color === "yellow" && "text-[#B45309]"
               )}
             >
               {item.textValue
@@ -54,7 +52,40 @@ export function ResultCard({ title, items, className }: ResultCardProps) {
             </span>
           </div>
         ))}
-      </CardContent>
-    </Card>
+      </div>
+    </div>
+  )
+}
+
+/* Bento-Metrik-Karte für einzelne Kennzahlen */
+interface BentoMetricProps {
+  label: string
+  value: string
+  sub?: string
+  color?: "green" | "red" | "blue" | "amber" | "default"
+  className?: string
+}
+
+export function BentoMetric({ label, value, sub, color = "default", className }: BentoMetricProps) {
+  return (
+    <div className={cn(
+      "bg-card border rounded-xl p-5 transition-all hover:shadow-sm hover:-translate-y-0.5",
+      className
+    )}>
+      <div className="text-xs font-semibold text-muted-foreground mb-1.5">{label}</div>
+      <div
+        className={cn(
+          "text-2xl font-extrabold tracking-tight tabular-nums",
+          color === "green" && "text-[#059669]",
+          color === "red" && "text-[#DC2626]",
+          color === "blue" && "text-[#4338CA]",
+          color === "amber" && "text-[#B45309]",
+          color === "default" && "text-foreground"
+        )}
+      >
+        {value}
+      </div>
+      {sub && <div className="text-xs text-muted-foreground mt-0.5">{sub}</div>}
+    </div>
   )
 }

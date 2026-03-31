@@ -1,14 +1,13 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useMemo } from "react"
 import { Receipt, Plus, Trash2 } from "lucide-react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
 import { Disclaimer } from "./disclaimer"
 import { SelectInput } from "./select-input"
-import { ResultCard } from "./result-card"
+import { BentoMetric } from "./result-card"
 import {
   Table,
   TableBody,
@@ -23,7 +22,6 @@ import {
   type Kostenposition,
   type Mieter,
   type Verteilerschluessel,
-  type NebenkostenResult,
 } from "@/lib/rechner"
 
 const DEFAULT_KOSTEN: Kostenposition[] = [
@@ -45,7 +43,18 @@ export function NebenkostenRechner() {
   const [kosten, setKosten] = useState<Kostenposition[]>(DEFAULT_KOSTEN)
   const [mieter, setMieter] = useState<Mieter[]>(DEFAULT_MIETER)
   const [schluessel, setSchluessel] = useState<Verteilerschluessel>("flaeche")
-  const [result, setResult] = useState<NebenkostenResult | null>(null)
+
+  // Live-Berechnung — aktualisiert sich sofort bei jeder Eingabe
+  const result = useMemo(
+    () =>
+      berechneNebenkosten({
+        kostenpositionen: kosten,
+        mieter,
+        verteilerschluessel: schluessel,
+        abrechnungszeitraum: String(new Date().getFullYear()),
+      }),
+    [kosten, mieter, schluessel]
+  )
 
   function updateKosten(index: number, field: keyof Kostenposition, value: string | number | boolean) {
     const updated = [...kosten]
@@ -77,27 +86,39 @@ export function NebenkostenRechner() {
     }
   }
 
-  function handleCalculate() {
-    setResult(
-      berechneNebenkosten({
-        kostenpositionen: kosten,
-        mieter,
-        verteilerschluessel: schluessel,
-        abrechnungszeitraum: String(new Date().getFullYear()),
-      })
-    )
-  }
-
   return (
     <div className="space-y-6">
-      <div className="flex items-center gap-3">
-        <div className="rounded-lg bg-primary/10 p-2.5">
-          <Receipt className="h-6 w-6 text-primary" />
+      {/* Header */}
+      <div className="flex items-center gap-3 pb-6 border-b">
+        <div className="w-10 h-10 rounded-xl bg-muted border flex items-center justify-center flex-shrink-0">
+          <Receipt className="h-5 w-5 text-muted-foreground" />
         </div>
         <div>
-          <h1 className="text-2xl font-bold">Nebenkostenabrechnung-Rechner</h1>
-          <p className="text-muted-foreground">Umlegbare und nicht-umlegbare Kosten aufschlüsseln</p>
+          <h1 className="text-2xl font-extrabold tracking-tight">Nebenkostenabrechnung-Rechner</h1>
+          <p className="text-sm text-muted-foreground">Umlegbare und nicht-umlegbare Kosten aufschlüsseln</p>
         </div>
+      </div>
+
+      {/* Bento-Grid: Top-Kennzahlen */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <BentoMetric
+          label="Gesamtkosten"
+          value={formatCurrency(result.gesamtKosten)}
+          sub="Alle Kostenpositionen"
+          color="blue"
+        />
+        <BentoMetric
+          label="Umlegbare Kosten"
+          value={formatCurrency(result.umlegbareKosten)}
+          sub="Auf Mieter verteilbar"
+          color="green"
+        />
+        <BentoMetric
+          label="Nicht-umlegbar"
+          value={formatCurrency(result.nichtUmlegbareKosten)}
+          sub="Verbleiben beim Vermieter"
+          color="red"
+        />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -205,55 +226,38 @@ export function NebenkostenRechner() {
         </Card>
       </div>
 
-      <Button onClick={handleCalculate} className="w-full sm:w-auto">
-        Abrechnung erstellen
-      </Button>
-
-      {result && (
-        <div className="space-y-4">
-          <ResultCard
-            title="Kostenübersicht"
-            items={[
-              { label: "Gesamtkosten", value: result.gesamtKosten },
-              { label: "Umlegbare Kosten", value: result.umlegbareKosten, color: "green" },
-              { label: "Nicht-umlegbare Kosten", value: result.nichtUmlegbareKosten, color: "red" },
-            ]}
-          />
-          <Card>
-            <CardHeader className="pb-3">
-              <CardTitle className="text-lg">Abrechnung pro Mieter</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead>Einheit</TableHead>
-                    <TableHead className="text-right">Anteil</TableHead>
-                    <TableHead className="text-right">Jährlich</TableHead>
-                    <TableHead className="text-right">Monatlich</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {result.abrechnungen.map((a, i) => (
-                    <TableRow key={i}>
-                      <TableCell className="font-medium">{a.name}</TableCell>
-                      <TableCell className="text-right tabular-nums">
-                        {a.anteil.toFixed(1).replace(".", ",")} %
-                      </TableCell>
-                      <TableCell className="text-right tabular-nums">
-                        {formatCurrency(a.umlegbarerBetrag)}
-                      </TableCell>
-                      <TableCell className="text-right tabular-nums font-medium">
-                        {formatCurrency(a.monatlich)}
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </CardContent>
-          </Card>
-        </div>
-      )}
+      {/* Abrechnung pro Mieter — immer sichtbar */}
+      <div className="bg-card border rounded-xl p-5">
+        <h3 className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-4">
+          Abrechnung pro Mieter
+        </h3>
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead>Einheit</TableHead>
+              <TableHead className="text-right">Anteil</TableHead>
+              <TableHead className="text-right">Jährlich</TableHead>
+              <TableHead className="text-right">Monatlich</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {result.abrechnungen.map((a, i) => (
+              <TableRow key={i}>
+                <TableCell className="font-medium">{a.name}</TableCell>
+                <TableCell className="text-right tabular-nums">
+                  {a.anteil.toFixed(1).replace(".", ",")} %
+                </TableCell>
+                <TableCell className="text-right tabular-nums">
+                  {formatCurrency(a.umlegbarerBetrag)}
+                </TableCell>
+                <TableCell className="text-right tabular-nums font-medium">
+                  {formatCurrency(a.monatlich)}
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </div>
 
       <Disclaimer />
     </div>

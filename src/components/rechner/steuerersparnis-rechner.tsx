@@ -1,42 +1,44 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useMemo } from "react"
 import { FileText } from "lucide-react"
 import { CalculatorLayout } from "./calculator-layout"
 import { CurrencyInput } from "./currency-input"
 import { PercentInput } from "./percent-input"
 import { NumberInput } from "./number-input"
-import { ResultCard } from "./result-card"
-import { berechneSteuerersparnis, type SteuerersparnisResult } from "@/lib/rechner"
+import { BentoMetric } from "./result-card"
+import { berechneSteuerersparnis, formatCurrency } from "@/lib/rechner"
 
 export function SteuerersparnisRechner() {
   const [kaufpreisGebaeude, setKaufpreisGebaeude] = useState(200000)
-  const [baujahr, setBaujahr] = useState(1990)
+  const [baujahr, setBaujahr] = useState(1995)
   const [grenzsteuersatz, setGrenzsteuersatz] = useState(42)
   const [jaehrlicheWerbungskosten, setJaehrlicheWerbungskosten] = useState(5000)
   const [jaehrlicheMieteinnahmen, setJaehrlicheMieteinnahmen] = useState(9600)
-  const [result, setResult] = useState<SteuerersparnisResult | null>(null)
 
-  function handleCalculate() {
-    setResult(
+  // Live-Berechnung — aktualisiert sich sofort bei jeder Eingabe
+  const result = useMemo(
+    () =>
       berechneSteuerersparnis({
         kaufpreisGebaeude,
         baujahr,
         grenzsteuersatz,
         jaehrlicheWerbungskosten,
         jaehrlicheMieteinnahmen,
-      })
-    )
-  }
+      }),
+    [kaufpreisGebaeude, baujahr, grenzsteuersatz, jaehrlicheWerbungskosten, jaehrlicheMieteinnahmen]
+  )
+
+  const ersparnisColor = result.steuerersparnisJahr > 0 ? "green" as const : "red" as const
+  const einkuenfteColor = result.istSteuerlichNegativ ? "green" as const : "red" as const
 
   return (
     <CalculatorLayout
       title="Steuerersparnis-Rechner"
       description="AfA, Werbungskosten und jährlichen Steuervorteil berechnen"
       icon={FileText}
-      showTaxDisclaimer
-      hasResults={result !== null}
-      onCalculate={handleCalculate}
+      showTaxDisclaimer={true}
+      hasResults={true}
       inputs={
         <>
           <CurrencyInput
@@ -78,42 +80,45 @@ export function SteuerersparnisRechner() {
         </>
       }
       results={
-        result ? (
-          <ResultCard
-            title="Steuerersparnis"
-            items={[
-              {
-                label: `AfA-Satz: ${result.afaLabel}`,
-                value: result.jaehrlicheAfa,
-                textValue: result.afaLabel,
-              },
-              {
-                label: "Jährliche AfA",
-                value: result.jaehrlicheAfa,
-              },
-              {
-                label: "Steuerliche Einkünfte",
-                value: result.steuerlicheEinkuenfte,
-                color: result.istSteuerlichNegativ ? "green" : "red",
-              },
-              {
-                label: "Steuerersparnis pro Jahr",
-                value: result.steuerersparnisJahr,
-                highlight: true,
-                color: result.steuerersparnisJahr > 0 ? "green" : "red",
-              },
-              {
-                label: "Steuerersparnis pro Monat",
-                value: result.steuerersparnisMonat,
-                color: result.steuerersparnisMonat > 0 ? "green" : "red",
-              },
-            ]}
-          />
-        ) : (
-          <div className="rounded-lg border border-dashed p-8 text-center text-muted-foreground">
-            Geben Sie Ihre Daten ein und klicken Sie auf &quot;Berechnen&quot;.
+        <>
+          {/* Bento-Grid: Top-Kennzahlen */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <BentoMetric
+              label="Jährliche Steuerersparnis"
+              value={formatCurrency(result.steuerersparnisJahr)}
+              sub={`${formatCurrency(result.steuerersparnisMonat)} pro Monat`}
+              color={ersparnisColor}
+            />
+            <BentoMetric
+              label="Jährliche AfA"
+              value={formatCurrency(result.jaehrlicheAfa)}
+              sub={result.afaLabel}
+              color="blue"
+            />
+            <BentoMetric
+              label="Steuerliche Einkünfte"
+              value={formatCurrency(result.steuerlicheEinkuenfte)}
+              sub={result.istSteuerlichNegativ ? "Steuerlicher Verlust" : "Steuerlicher Gewinn"}
+              color={einkuenfteColor}
+            />
           </div>
-        )
+
+          {/* Detail-Kennzahlen */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <BentoMetric
+              label="Steuerersparnis pro Monat"
+              value={formatCurrency(result.steuerersparnisMonat)}
+              sub="Monatlicher Steuervorteil"
+              color={ersparnisColor}
+            />
+            <BentoMetric
+              label="Werbungskosten gesamt"
+              value={formatCurrency(jaehrlicheWerbungskosten + result.jaehrlicheAfa)}
+              sub="Inkl. AfA-Betrag"
+              color="amber"
+            />
+          </div>
+        </>
       }
     />
   )

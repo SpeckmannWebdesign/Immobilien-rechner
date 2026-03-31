@@ -130,10 +130,10 @@
   }
 }
 
-/* Apple-Style Selection */
+/* Selection */
 ::selection {
-  background: rgba(0, 102, 204, 0.15);
-  color: #1d1d1f;
+  background: rgba(67, 56, 202, 0.12);
+  color: #111827;
 }
 
 /* Minimale Scrollbar */
@@ -144,7 +144,7 @@
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.12);
+  background: rgba(0, 0, 0, 0.1);
   border-radius: 3px;
 }
 
@@ -158,26 +158,81 @@
   }
 }
 
-/* Apple Glass Navigation */
+/* Glass Navigation — Light */
 .nav-glass {
-  background: rgba(255, 255, 255, 0.72);
+  background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
 }
 
 .nav-glass-scrolled {
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.88);
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }
 
-/* Apple Text Gradient */
+/* Glass Navigation — Dark (Hero/CTA) */
+.nav-glass-dark {
+  background: rgba(11, 13, 20, 0.8);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Dark Section Backgrounds */
+.bg-dark-section {
+  background: #0B0D14;
+  color: #F1F5F9;
+}
+
+.bg-dark-surface {
+  background: #13151E;
+}
+
+.bg-dark-elevated {
+  background: #1B1D28;
+}
+
+/* Mix Theme Colors */
 @layer utilities {
-  .text-gradient-blue {
-    background: linear-gradient(90deg, #0066CC, #0099FF);
+  .text-gradient-hero {
+    background: linear-gradient(135deg, #4338CA 0%, #0E7490 50%, #059669 100%);
+    background-size: 200% 200%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+  }
+
+  .text-brand {
+    color: #4338CA;
+  }
+
+  .bg-brand {
+    background-color: #4338CA;
+  }
+
+  .bg-brand-hover:hover {
+    background-color: #5B52E0;
+  }
+
+  .border-brand {
+    border-color: #4338CA;
+  }
+
+  .text-success {
+    color: #059669;
+  }
+
+  .text-warning {
+    color: #B45309;
+  }
+
+  .text-danger {
+    color: #DC2626;
+  }
+
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
   }
 }

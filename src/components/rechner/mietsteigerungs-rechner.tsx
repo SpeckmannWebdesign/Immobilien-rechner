@@ -1,47 +1,47 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useMemo } from "react"
 import { ArrowUpRight } from "lucide-react"
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from "recharts"
 import { CalculatorLayout } from "./calculator-layout"
 import { CurrencyInput } from "./currency-input"
 import { PercentInput } from "./percent-input"
 import { SelectInput } from "./select-input"
-import { ResultCard } from "./result-card"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table"
-import { berechneMietsteigerung, formatCurrency, type MietsteigerungResult } from "@/lib/rechner"
+import { BentoMetric, ResultCard } from "./result-card"
+import { berechneMietsteigerung, formatCurrency, formatPercent } from "@/lib/rechner"
+
+const CHART_COLORS = ["#4338CA", "#0E7490", "#059669", "#B45309"]
+
+const TOOLTIP_STYLE = {
+  background: "white",
+  border: "1px solid #E3E5EB",
+  borderRadius: "8px",
+  fontSize: "13px",
+  boxShadow: "0 4px 12px rgba(0,0,0,0.06)",
+}
 
 export function MietsteigerungsRechner() {
-  const [aktuelleMonatsmiete, setAktuelleMonatsmiete] = useState(800)
+  const [aktuelleMonatsmiete, setAktuelleMonatsmiete] = useState(1000)
   const [jaehrlicheSteigerung, setJaehrlicheSteigerung] = useState(2.0)
   const [zeitraum, setZeitraum] = useState(20)
-  const [result, setResult] = useState<MietsteigerungResult | null>(null)
 
-  function handleCalculate() {
-    setResult(
+  // Live-Berechnung — aktualisiert sich sofort bei jeder Eingabe
+  const result = useMemo(
+    () =>
       berechneMietsteigerung({
         aktuelleMonatsmiete,
         jaehrlicheSteigerung,
         zeitraum,
-      })
-    )
-  }
+      }),
+    [aktuelleMonatsmiete, jaehrlicheSteigerung, zeitraum]
+  )
 
   return (
     <CalculatorLayout
       title="Mietsteigerungsrechner"
       description="Mietentwicklung über 10, 20 oder 30 Jahre prognostizieren"
       icon={ArrowUpRight}
-      hasResults={result !== null}
-      onCalculate={handleCalculate}
+      hasResults={true}
       inputs={
         <>
           <CurrencyInput
@@ -73,122 +73,105 @@ export function MietsteigerungsRechner() {
         </>
       }
       results={
-        result ? (
-          <>
-            <ResultCard
-              title="Mietentwicklung"
-              items={[
-                {
-                  label: `Monatsmiete nach ${zeitraum} Jahren`,
-                  value: result.endMonatsmiete,
-                  highlight: true,
-                  color: "green",
-                },
-                {
-                  label: `Jahresmiete nach ${zeitraum} Jahren`,
-                  value: result.endJahresmiete,
-                },
-                {
-                  label: "Steigerung absolut",
-                  value: result.steigerungAbsolut,
-                  textValue: `+${formatCurrency(result.steigerungAbsolut)}/Monat`,
-                },
-                {
-                  label: "Steigerung relativ",
-                  value: result.steigerungProzent,
-                  type: "percent",
-                },
-                {
-                  label: `Gesamte Mieteinnahmen (${zeitraum} Jahre)`,
-                  value: result.gesamtMieteinnahmen,
-                  highlight: true,
-                },
-              ]}
+        <>
+          {/* Bento-Grid: Top-Kennzahlen */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <BentoMetric
+              label={`Miete nach ${zeitraum} Jahren`}
+              value={formatCurrency(result.endMonatsmiete)}
+              sub={`+${formatCurrency(result.steigerungAbsolut)} pro Monat`}
+              color="green"
             />
-            {/* Mietentwicklungs-Diagramm */}
-            <Card>
-              <CardHeader className="pb-3">
-                <CardTitle className="text-lg">Mietentwicklung im Zeitverlauf</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ResponsiveContainer width="100%" height={300}>
-                  <LineChart
-                    data={result.jahresUebersicht.map((j) => ({
-                      jahr: `Jahr ${j.jahr}`,
-                      prognostizierteMiete: Math.round(j.monatsmiete * 100) / 100,
-                      aktuelleMiete: aktuelleMonatsmiete,
-                    }))}
-                    margin={{ top: 5, right: 20, left: 20, bottom: 5 }}
-                  >
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="jahr" fontSize={12} />
-                    <YAxis
-                      tickFormatter={(value: number) => formatCurrency(value, false)}
-                      fontSize={12}
-                    />
-                    <Tooltip
-                      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                      formatter={(value: any) => formatCurrency(Number(value))}
-                    />
-                    <Legend />
-                    <Line
-                      type="monotone"
-                      dataKey="aktuelleMiete"
-                      name="Aktuelle Miete"
-                      stroke="#94a3b8"
-                      strokeDasharray="5 5"
-                      dot={false}
-                    />
-                    <Line
-                      type="monotone"
-                      dataKey="prognostizierteMiete"
-                      name="Prognostizierte Miete"
-                      stroke="#1d4ed8"
-                      strokeWidth={2}
-                      dot={false}
-                    />
-                  </LineChart>
-                </ResponsiveContainer>
-              </CardContent>
-            </Card>
-            {/* Jahrestabelle */}
-            <Card>
-              <CardHeader className="pb-3">
-                <CardTitle className="text-lg">Jahresübersicht</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="max-h-64 overflow-y-auto">
-                  <Table>
-                    <TableHeader>
-                      <TableRow>
-                        <TableHead>Jahr</TableHead>
-                        <TableHead className="text-right">Monatsmiete</TableHead>
-                        <TableHead className="text-right">Kumuliert</TableHead>
-                      </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                      {result.jahresUebersicht.map((j) => (
-                        <TableRow key={j.jahr}>
-                          <TableCell>{j.jahr}</TableCell>
-                          <TableCell className="text-right tabular-nums">
-                            {formatCurrency(j.monatsmiete)}
-                          </TableCell>
-                          <TableCell className="text-right tabular-nums">
-                            {formatCurrency(j.kumuliert, false)}
-                          </TableCell>
-                        </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
-                </div>
-              </CardContent>
-            </Card>
-          </>
-        ) : (
-          <div className="rounded-lg border border-dashed p-8 text-center text-muted-foreground">
-            Geben Sie Ihre Daten ein und klicken Sie auf &quot;Berechnen&quot;.
+            <BentoMetric
+              label="Kumulative Einnahmen"
+              value={formatCurrency(result.gesamtMieteinnahmen)}
+              sub={`Über ${zeitraum} Jahre`}
+              color="blue"
+            />
+            <BentoMetric
+              label="Steigerung gesamt"
+              value={formatPercent(result.steigerungProzent)}
+              sub={`${formatCurrency(aktuelleMonatsmiete)} → ${formatCurrency(result.endMonatsmiete)}`}
+              color="amber"
+            />
           </div>
-        )
+
+          {/* Detail-Kennzahlen */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <BentoMetric
+              label={`Jahresmiete nach ${zeitraum} Jahren`}
+              value={formatCurrency(result.endJahresmiete)}
+              sub="Jährliche Mieteinnahmen am Ende"
+              color="green"
+            />
+            <BentoMetric
+              label="Steigerung absolut"
+              value={`+${formatCurrency(result.steigerungAbsolut)}`}
+              sub="Mehrbetrag pro Monat"
+              color="amber"
+            />
+          </div>
+
+          {/* Mietentwicklungs-Diagramm */}
+          <div className="bg-card border rounded-xl p-5">
+            <h3 className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-4">
+              Mietentwicklung im Zeitverlauf
+            </h3>
+            <ResponsiveContainer width="100%" height={300}>
+              <LineChart
+                data={result.jahresUebersicht.map((j) => ({
+                  jahr: `Jahr ${j.jahr}`,
+                  prognostizierteMiete: Math.round(j.monatsmiete * 100) / 100,
+                  aktuelleMiete: aktuelleMonatsmiete,
+                }))}
+                margin={{ top: 5, right: 20, left: 20, bottom: 5 }}
+              >
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="jahr" fontSize={12} />
+                <YAxis
+                  tickFormatter={(value: number) => formatCurrency(value, false)}
+                  fontSize={12}
+                />
+                <Tooltip
+                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                  formatter={(value: any) => formatCurrency(Number(value))}
+                  contentStyle={TOOLTIP_STYLE}
+                />
+                <Legend />
+                <Line
+                  type="monotone"
+                  dataKey="aktuelleMiete"
+                  name="Aktuelle Miete"
+                  stroke="#94a3b8"
+                  strokeDasharray="5 5"
+                  dot={false}
+                />
+                <Line
+                  type="monotone"
+                  dataKey="prognostizierteMiete"
+                  name="Prognostizierte Miete"
+                  stroke={CHART_COLORS[0]}
+                  strokeWidth={2}
+                  dot={false}
+                />
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
+
+          {/* Jahresübersicht als ResultCard */}
+          <ResultCard
+            title="Jahresübersicht (Auszug)"
+            items={result.jahresUebersicht
+              .filter((j) => j.jahr === 1 || j.jahr === 5 || j.jahr === 10 || j.jahr === zeitraum || j.jahr === Math.round(zeitraum / 2))
+              .filter((j, i, arr) => arr.findIndex((a) => a.jahr === j.jahr) === i)
+              .sort((a, b) => a.jahr - b.jahr)
+              .map((j) => ({
+                label: `Jahr ${j.jahr}`,
+                value: j.monatsmiete,
+                textValue: `${formatCurrency(j.monatsmiete)}/Monat — kumuliert: ${formatCurrency(j.kumuliert, false)}`,
+              }))}
+          />
+        </>
       }
     />
   )

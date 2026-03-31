@@ -1,38 +1,44 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useMemo } from "react"
 import { Wrench } from "lucide-react"
 import { CalculatorLayout } from "./calculator-layout"
 import { CurrencyInput } from "./currency-input"
 import { NumberInput } from "./number-input"
-import { ResultCard } from "./result-card"
-import { berechneInstandhaltung, type InstandhaltungResult } from "@/lib/rechner"
+import { BentoMetric } from "./result-card"
+import { berechneInstandhaltung, formatCurrency } from "@/lib/rechner"
 
 export function InstandhaltungsRechner() {
-  const [herstellungskostenProQm, setHerstellungskostenProQm] = useState(1500)
+  const [herstellungskostenProQm, setHerstellungskostenProQm] = useState(2000)
   const [wohnflaeche, setWohnflaeche] = useState(80)
-  const [baujahr, setBaujahr] = useState(1990)
+  const [baujahr, setBaujahr] = useState(2000)
   const [petersFaktor, setPetersFaktor] = useState(1.5)
-  const [result, setResult] = useState<InstandhaltungResult | null>(null)
 
-  function handleCalculate() {
-    setResult(
+  // Live-Berechnung — aktualisiert sich sofort bei jeder Eingabe
+  const result = useMemo(
+    () =>
       berechneInstandhaltung({
         herstellungskostenProQm,
         wohnflaeche,
         baujahr,
         petersFaktor,
-      })
-    )
-  }
+      }),
+    [herstellungskostenProQm, wohnflaeche, baujahr, petersFaktor]
+  )
+
+  // Farblogik: monatliche Rücklage bewerten
+  const monatlichColor = result.monatlicheRuecklage <= 150
+    ? "green" as const
+    : result.monatlicheRuecklage <= 300
+      ? "amber" as const
+      : "red" as const
 
   return (
     <CalculatorLayout
       title="Instandhaltungskosten-Rechner"
       description="Empfohlene Rücklagen nach der Petersschen Formel berechnen"
       icon={Wrench}
-      hasResults={result !== null}
-      onCalculate={handleCalculate}
+      hasResults={true}
       inputs={
         <>
           <CurrencyInput
@@ -72,52 +78,51 @@ export function InstandhaltungsRechner() {
         </>
       }
       results={
-        result ? (
-          <>
-            <ResultCard
-              title="Empfohlene Rücklage"
-              items={[
-                {
-                  label: "Monatliche Rücklage",
-                  value: result.monatlicheRuecklage,
-                  highlight: true,
-                },
-                {
-                  label: "Jährliche Rücklage",
-                  value: result.jaehrlicheRuecklage,
-                },
-                {
-                  label: "Rücklage pro m²/Monat",
-                  value: result.ruecklageProQm,
-                  textValue: `${result.ruecklageProQm.toFixed(2).replace(".", ",")} €/m²`,
-                },
-              ]}
+        <>
+          {/* Bento-Grid: Top-Kennzahlen */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <BentoMetric
+              label="Monatliche Rücklage"
+              value={formatCurrency(result.monatlicheRuecklage)}
+              sub="Empfohlene Rücklage"
+              color={monatlichColor}
             />
-            <ResultCard
-              title="Details"
-              items={[
-                {
-                  label: "Herstellungskosten gesamt",
-                  value: result.herstellungskosten,
-                },
-                {
-                  label: "Alter des Gebäudes",
-                  value: 0,
-                  textValue: `${result.alterGebaeude} Jahre`,
-                },
-              ]}
+            <BentoMetric
+              label="Jährliche Rücklage"
+              value={formatCurrency(result.jaehrlicheRuecklage)}
+              sub={`${result.ruecklageProQm.toFixed(2).replace(".", ",")} €/m² pro Monat`}
+              color="blue"
             />
-            <div className="rounded-lg border bg-muted/30 p-3">
-              <p className="text-sm text-muted-foreground">
-                {result.empfehlungHinweis}
-              </p>
-            </div>
-          </>
-        ) : (
-          <div className="rounded-lg border border-dashed p-8 text-center text-muted-foreground">
-            Geben Sie Ihre Daten ein und klicken Sie auf &quot;Berechnen&quot;.
+            <BentoMetric
+              label="Peters-Faktor"
+              value={petersFaktor.toFixed(1).replace(".", ",")}
+              sub="Multiplikator der Formel"
+              color="amber"
+            />
           </div>
-        )
+
+          {/* Bento-Grid: Detail-Kennzahlen */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <BentoMetric
+              label="Herstellungskosten gesamt"
+              value={formatCurrency(result.herstellungskosten)}
+              sub={`${herstellungskostenProQm.toLocaleString("de-DE")} €/m² × ${wohnflaeche} m²`}
+            />
+            <BentoMetric
+              label="Gebäudealter"
+              value={`${result.alterGebaeude} Jahre`}
+              sub={`Baujahr ${baujahr}`}
+              color={result.alterGebaeude > 30 ? "amber" : "green"}
+            />
+          </div>
+
+          {/* Hinweis */}
+          <div className="rounded-lg border bg-muted/30 p-3">
+            <p className="text-sm text-muted-foreground">
+              {result.empfehlungHinweis}
+            </p>
+          </div>
+        </>
       }
     />
   )

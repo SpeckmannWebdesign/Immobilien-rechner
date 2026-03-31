@@ -1,26 +1,35 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useMemo } from "react"
 import { PiggyBank } from "lucide-react"
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from "recharts"
 import { CalculatorLayout } from "./calculator-layout"
 import { CurrencyInput } from "./currency-input"
 import { PercentInput } from "./percent-input"
-import { ResultCard } from "./result-card"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { berechneCashflow, formatCurrency, type CashflowResult } from "@/lib/rechner"
+import { BentoMetric } from "./result-card"
+import { berechneCashflow, formatCurrency } from "@/lib/rechner"
+
+const CHART_COLORS = ["#4338CA", "#0E7490", "#059669", "#B45309"]
+
+const TOOLTIP_STYLE = {
+  background: "white",
+  border: "1px solid #E3E5EB",
+  borderRadius: "8px",
+  fontSize: "13px",
+  boxShadow: "0 4px 12px rgba(0,0,0,0.06)",
+}
 
 export function CashflowRechner() {
-  const [monatlicheKaltmiete, setMonatlicheKaltmiete] = useState(800)
+  const [monatlicheKaltmiete, setMonatlicheKaltmiete] = useState(1250)
   const [hausgeld, setHausgeld] = useState(250)
   const [nichtUmlegbareNebenkosten, setNichtUmlegbareNebenkosten] = useState(50)
-  const [monatlicheKreditrate, setMonatlicheKreditrate] = useState(600)
-  const [instandhaltungsRuecklage, setInstandhaltungsRuecklage] = useState(50)
+  const [monatlicheKreditrate, setMonatlicheKreditrate] = useState(950)
+  const [instandhaltungsRuecklage, setInstandhaltungsRuecklage] = useState(100)
   const [mietausfallRisiko, setMietausfallRisiko] = useState(2)
-  const [result, setResult] = useState<CashflowResult | null>(null)
 
-  function handleCalculate() {
-    setResult(
+  // Live-Berechnung — aktualisiert sich sofort bei jeder Eingabe
+  const result = useMemo(
+    () =>
       berechneCashflow({
         monatlicheKaltmiete,
         hausgeld,
@@ -28,17 +37,23 @@ export function CashflowRechner() {
         monatlicheKreditrate,
         instandhaltungsRuecklage,
         mietausfallRisiko,
-      })
-    )
-  }
+      }),
+    [monatlicheKaltmiete, hausgeld, nichtUmlegbareNebenkosten, monatlicheKreditrate, instandhaltungsRuecklage, mietausfallRisiko]
+  )
+
+  const cashflowColor =
+    result.cashflowStatus === "positiv"
+      ? "green" as const
+      : result.cashflowStatus === "knapp"
+        ? "amber" as const
+        : "red" as const
 
   return (
     <CalculatorLayout
       title="Cashflow-Rechner"
       description="Monatlichen Überschuss oder Unterdeckung bei Vermietung berechnen"
       icon={PiggyBank}
-      hasResults={result !== null}
-      onCalculate={handleCalculate}
+      hasResults={true}
       inputs={
         <>
           <CurrencyInput
@@ -83,98 +98,86 @@ export function CashflowRechner() {
         </>
       }
       results={
-        result ? (
-          <>
-          <ResultCard
-            title="Cashflow-Analyse"
-            items={[
-              {
-                label: "Brutto-Mieteinnahmen",
-                value: result.bruttoMieteinnahmen,
-              },
-              {
-                label: "Mietausfall-Abzug",
-                value: -result.mietausfallAbzug,
-                color: "red",
-              },
-              {
-                label: "Netto-Mieteinnahmen",
-                value: result.nettoMieteinnahmen,
-              },
-              {
-                label: "Gesamte Kosten",
-                value: -result.gesamtKosten,
-                color: "red",
-              },
-              {
-                label: "Monatlicher Cashflow",
-                value: result.monatsCashflow,
-                highlight: true,
-                color:
-                  result.cashflowStatus === "positiv"
-                    ? "green"
-                    : result.cashflowStatus === "knapp"
-                      ? "yellow"
-                      : "red",
-              },
-              {
-                label: "Jährlicher Cashflow",
-                value: result.jahresCashflow,
-                color:
-                  result.cashflowStatus === "positiv"
-                    ? "green"
-                    : result.cashflowStatus === "knapp"
-                      ? "yellow"
-                      : "red",
-              },
-            ]}
-          />
+        <>
+          {/* Bento-Grid: Top-Kennzahlen */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <BentoMetric
+              label="Monatlicher Cashflow"
+              value={formatCurrency(result.monatsCashflow)}
+              sub={cashflowColor === "green" ? "Positiver Cashflow" : cashflowColor === "amber" ? "Knapper Cashflow" : "Negativer Cashflow"}
+              color={cashflowColor}
+            />
+            <BentoMetric
+              label="Jährlicher Cashflow"
+              value={formatCurrency(result.jahresCashflow)}
+              sub={`${formatCurrency(result.monatsCashflow)} × 12 Monate`}
+              color={cashflowColor}
+            />
+            <BentoMetric
+              label="Netto-Mieteinnahmen"
+              value={formatCurrency(result.nettoMieteinnahmen)}
+              sub={`Brutto: ${formatCurrency(result.bruttoMieteinnahmen)}`}
+              color="blue"
+            />
+          </div>
+
+          {/* Detail-Kennzahlen */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <BentoMetric
+              label="Gesamte Kosten"
+              value={formatCurrency(result.gesamtKosten)}
+              sub="Alle monatlichen Ausgaben"
+              color="red"
+            />
+            <BentoMetric
+              label="Mietausfall-Abzug"
+              value={formatCurrency(result.mietausfallAbzug)}
+              sub={`${mietausfallRisiko} % Risikopuffer`}
+              color="amber"
+            />
+          </div>
 
           {/* Balkendiagramm: Einnahmen vs. Ausgaben */}
-          <Card>
-            <CardHeader>
-              <CardTitle>Einnahmen vs. Ausgaben</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <ResponsiveContainer width="100%" height={300}>
-                <BarChart
-                  data={[
-                    {
-                      name: "Einnahmen",
-                      Mieteinnahmen: result.nettoMieteinnahmen,
-                    },
-                    {
-                      name: "Ausgaben",
-                      Hausgeld: hausgeld,
-                      Nebenkosten: nichtUmlegbareNebenkosten,
-                      Kreditrate: monatlicheKreditrate,
-                      Instandhaltung: instandhaltungsRuecklage,
-                      Mietausfall: result.mietausfallAbzug,
-                    },
-                  ]}
-                  margin={{ top: 10, right: 10, left: 10, bottom: 0 }}
-                >
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="name" />
-                  <YAxis tickFormatter={(v: number) => formatCurrency(v, false)} />
-                  <Tooltip formatter={(value) => formatCurrency(Number(value))} />
-                  <Legend />
-                  <Bar dataKey="Mieteinnahmen" stackId="a" fill="#1d4ed8" />
-                  <Bar dataKey="Hausgeld" stackId="a" fill="#16a34a" />
-                  <Bar dataKey="Nebenkosten" stackId="a" fill="#ea580c" />
-                  <Bar dataKey="Kreditrate" stackId="a" fill="#7c3aed" />
-                  <Bar dataKey="Instandhaltung" stackId="a" fill="#0891b2" />
-                  <Bar dataKey="Mietausfall" stackId="a" fill="#dc2626" />
-                </BarChart>
-              </ResponsiveContainer>
-            </CardContent>
-          </Card>
-          </>
-        ) : (
-          <div className="rounded-lg border border-dashed p-8 text-center text-muted-foreground">
-            Geben Sie Ihre Daten ein und klicken Sie auf &quot;Berechnen&quot;.
+          <div className="bg-card border rounded-xl p-5">
+            <h3 className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-4">
+              Einnahmen vs. Ausgaben
+            </h3>
+            <ResponsiveContainer width="100%" height={300}>
+              <BarChart
+                data={[
+                  {
+                    name: "Einnahmen",
+                    Mieteinnahmen: result.nettoMieteinnahmen,
+                  },
+                  {
+                    name: "Ausgaben",
+                    Hausgeld: hausgeld,
+                    Nebenkosten: nichtUmlegbareNebenkosten,
+                    Kreditrate: monatlicheKreditrate,
+                    Instandhaltung: instandhaltungsRuecklage,
+                    Mietausfall: result.mietausfallAbzug,
+                  },
+                ]}
+                margin={{ top: 10, right: 10, left: 10, bottom: 0 }}
+              >
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="name" />
+                <YAxis tickFormatter={(v: number) => formatCurrency(v, false)} />
+                <Tooltip
+                  formatter={(value) => formatCurrency(Number(value))}
+                  contentStyle={TOOLTIP_STYLE}
+                />
+                <Legend />
+                <Bar dataKey="Mieteinnahmen" stackId="a" fill={CHART_COLORS[0]} />
+                <Bar dataKey="Hausgeld" stackId="a" fill={CHART_COLORS[1]} />
+                <Bar dataKey="Nebenkosten" stackId="a" fill={CHART_COLORS[2]} />
+                <Bar dataKey="Kreditrate" stackId="a" fill={CHART_COLORS[3]} />
+                <Bar dataKey="Instandhaltung" stackId="a" fill="#4338CA" />
+                <Bar dataKey="Mietausfall" stackId="a" fill="#DC2626" />
+              </BarChart>
+            </ResponsiveContainer>
           </div>
-        )
+        </>
       }
     />
   )

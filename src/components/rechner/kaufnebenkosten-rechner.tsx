@@ -1,15 +1,15 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useMemo } from "react"
 import { Calculator } from "lucide-react"
 import { CalculatorLayout } from "./calculator-layout"
 import { CurrencyInput } from "./currency-input"
 import { PercentInput } from "./percent-input"
 import { SelectInput } from "./select-input"
-import { ResultCard } from "./result-card"
+import { BentoMetric, ResultCard } from "./result-card"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
-import { berechneKaufnebenkosten, type KaufnebenkostenResult } from "@/lib/rechner"
+import { berechneKaufnebenkosten, formatCurrency, formatPercent } from "@/lib/rechner"
 
 // Standard-Grunderwerbsteuersätze (werden später aus der DB geladen)
 const BUNDESLAENDER = [
@@ -32,37 +32,36 @@ const BUNDESLAENDER = [
 ]
 
 export function KaufnebenkostenRechner() {
-  const [kaufpreis, setKaufpreis] = useState(300000)
+  const [kaufpreis, setKaufpreis] = useState(350000)
   const [bundesland, setBundesland] = useState("Niedersachsen")
   const [notarSatz, setNotarSatz] = useState(1.5)
   const [grundbuchSatz, setGrundbuchSatz] = useState(0.5)
   const [mitMakler, setMitMakler] = useState(true)
   const [maklerSatz, setMaklerSatz] = useState(3.57)
-  const [result, setResult] = useState<KaufnebenkostenResult | null>(null)
 
-  function handleCalculate() {
+  // Live-Berechnung — aktualisiert sich sofort bei jeder Eingabe
+  const result = useMemo(() => {
     const grunderwerbsteuerSatz =
       BUNDESLAENDER.find((b) => b.value === bundesland)?.rate ?? 5.0
 
-    setResult(
-      berechneKaufnebenkosten({
-        kaufpreis,
-        grunderwerbsteuerSatz,
-        notarSatz,
-        grundbuchSatz,
-        maklerSatz,
-        mitMakler,
-      })
-    )
-  }
+    return berechneKaufnebenkosten({
+      kaufpreis,
+      grunderwerbsteuerSatz,
+      notarSatz,
+      grundbuchSatz,
+      maklerSatz,
+      mitMakler,
+    })
+  }, [kaufpreis, bundesland, notarSatz, grundbuchSatz, maklerSatz, mitMakler])
+
+  const notarUndGrundbuch = result.notarkosten + result.grundbuchkosten
 
   return (
     <CalculatorLayout
       title="Kaufnebenkosten-Rechner"
       description="Alle Kosten beim Immobilienkauf auf einen Blick"
       icon={Calculator}
-      hasResults={result !== null}
-      onCalculate={handleCalculate}
+      hasResults={true}
       inputs={
         <>
           <CurrencyInput
@@ -117,38 +116,57 @@ export function KaufnebenkostenRechner() {
         </>
       }
       results={
-        result ? (
-          <ResultCard
-            title="Kaufnebenkosten"
-            items={[
-              { label: "Grunderwerbsteuer", value: result.grunderwerbsteuer },
-              { label: "Notarkosten", value: result.notarkosten },
-              { label: "Grundbuchkosten", value: result.grundbuchkosten },
-              ...(result.maklerkosten > 0
-                ? [{ label: "Maklerkosten", value: result.maklerkosten }]
-                : []),
-              {
-                label: "Gesamte Nebenkosten",
-                value: result.gesamtNebenkosten,
-                highlight: true,
-              },
-              {
-                label: "Nebenkosten in %",
-                value: result.gesamtNebenkostenProzent,
-                type: "percent" as const,
-              },
-              {
-                label: "Gesamtkosten (Kaufpreis + NK)",
-                value: result.gesamtKosten,
-                highlight: true,
-              },
-            ]}
-          />
-        ) : (
-          <div className="rounded-lg border border-dashed p-8 text-center text-muted-foreground">
-            Geben Sie Ihre Daten ein und klicken Sie auf &quot;Berechnen&quot;.
+        <>
+          {/* Bento-Grid: Top-Kennzahlen */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <BentoMetric
+              label="Gesamtnebenkosten"
+              value={formatCurrency(result.gesamtNebenkosten)}
+              sub={`${formatPercent(result.gesamtNebenkostenProzent)} vom Kaufpreis`}
+              color="red"
+            />
+            <BentoMetric
+              label="Grunderwerbsteuer"
+              value={formatCurrency(result.grunderwerbsteuer)}
+              sub={`${bundesland}`}
+              color="amber"
+            />
+            <BentoMetric
+              label="Notar + Grundbuch"
+              value={formatCurrency(notarUndGrundbuch)}
+              sub={`${formatPercent(notarSatz + grundbuchSatz)} vom Kaufpreis`}
+              color="blue"
+            />
           </div>
-        )
+
+          {/* Bento-Grid: Detail-Kennzahlen */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <BentoMetric
+              label="Notarkosten"
+              value={formatCurrency(result.notarkosten)}
+              sub={`${formatPercent(notarSatz)} vom Kaufpreis`}
+            />
+            <BentoMetric
+              label="Grundbuchkosten"
+              value={formatCurrency(result.grundbuchkosten)}
+              sub={`${formatPercent(grundbuchSatz)} vom Kaufpreis`}
+            />
+            {result.maklerkosten > 0 && (
+              <BentoMetric
+                label="Maklerkosten"
+                value={formatCurrency(result.maklerkosten)}
+                sub={`${formatPercent(maklerSatz)} vom Kaufpreis`}
+                color="amber"
+              />
+            )}
+            <BentoMetric
+              label="Gesamtkosten inkl. Kaufpreis"
+              value={formatCurrency(result.gesamtKosten)}
+              sub={`Kaufpreis ${formatCurrency(kaufpreis)} + Nebenkosten`}
+              color="blue"
+            />
+          </div>
+        </>
       }
     />
   )

@@ -22,28 +22,28 @@ const toolCategories = [
   {
     label: "Investoren & Makler",
     tools: [
-      { name: "Rendite-Rechner", desc: "Brutto- und Nettomietrendite", icon: TrendingUp, href: "/tools/rendite-rechner" },
-      { name: "Kaufnebenkosten", desc: "Alle Kosten beim Kauf", icon: Calculator, href: "/tools/kaufnebenkosten-rechner" },
-      { name: "Finanzierung", desc: "Annuität, Tilgung, Zinsen", icon: Building2, href: "/tools/finanzierungsrechner" },
-      { name: "Cashflow", desc: "Monatlicher Überschuss", icon: PiggyBank, href: "/tools/cashflow-rechner" },
-      { name: "Grunderwerbsteuer", desc: "Alle 16 Bundesländer", icon: Landmark, href: "/tools/grunderwerbsteuer-rechner" },
+      { name: "Rendite-Rechner", desc: "Brutto- und Nettomietrendite", icon: TrendingUp, href: "/rechner/rendite-rechner" },
+      { name: "Kaufnebenkosten", desc: "Alle Kosten beim Kauf", icon: Calculator, href: "/rechner/kaufnebenkosten-rechner" },
+      { name: "Finanzierung", desc: "Annuität, Tilgung, Zinsen", icon: Building2, href: "/rechner/finanzierungsrechner" },
+      { name: "Cashflow", desc: "Monatlicher Überschuss", icon: PiggyBank, href: "/rechner/cashflow-rechner" },
+      { name: "Grunderwerbsteuer", desc: "Alle 16 Bundesländer", icon: Landmark, href: "/rechner/grunderwerbsteuer-rechner" },
     ],
   },
   {
     label: "Erweiterte Rechner",
     tools: [
-      { name: "Steuerersparnis", desc: "AfA und Werbungskosten", icon: FileText, href: "/tools/steuerersparnis-rechner" },
-      { name: "Mietsteigerung", desc: "Prognose über Jahre", icon: ArrowUpRight, href: "/tools/mietsteigerungsrechner" },
-      { name: "Instandhaltung", desc: "Peterssche Formel", icon: Wrench, href: "/tools/instandhaltungskosten-rechner" },
-      { name: "Objektvergleich", desc: "Bis zu 3 Objekte", icon: BarChart3, href: "/tools/objektvergleich" },
-      { name: "Tilgungsplan", desc: "PDF-Export", icon: FileSpreadsheet, href: "/tools/tilgungsplan-generator" },
+      { name: "Steuerersparnis", desc: "AfA und Werbungskosten", icon: FileText, href: "/rechner/steuerersparnis-rechner" },
+      { name: "Mietsteigerung", desc: "Prognose über Jahre", icon: ArrowUpRight, href: "/rechner/mietsteigerungsrechner" },
+      { name: "Instandhaltung", desc: "Peterssche Formel", icon: Wrench, href: "/rechner/instandhaltungskosten-rechner" },
+      { name: "Objektvergleich", desc: "Bis zu 3 Objekte", icon: BarChart3, href: "/rechner/objektvergleich" },
+      { name: "Tilgungsplan", desc: "PDF-Export", icon: FileSpreadsheet, href: "/rechner/tilgungsplan-generator" },
     ],
   },
   {
     label: "Hausverwaltungen",
     tools: [
-      { name: "Nebenkosten", desc: "Umlagefähige Kosten", icon: Receipt, href: "/tools/nebenkostenabrechnung-rechner" },
-      { name: "Mieterhöhung", desc: "Mit Kappungsgrenze", icon: TrendingDown, href: "/tools/mieterhoehungs-rechner" },
+      { name: "Nebenkosten", desc: "Umlagefähige Kosten", icon: Receipt, href: "/rechner/nebenkostenabrechnung-rechner" },
+      { name: "Mieterhöhung", desc: "Mit Kappungsgrenze", icon: TrendingDown, href: "/rechner/mieterhoehungs-rechner" },
     ],
   },
 ]
@@ -54,12 +54,12 @@ export function ToolsSection() {
   return (
     <section
       ref={sectionRef}
-      className="py-[clamp(5rem,12vw,10rem)] px-6 bg-[#f5f5f7]"
+      className="py-[clamp(5rem,12vw,10rem)] px-6 bg-white"
     >
       <div className="max-w-[1120px] mx-auto">
         {/* Header */}
         <div data-reveal className="text-center mb-16">
-          <p className="text-[#0066CC] text-sm font-medium tracking-[0.06em] uppercase mb-3">
+          <p className="text-[#4338CA] text-sm font-medium tracking-[0.06em] uppercase mb-3">
             12 Tools
           </p>
           <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-bold tracking-[-0.02em] text-[#1d1d1f] mb-4">
@@ -73,27 +73,26 @@ export function ToolsSection() {
         {/* Kategorie-Blöcke */}
         {toolCategories.map((cat) => (
           <div key={cat.label} data-reveal className="mb-12 last:mb-0">
-            <p className="text-xs font-medium text-[#86868b] tracking-[0.06em] uppercase mb-4">
+            <p className="text-xs font-semibold text-[#9CA3AF] tracking-wider uppercase mb-4">
               {cat.label}
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-px bg-[#E3E5EB] rounded-2xl overflow-hidden border border-[#E3E5EB]">
               {cat.tools.map((tool) => (
                 <Link
                   key={tool.href}
                   href={tool.href}
-                  className="group bg-white rounded-2xl p-6 hover:shadow-[0_4px_24px_rgba(0,0,0,0.08)]
-                             transition-all duration-500 border border-transparent hover:border-[rgba(0,0,0,0.04)]"
+                  className="group bg-white p-6 hover:bg-[#F7F8FB] transition-colors duration-300"
                 >
                   <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-xl bg-[#f5f5f7] group-hover:bg-[#0066CC]/5
-                                    flex items-center justify-center transition-colors duration-500 flex-shrink-0">
-                      <tool.icon className="h-5 w-5 text-[#1d1d1f] group-hover:text-[#0066CC] transition-colors duration-500" />
+                    <div className="w-10 h-10 rounded-xl bg-[#F7F8FB] border border-[#E3E5EB]
+                                    flex items-center justify-center flex-shrink-0">
+                      <tool.icon className="h-5 w-5 text-[#4B5563]" />
                     </div>
                     <div>
-                      <h3 className="text-[15px] font-semibold text-[#1d1d1f] mb-0.5">
+                      <h3 className="text-[15px] font-bold text-[#111827] mb-0.5">
                         {tool.name}
                       </h3>
-                      <p className="text-[13px] text-[#86868b]">
+                      <p className="text-[13px] text-[#9CA3AF]">
                         {tool.desc}
                       </p>
                     </div>
@@ -107,8 +106,8 @@ export function ToolsSection() {
         {/* CTA */}
         <div data-reveal className="text-center mt-12">
           <Link
-            href="/tools"
-            className="inline-flex items-center gap-2 text-[#0066CC] font-medium text-lg
+            href="/rechner"
+            className="inline-flex items-center gap-2 text-[#4338CA] font-medium text-lg
                        hover:underline underline-offset-4 transition-all duration-300"
           >
             Alle Rechner entdecken

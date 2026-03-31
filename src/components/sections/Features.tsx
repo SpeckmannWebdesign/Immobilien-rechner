@@ -36,7 +36,7 @@ export function FeaturesSection() {
   return (
     <section
       ref={sectionRef}
-      className="py-[clamp(5rem,12vw,10rem)] px-6 bg-white"
+      className="py-[clamp(5rem,12vw,10rem)] px-6 bg-[#F7F8FB]"
     >
       <div className="max-w-[1120px] mx-auto">
         {/* Header */}
@@ -55,17 +55,17 @@ export function FeaturesSection() {
             <div
               key={feature.title}
               data-reveal
-              className="bg-[#f5f5f7] rounded-3xl p-10 min-h-[240px] flex flex-col justify-end
-                         hover:bg-[#f0f0f2] transition-colors duration-500"
+              className="bg-white border border-[#E3E5EB] rounded-2xl p-10 min-h-[240px] flex flex-col justify-end
+                         hover:border-[#CACDD6] hover:shadow-[0_4px_24px_rgba(0,0,0,0.06)] transition-all duration-500"
             >
-              <div className="w-12 h-12 rounded-2xl bg-white flex items-center justify-center mb-5
-                              shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
-                <feature.icon className="h-6 w-6 text-[#0066CC]" />
+              <div className="w-11 h-11 rounded-xl bg-[#F7F8FB] border border-[#E3E5EB]
+                              flex items-center justify-center mb-5">
+                <feature.icon className="h-6 w-6 text-[#4B5563]" />
               </div>
-              <h3 className="text-xl font-bold text-[#1d1d1f] mb-2">
+              <h3 className="text-xl font-bold text-[#111827] mb-2">
                 {feature.title}
               </h3>
-              <p className="text-[#6e6e73] leading-relaxed">
+              <p className="text-[#4B5563] leading-relaxed">
                 {feature.description}
               </p>
             </div>

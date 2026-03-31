@@ -1,12 +1,11 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useMemo } from "react"
 import { Landmark } from "lucide-react"
 import { CalculatorLayout } from "./calculator-layout"
 import { CurrencyInput } from "./currency-input"
 import { SelectInput } from "./select-input"
-import { ResultCard } from "./result-card"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { BentoMetric } from "./result-card"
 import {
   Table,
   TableBody,
@@ -15,7 +14,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import { berechneGrunderwerbsteuer, formatCurrency, type GrunderwerbsteuerResult } from "@/lib/rechner"
+import { berechneGrunderwerbsteuer, formatCurrency } from "@/lib/rechner"
 
 const SAETZE = [
   { bundesland: "Baden-Württemberg", rate: 5.0 },
@@ -37,21 +36,28 @@ const SAETZE = [
 ]
 
 export function GrunderwerbsteuerRechner() {
-  const [kaufpreis, setKaufpreis] = useState(300000)
+  const [kaufpreis, setKaufpreis] = useState(350000)
   const [bundesland, setBundesland] = useState("Niedersachsen")
-  const [result, setResult] = useState<GrunderwerbsteuerResult | null>(null)
 
-  function handleCalculate() {
-    setResult(berechneGrunderwerbsteuer(kaufpreis, SAETZE, bundesland))
-  }
+  // Live-Berechnung — aktualisiert sich sofort bei jeder Eingabe
+  const result = useMemo(
+    () => berechneGrunderwerbsteuer(kaufpreis, SAETZE, bundesland),
+    [kaufpreis, bundesland]
+  )
+
+  // Farblogik: je höher der Steuersatz, desto "schlechter"
+  const steuerColor = result.gewaehltesSteuer.satz <= 3.5
+    ? "green" as const
+    : result.gewaehltesSteuer.satz <= 5.0
+      ? "amber" as const
+      : "red" as const
 
   return (
     <CalculatorLayout
       title="Grunderwerbsteuer-Rechner"
       description="Grunderwerbsteuer für alle 16 Bundesländer berechnen und vergleichen"
       icon={Landmark}
-      hasResults={result !== null}
-      onCalculate={handleCalculate}
+      hasResults={true}
       inputs={
         <>
           <CurrencyInput
@@ -73,88 +79,83 @@ export function GrunderwerbsteuerRechner() {
         </>
       }
       results={
-        result ? (
-          <>
-            <ResultCard
-              title="Ihre Grunderwerbsteuer"
-              items={[
-                {
-                  label: result.gewaehltesSteuer.bundesland,
-                  value: result.gewaehltesSteuer.betrag,
-                  highlight: true,
-                },
-                {
-                  label: "Steuersatz",
-                  value: result.gewaehltesSteuer.satz,
-                  type: "percent",
-                },
-              ]}
+        <>
+          {/* Bento-Grid: Top-Kennzahlen */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <BentoMetric
+              label={`Grunderwerbsteuer (${result.gewaehltesSteuer.satz.toFixed(1).replace(".", ",")}%)`}
+              value={formatCurrency(result.gewaehltesSteuer.betrag)}
+              sub={result.gewaehltesSteuer.bundesland}
+              color={steuerColor}
             />
-            <ResultCard
-              title="Vergleich"
-              items={[
-                {
-                  label: `Günstigstes: ${result.guenstigstes.bundesland}`,
-                  value: result.guenstigstes.betrag,
-                  color: "green",
-                },
-                {
-                  label: `Teuerstes: ${result.teuerstes.bundesland}`,
-                  value: result.teuerstes.betrag,
-                  color: "red",
-                },
-                {
-                  label: "Differenz",
-                  value: result.differenz,
-                  highlight: true,
-                },
-              ]}
+            <BentoMetric
+              label="Gesamtkosten"
+              value={formatCurrency(kaufpreis + result.gewaehltesSteuer.betrag)}
+              sub="Kaufpreis + Steuer"
+              color="blue"
             />
-            {/* Vergleichstabelle */}
-            <Card>
-              <CardHeader className="pb-3">
-                <CardTitle className="text-lg">Alle Bundesländer</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="max-h-64 overflow-y-auto">
-                  <Table>
-                    <TableHeader>
-                      <TableRow>
-                        <TableHead>Bundesland</TableHead>
-                        <TableHead className="text-right">Satz</TableHead>
-                        <TableHead className="text-right">Betrag</TableHead>
-                      </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                      {result.alleBundeslaender.map((b) => (
-                        <TableRow
-                          key={b.bundesland}
-                          className={
-                            b.bundesland === bundesland ? "bg-primary/5" : ""
-                          }
-                        >
-                          <TableCell className="text-sm">
-                            {b.bundesland}
-                          </TableCell>
-                          <TableCell className="text-right text-sm">
-                            {b.satz.toFixed(1).replace(".", ",")} %
-                          </TableCell>
-                          <TableCell className="text-right text-sm font-medium tabular-nums">
-                            {formatCurrency(b.betrag)}
-                          </TableCell>
-                        </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
-                </div>
-              </CardContent>
-            </Card>
-          </>
-        ) : (
-          <div className="rounded-lg border border-dashed p-8 text-center text-muted-foreground">
-            Geben Sie Ihre Daten ein und klicken Sie auf &quot;Berechnen&quot;.
+            <BentoMetric
+              label="Mögliche Ersparnis"
+              value={formatCurrency(result.differenz)}
+              sub={`vs. günstigstes: ${result.guenstigstes.bundesland}`}
+              color={result.differenz > 0 ? "amber" : "green"}
+            />
           </div>
-        )
+
+          {/* Bento-Grid: Vergleich */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <BentoMetric
+              label={`Günstigstes: ${result.guenstigstes.bundesland}`}
+              value={formatCurrency(result.guenstigstes.betrag)}
+              sub={`${result.guenstigstes.satz.toFixed(1).replace(".", ",")}% Steuersatz`}
+              color="green"
+            />
+            <BentoMetric
+              label={`Teuerstes: ${result.teuerstes.bundesland}`}
+              value={formatCurrency(result.teuerstes.betrag)}
+              sub={`${result.teuerstes.satz.toFixed(1).replace(".", ",")}% Steuersatz`}
+              color="red"
+            />
+          </div>
+
+          {/* Vergleichstabelle aller Bundesländer */}
+          <div className="bg-card border rounded-xl p-5">
+            <h3 className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-4">
+              Alle Bundesländer im Vergleich
+            </h3>
+            <div className="max-h-64 overflow-y-auto">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Bundesland</TableHead>
+                    <TableHead className="text-right">Satz</TableHead>
+                    <TableHead className="text-right">Betrag</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {result.alleBundeslaender.map((b) => (
+                    <TableRow
+                      key={b.bundesland}
+                      className={
+                        b.bundesland === bundesland ? "bg-primary/5" : ""
+                      }
+                    >
+                      <TableCell className="text-sm">
+                        {b.bundesland}
+                      </TableCell>
+                      <TableCell className="text-right text-sm">
+                        {b.satz.toFixed(1).replace(".", ",")} %
+                      </TableCell>
+                      <TableCell className="text-right text-sm font-medium tabular-nums">
+                        {formatCurrency(b.betrag)}
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
+          </div>
+        </>
       }
     />
   )

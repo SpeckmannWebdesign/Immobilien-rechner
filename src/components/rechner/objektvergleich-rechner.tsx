@@ -1,18 +1,19 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useMemo } from "react"
 import { BarChart3, Plus, Trash2 } from "lucide-react"
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from "recharts"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Badge } from "@/components/ui/badge"
 import { Disclaimer } from "./disclaimer"
 import { CurrencyInput } from "./currency-input"
 import { PercentInput } from "./percent-input"
 import { ResultCard } from "./result-card"
-import { berechneObjektvergleich, type ObjektInput, type ObjektResult, formatCurrency, formatPercent } from "@/lib/rechner"
+import { BentoMetric } from "./result-card"
+import { berechneObjektvergleich, type ObjektInput, formatCurrency, formatPercent } from "@/lib/rechner"
+
+const CHART_COLORS = ["#4338CA", "#0E7490", "#059669", "#B45309"]
 
 const DEFAULT_OBJEKT: ObjektInput = {
   name: "Objekt",
@@ -29,7 +30,12 @@ export function ObjektvergleichRechner() {
     { ...DEFAULT_OBJEKT, name: "Objekt A" },
     { ...DEFAULT_OBJEKT, name: "Objekt B", kaufpreis: 320000, monatlicheKaltmiete: 950 },
   ])
-  const [results, setResults] = useState<ObjektResult[] | null>(null)
+
+  // Live-Berechnung — aktualisiert sich sofort bei jeder Eingabe
+  const results = useMemo(
+    () => berechneObjektvergleich(objekte),
+    [objekte]
+  )
 
   function updateObjekt(index: number, field: keyof ObjektInput, value: number | string) {
     const updated = [...objekte]
@@ -52,20 +58,43 @@ export function ObjektvergleichRechner() {
     }
   }
 
-  function handleCalculate() {
-    setResults(berechneObjektvergleich(objekte))
-  }
+  // Bestes Objekt für Top-Kennzahlen ermitteln
+  const besteRendite = results.reduce((best, r) => r.bruttoRendite > best.bruttoRendite ? r : best, results[0])
+  const besterCashflow = results.reduce((best, r) => r.monatsCashflow > best.monatsCashflow ? r : best, results[0])
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center gap-3">
-        <div className="rounded-lg bg-primary/10 p-2.5">
-          <BarChart3 className="h-6 w-6 text-primary" />
+      {/* Header */}
+      <div className="flex items-center gap-3 pb-6 border-b">
+        <div className="w-10 h-10 rounded-xl bg-muted border flex items-center justify-center flex-shrink-0">
+          <BarChart3 className="h-5 w-5 text-muted-foreground" />
         </div>
         <div>
-          <h1 className="text-2xl font-bold">Objektvergleich</h1>
-          <p className="text-muted-foreground">Bis zu 3 Immobilien nebeneinander vergleichen</p>
+          <h1 className="text-2xl font-extrabold tracking-tight">Objektvergleich</h1>
+          <p className="text-sm text-muted-foreground">Bis zu 3 Immobilien nebeneinander vergleichen</p>
         </div>
+      </div>
+
+      {/* Bento-Grid: Top-Kennzahlen */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <BentoMetric
+          label="Beste Bruttorendite"
+          value={formatPercent(besteRendite.bruttoRendite)}
+          sub={besteRendite.name}
+          color="green"
+        />
+        <BentoMetric
+          label="Bester Cashflow/Monat"
+          value={formatCurrency(besterCashflow.monatsCashflow)}
+          sub={besterCashflow.name}
+          color={besterCashflow.monatsCashflow >= 0 ? "green" : "red"}
+        />
+        <BentoMetric
+          label="Objekte verglichen"
+          value={`${objekte.length}`}
+          sub="Max. 3 Objekte"
+          color="blue"
+        />
       </div>
 
       {/* Eingabefelder pro Objekt */}
@@ -107,89 +136,87 @@ export function ObjektvergleichRechner() {
         )}
       </div>
 
-      <Button onClick={handleCalculate} className="w-full sm:w-auto">
-        Vergleichen
-      </Button>
-
-      {/* Ergebnisse */}
-      {results && (
-        <div className="space-y-4">
-          <h2 className="text-xl font-bold">Vergleich</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {results.map((r, i) => (
-              <ResultCard
-                key={i}
-                title={r.name}
-                items={[
-                  {
-                    label: "Bruttorendite",
-                    value: r.bruttoRendite,
-                    type: "percent",
-                    color: r.isBest.rendite ? "green" : "default",
-                    highlight: r.isBest.rendite,
-                  },
-                  { label: "Nettorendite", value: r.nettoRendite, type: "percent" },
-                  { label: "Gesamtinvestition", value: r.gesamtinvestition },
-                  { label: "Monatliche Rate", value: r.monatlicheRate },
-                  {
-                    label: "Cashflow/Monat",
-                    value: r.monatsCashflow,
-                    color: r.isBest.cashflow ? "green" : r.monatsCashflow < 0 ? "red" : "default",
-                    highlight: r.isBest.cashflow,
-                  },
-                  { label: "EK-Rendite", value: r.eigenkapitalRendite, type: "percent" },
-                ]}
-              />
-            ))}
-          </div>
-
-          {/* Balkendiagramm: Vergleich aller Objekte */}
-          <Card>
-            <CardHeader>
-              <CardTitle>Visueller Vergleich</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <ResponsiveContainer width="100%" height={300}>
-                <BarChart
-                  data={results.map((r) => ({
-                    name: r.name,
-                    Bruttorendite: Number(r.bruttoRendite.toFixed(2)),
-                    Nettorendite: Number(r.nettoRendite.toFixed(2)),
-                    "Cashflow/Monat": Number(r.monatsCashflow.toFixed(2)),
-                  }))}
-                  margin={{ top: 10, right: 10, left: 10, bottom: 0 }}
-                >
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="name" />
-                  <YAxis
-                    yAxisId="prozent"
-                    orientation="left"
-                    tickFormatter={(v: number) => formatPercent(v)}
-                    label={{ value: "Rendite (%)", angle: -90, position: "insideLeft", offset: -5 }}
-                  />
-                  <YAxis
-                    yAxisId="euro"
-                    orientation="right"
-                    tickFormatter={(v: number) => formatCurrency(v, false)}
-                    label={{ value: "Cashflow (€)", angle: 90, position: "insideRight", offset: -5 }}
-                  />
-                  <Tooltip
-                    formatter={(value, name) =>
-                      name === "Cashflow/Monat"
-                        ? formatCurrency(Number(value))
-                        : formatPercent(Number(value))
-                    }
-                  />
-                  <Legend />
-                  <Bar yAxisId="prozent" dataKey="Bruttorendite" fill="#1d4ed8" />
-                  <Bar yAxisId="prozent" dataKey="Nettorendite" fill="#16a34a" />
-                  <Bar yAxisId="euro" dataKey="Cashflow/Monat" fill="#ea580c" />
-                </BarChart>
-              </ResponsiveContainer>
-            </CardContent>
-          </Card>
+      {/* Ergebnisse — immer sichtbar */}
+      <div className="space-y-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {results.map((r, i) => (
+            <ResultCard
+              key={i}
+              title={r.name}
+              items={[
+                {
+                  label: "Bruttorendite",
+                  value: r.bruttoRendite,
+                  type: "percent",
+                  color: r.isBest.rendite ? "green" : "default",
+                  highlight: r.isBest.rendite,
+                },
+                { label: "Nettorendite", value: r.nettoRendite, type: "percent" },
+                { label: "Gesamtinvestition", value: r.gesamtinvestition },
+                { label: "Monatliche Rate", value: r.monatlicheRate },
+                {
+                  label: "Cashflow/Monat",
+                  value: r.monatsCashflow,
+                  color: r.isBest.cashflow ? "green" : r.monatsCashflow < 0 ? "red" : "default",
+                  highlight: r.isBest.cashflow,
+                },
+                { label: "EK-Rendite", value: r.eigenkapitalRendite, type: "percent" },
+              ]}
+            />
+          ))}
         </div>
-      )}
+
+        {/* Balkendiagramm: Vergleich aller Objekte */}
+        <div className="bg-card border rounded-xl p-5">
+          <h3 className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-4">
+            Visueller Vergleich
+          </h3>
+          <ResponsiveContainer width="100%" height={300}>
+            <BarChart
+              data={results.map((r) => ({
+                name: r.name,
+                Bruttorendite: Number(r.bruttoRendite.toFixed(2)),
+                Nettorendite: Number(r.nettoRendite.toFixed(2)),
+                "Cashflow/Monat": Number(r.monatsCashflow.toFixed(2)),
+              }))}
+              margin={{ top: 10, right: 10, left: 10, bottom: 0 }}
+            >
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="name" />
+              <YAxis
+                yAxisId="prozent"
+                orientation="left"
+                tickFormatter={(v: number) => formatPercent(v)}
+                label={{ value: "Rendite (%)", angle: -90, position: "insideLeft", offset: -5 }}
+              />
+              <YAxis
+                yAxisId="euro"
+                orientation="right"
+                tickFormatter={(v: number) => formatCurrency(v, false)}
+                label={{ value: "Cashflow (€)", angle: 90, position: "insideRight", offset: -5 }}
+              />
+              <Tooltip
+                formatter={(value, name) =>
+                  name === "Cashflow/Monat"
+                    ? formatCurrency(Number(value))
+                    : formatPercent(Number(value))
+                }
+                contentStyle={{
+                  background: "white",
+                  border: "1px solid #E3E5EB",
+                  borderRadius: "8px",
+                  fontSize: "13px",
+                  boxShadow: "0 4px 12px rgba(0,0,0,0.06)",
+                }}
+              />
+              <Legend />
+              <Bar yAxisId="prozent" dataKey="Bruttorendite" fill={CHART_COLORS[0]} />
+              <Bar yAxisId="prozent" dataKey="Nettorendite" fill={CHART_COLORS[1]} />
+              <Bar yAxisId="euro" dataKey="Cashflow/Monat" fill={CHART_COLORS[3]} />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
 
       <Disclaimer />
     </div>

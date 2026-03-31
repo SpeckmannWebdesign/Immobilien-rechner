@@ -11,4 +11,8 @@ export { berechneObjektvergleich, type ObjektInput, type ObjektResult } from "./
 export { berechneTilgungsplan, type TilgungsplanResult } from "./tilgungsplan"
 export { berechneNebenkosten, type NebenkostenInput, type NebenkostenResult, type Kostenposition, type Mieter, type Verteilerschluessel } from "./nebenkosten"
 export { berechneMieterhoehung, type MieterhoehungInput, type MieterhoehungResult } from "./mieterhoehung"
+export { berechneVorfaelligkeit, type VorfaelligkeitInput, type VorfaelligkeitResult } from "./vorfaelligkeit"
+export { berechneWohnflaeche, type WohnflaecheInput, type WohnflaecheResult, type Raum, type WohnflaecheDetail } from "./wohnflaeche"
+export { berechneBeleihungswert, type BeleihungswertInput, type BeleihungswertResult } from "./beleihungswert"
+export { berechneKaufenVsMieten, type KaufenVsMietenInput, type KaufenVsMietenResult } from "./kaufen-vs-mieten"
 export { formatCurrency, formatPercent, formatNumber, formatYears } from "./format"

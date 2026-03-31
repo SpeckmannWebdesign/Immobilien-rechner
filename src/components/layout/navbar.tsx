@@ -6,13 +6,14 @@ import { Calculator, Menu, X } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 
 const navigation = [
-  { name: "Rechner", href: "/tools" },
+  { name: "Rechner", href: "/rechner" },
   { name: "Preise", href: "/preise" },
 ]
 
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [isHeroVisible, setIsHeroVisible] = useState(true)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,7 +23,28 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  // Body-Scroll sperren wenn Mobile-Menü offen
+  // IntersectionObserver: Hero-Sektion beobachten fuer Dark/Light Wechsel
+  useEffect(() => {
+    const heroEl = document.getElementById("hero-section")
+    if (!heroEl) {
+      // Kein Hero auf dieser Seite -> immer helles Design
+      setIsHeroVisible(false)
+      return
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        // Hero gilt als sichtbar wenn mindestens 10% im Viewport sind
+        setIsHeroVisible(entry.isIntersecting)
+      },
+      { threshold: 0.1 }
+    )
+
+    observer.observe(heroEl)
+    return () => observer.disconnect()
+  }, [])
+
+  // Body-Scroll sperren wenn Mobile-Menu offen
   useEffect(() => {
     if (mobileOpen) {
       document.body.style.overflow = "hidden"
@@ -34,20 +56,28 @@ export function Navbar() {
     }
   }, [mobileOpen])
 
+  // CSS-Klasse fuer den Header bestimmen
+  const isDark = isHeroVisible && !mobileOpen
+  const navClass = isDark
+    ? "nav-glass-dark"
+    : scrolled
+      ? "nav-glass-scrolled"
+      : "nav-glass"
+
   return (
     <>
       <header
-        className={`fixed top-0 z-50 w-full transition-all duration-500 ${
-          scrolled
-            ? "nav-glass-scrolled"
-            : "nav-glass"
-        }`}
+        className={`fixed top-0 z-50 w-full transition-all duration-500 ${navClass}`}
       >
         <div className="mx-auto max-w-[1120px] flex h-12 items-center justify-between px-6">
           {/* Logo */}
           <Link
             href="/"
-            className="flex items-center gap-2 text-[#1d1d1f] hover:opacity-70 transition-opacity duration-300"
+            className={`flex items-center gap-2 transition-colors duration-300 ${
+              isDark
+                ? "text-white hover:text-white/70"
+                : "text-[#111827] hover:opacity-70"
+            }`}
           >
             <Calculator className="h-5 w-5" />
             <span className="text-sm font-semibold tracking-tight">
@@ -61,7 +91,11 @@ export function Navbar() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-xs font-medium text-[#1d1d1f] hover:text-[#0066CC] transition-colors duration-300"
+                className={`text-xs font-medium transition-colors duration-300 ${
+                  isDark
+                    ? "text-[#94A3B8] hover:text-[#F1F5F9]"
+                    : "text-[#4B5563] hover:text-[#111827]"
+                }`}
               >
                 {item.name}
               </Link>
@@ -72,14 +106,18 @@ export function Navbar() {
           <div className="hidden md:flex items-center gap-4">
             <Link
               href="/anmelden"
-              className="text-xs font-medium text-[#1d1d1f] hover:text-[#0066CC] transition-colors duration-300"
+              className={`text-xs font-medium transition-colors duration-300 ${
+                isDark
+                  ? "text-[#94A3B8] hover:text-[#F1F5F9]"
+                  : "text-[#4B5563] hover:text-[#111827]"
+              }`}
             >
               Anmelden
             </Link>
             <Link
               href="/anmelden"
-              className="bg-[#0066CC] text-white px-4 py-1.5 rounded-full text-xs font-medium
-                         hover:bg-[#0077ED] transition-colors duration-300"
+              className="bg-[#4338CA] text-white px-4 py-1.5 rounded-lg text-xs font-medium
+                         hover:bg-[#5B52E0] transition-colors duration-300"
             >
               Kostenlos testen
             </Link>
@@ -88,7 +126,9 @@ export function Navbar() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden text-[#1d1d1f] p-1"
+            className={`md:hidden p-1 transition-colors duration-300 ${
+              isDark ? "text-white" : "text-[#111827]"
+            }`}
             aria-label={mobileOpen ? "Menü schließen" : "Menü öffnen"}
           >
             {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -117,7 +157,7 @@ export function Navbar() {
                   <Link
                     href={item.href}
                     onClick={() => setMobileOpen(false)}
-                    className="text-2xl font-semibold text-[#1d1d1f] tracking-tight"
+                    className="text-2xl font-semibold text-[#111827] tracking-tight"
                   >
                     {item.name}
                   </Link>
@@ -133,16 +173,16 @@ export function Navbar() {
                 <Link
                   href="/anmelden"
                   onClick={() => setMobileOpen(false)}
-                  className="text-center py-3 text-[#1d1d1f] font-medium border border-[rgba(0,0,0,0.12)] rounded-full
-                             hover:bg-[#f5f5f7] transition-colors duration-300"
+                  className="text-center py-3 text-[#111827] font-medium border border-[#E3E5EB] rounded-lg
+                             hover:bg-[#F9FAFB] transition-colors duration-300"
                 >
                   Anmelden
                 </Link>
                 <Link
                   href="/anmelden"
                   onClick={() => setMobileOpen(false)}
-                  className="text-center py-3 bg-[#0066CC] text-white font-medium rounded-full
-                             hover:bg-[#0077ED] transition-colors duration-300"
+                  className="text-center py-3 bg-[#4338CA] text-white font-medium rounded-lg
+                             hover:bg-[#5B52E0] transition-colors duration-300"
                 >
                   Kostenlos testen
                 </Link>

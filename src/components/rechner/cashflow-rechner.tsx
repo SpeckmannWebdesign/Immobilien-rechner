@@ -2,11 +2,13 @@
 
 import { useState } from "react"
 import { PiggyBank } from "lucide-react"
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from "recharts"
 import { CalculatorLayout } from "./calculator-layout"
 import { CurrencyInput } from "./currency-input"
 import { PercentInput } from "./percent-input"
 import { ResultCard } from "./result-card"
-import { berechneCashflow, type CashflowResult } from "@/lib/rechner"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { berechneCashflow, formatCurrency, type CashflowResult } from "@/lib/rechner"
 
 export function CashflowRechner() {
   const [monatlicheKaltmiete, setMonatlicheKaltmiete] = useState(800)
@@ -82,6 +84,7 @@ export function CashflowRechner() {
       }
       results={
         result ? (
+          <>
           <ResultCard
             title="Cashflow-Analyse"
             items={[
@@ -126,6 +129,47 @@ export function CashflowRechner() {
               },
             ]}
           />
+
+          {/* Balkendiagramm: Einnahmen vs. Ausgaben */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Einnahmen vs. Ausgaben</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ResponsiveContainer width="100%" height={300}>
+                <BarChart
+                  data={[
+                    {
+                      name: "Einnahmen",
+                      Mieteinnahmen: result.nettoMieteinnahmen,
+                    },
+                    {
+                      name: "Ausgaben",
+                      Hausgeld: hausgeld,
+                      Nebenkosten: nichtUmlegbareNebenkosten,
+                      Kreditrate: monatlicheKreditrate,
+                      Instandhaltung: instandhaltungsRuecklage,
+                      Mietausfall: result.mietausfallAbzug,
+                    },
+                  ]}
+                  margin={{ top: 10, right: 10, left: 10, bottom: 0 }}
+                >
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="name" />
+                  <YAxis tickFormatter={(v: number) => formatCurrency(v, false)} />
+                  <Tooltip formatter={(value) => formatCurrency(Number(value))} />
+                  <Legend />
+                  <Bar dataKey="Mieteinnahmen" stackId="a" fill="#1d4ed8" />
+                  <Bar dataKey="Hausgeld" stackId="a" fill="#16a34a" />
+                  <Bar dataKey="Nebenkosten" stackId="a" fill="#ea580c" />
+                  <Bar dataKey="Kreditrate" stackId="a" fill="#7c3aed" />
+                  <Bar dataKey="Instandhaltung" stackId="a" fill="#0891b2" />
+                  <Bar dataKey="Mietausfall" stackId="a" fill="#dc2626" />
+                </BarChart>
+              </ResponsiveContainer>
+            </CardContent>
+          </Card>
+          </>
         ) : (
           <div className="rounded-lg border border-dashed p-8 text-center text-muted-foreground">
             Geben Sie Ihre Daten ein und klicken Sie auf &quot;Berechnen&quot;.

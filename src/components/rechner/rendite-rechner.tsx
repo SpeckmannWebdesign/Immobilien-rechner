@@ -2,10 +2,14 @@
 
 import { useState } from "react"
 import { TrendingUp } from "lucide-react"
+import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from "recharts"
 import { CalculatorLayout } from "./calculator-layout"
 import { CurrencyInput } from "./currency-input"
 import { ResultCard } from "./result-card"
-import { berechneRendite, type RenditeResult } from "@/lib/rechner"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { berechneRendite, formatCurrency, type RenditeResult } from "@/lib/rechner"
+
+const CHART_COLORS = ["#1d4ed8", "#16a34a", "#ea580c", "#7c3aed"]
 
 export function RenditeRechner() {
   const [kaufpreis, setKaufpreis] = useState(250000)
@@ -119,6 +123,41 @@ export function RenditeRechner() {
                 },
               ]}
             />
+            {/* Kostenaufteilung als Donut-Diagramm */}
+            <Card>
+              <CardHeader className="pb-3">
+                <CardTitle className="text-lg">Kostenaufteilung</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ResponsiveContainer width="100%" height={300}>
+                  <PieChart>
+                    <Pie
+                      data={[
+                        { name: "Kaufpreis", value: kaufpreis },
+                        { name: "Kaufnebenkosten", value: kaufnebenkosten },
+                        { name: "Eigenkapital", value: eigenkapital },
+                        { name: "Darlehen", value: result.darlehen },
+                      ]}
+                      cx="50%"
+                      cy="50%"
+                      innerRadius={60}
+                      outerRadius={100}
+                      paddingAngle={3}
+                      dataKey="value"
+                    >
+                      {CHART_COLORS.map((color, index) => (
+                        <Cell key={`cell-${index}`} fill={color} />
+                      ))}
+                    </Pie>
+                    <Tooltip
+                      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                      formatter={(value: any) => formatCurrency(Number(value))}
+                    />
+                    <Legend />
+                  </PieChart>
+                </ResponsiveContainer>
+              </CardContent>
+            </Card>
           </>
         ) : (
           <div className="rounded-lg border border-dashed p-8 text-center text-muted-foreground">

@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { FileSpreadsheet } from "lucide-react"
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from "recharts"
 import { CalculatorLayout } from "./calculator-layout"
 import { CurrencyInput } from "./currency-input"
 import { PercentInput } from "./percent-input"
@@ -110,6 +111,54 @@ export function TilgungsplanRechner() {
                 },
               ]}
             />
+            {/* Diagramm: Zins- vs. Tilgungsanteil über alle Jahre */}
+            <Card>
+              <CardHeader className="pb-3">
+                <CardTitle className="text-lg">Zins- und Tilgungsverlauf</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ResponsiveContainer width="100%" height={300}>
+                  <AreaChart
+                    data={result.tilgungsplan.map((z) => ({
+                      jahr: `Jahr ${z.jahr}`,
+                      Zinsanteil: Math.round(z.zinsanteil),
+                      Tilgungsanteil: Math.round(z.tilgungsanteil),
+                    }))}
+                    margin={{ top: 5, right: 20, left: 20, bottom: 5 }}
+                  >
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="jahr" tick={{ fontSize: 12 }} />
+                    <YAxis
+                      tick={{ fontSize: 12 }}
+                      tickFormatter={(v) => formatCurrency(Number(v), false)}
+                    />
+                    <Tooltip
+                      formatter={(value) => formatCurrency(Number(value), false)}
+                      labelStyle={{ fontWeight: "bold" }}
+                    />
+                    <Legend />
+                    <Area
+                      type="monotone"
+                      dataKey="Zinsanteil"
+                      stackId="1"
+                      stroke="hsl(0, 70%, 60%)"
+                      fill="hsl(0, 70%, 60%)"
+                      fillOpacity={0.6}
+                      name="Zinsanteil"
+                    />
+                    <Area
+                      type="monotone"
+                      dataKey="Tilgungsanteil"
+                      stackId="1"
+                      stroke="hsl(220, 70%, 50%)"
+                      fill="hsl(220, 70%, 50%)"
+                      fillOpacity={0.6}
+                      name="Tilgungsanteil"
+                    />
+                  </AreaChart>
+                </ResponsiveContainer>
+              </CardContent>
+            </Card>
             {/* Kompletter Tilgungsplan */}
             <Card>
               <CardHeader className="pb-3">

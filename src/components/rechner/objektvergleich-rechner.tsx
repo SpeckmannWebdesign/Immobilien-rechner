@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { BarChart3, Plus, Trash2 } from "lucide-react"
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from "recharts"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -141,6 +142,52 @@ export function ObjektvergleichRechner() {
               />
             ))}
           </div>
+
+          {/* Balkendiagramm: Vergleich aller Objekte */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Visueller Vergleich</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ResponsiveContainer width="100%" height={300}>
+                <BarChart
+                  data={results.map((r) => ({
+                    name: r.name,
+                    Bruttorendite: Number(r.bruttoRendite.toFixed(2)),
+                    Nettorendite: Number(r.nettoRendite.toFixed(2)),
+                    "Cashflow/Monat": Number(r.monatsCashflow.toFixed(2)),
+                  }))}
+                  margin={{ top: 10, right: 10, left: 10, bottom: 0 }}
+                >
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="name" />
+                  <YAxis
+                    yAxisId="prozent"
+                    orientation="left"
+                    tickFormatter={(v: number) => formatPercent(v)}
+                    label={{ value: "Rendite (%)", angle: -90, position: "insideLeft", offset: -5 }}
+                  />
+                  <YAxis
+                    yAxisId="euro"
+                    orientation="right"
+                    tickFormatter={(v: number) => formatCurrency(v, false)}
+                    label={{ value: "Cashflow (€)", angle: 90, position: "insideRight", offset: -5 }}
+                  />
+                  <Tooltip
+                    formatter={(value, name) =>
+                      name === "Cashflow/Monat"
+                        ? formatCurrency(Number(value))
+                        : formatPercent(Number(value))
+                    }
+                  />
+                  <Legend />
+                  <Bar yAxisId="prozent" dataKey="Bruttorendite" fill="#1d4ed8" />
+                  <Bar yAxisId="prozent" dataKey="Nettorendite" fill="#16a34a" />
+                  <Bar yAxisId="euro" dataKey="Cashflow/Monat" fill="#ea580c" />
+                </BarChart>
+              </ResponsiveContainer>
+            </CardContent>
+          </Card>
         </div>
       )}
 

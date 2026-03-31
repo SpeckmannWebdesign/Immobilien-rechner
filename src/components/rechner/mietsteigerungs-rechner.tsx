@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { ArrowUpRight } from "lucide-react"
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from "recharts"
 import { CalculatorLayout } from "./calculator-layout"
 import { CurrencyInput } from "./currency-input"
 import { PercentInput } from "./percent-input"
@@ -104,6 +105,52 @@ export function MietsteigerungsRechner() {
                 },
               ]}
             />
+            {/* Mietentwicklungs-Diagramm */}
+            <Card>
+              <CardHeader className="pb-3">
+                <CardTitle className="text-lg">Mietentwicklung im Zeitverlauf</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ResponsiveContainer width="100%" height={300}>
+                  <LineChart
+                    data={result.jahresUebersicht.map((j) => ({
+                      jahr: `Jahr ${j.jahr}`,
+                      prognostizierteMiete: Math.round(j.monatsmiete * 100) / 100,
+                      aktuelleMiete: aktuelleMonatsmiete,
+                    }))}
+                    margin={{ top: 5, right: 20, left: 20, bottom: 5 }}
+                  >
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="jahr" fontSize={12} />
+                    <YAxis
+                      tickFormatter={(value: number) => formatCurrency(value, false)}
+                      fontSize={12}
+                    />
+                    <Tooltip
+                      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                      formatter={(value: any) => formatCurrency(Number(value))}
+                    />
+                    <Legend />
+                    <Line
+                      type="monotone"
+                      dataKey="aktuelleMiete"
+                      name="Aktuelle Miete"
+                      stroke="#94a3b8"
+                      strokeDasharray="5 5"
+                      dot={false}
+                    />
+                    <Line
+                      type="monotone"
+                      dataKey="prognostizierteMiete"
+                      name="Prognostizierte Miete"
+                      stroke="#1d4ed8"
+                      strokeWidth={2}
+                      dot={false}
+                    />
+                  </LineChart>
+                </ResponsiveContainer>
+              </CardContent>
+            </Card>
             {/* Jahrestabelle */}
             <Card>
               <CardHeader className="pb-3">

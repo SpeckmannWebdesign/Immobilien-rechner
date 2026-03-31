@@ -22,7 +22,7 @@ const SAETZE = [
   { bundesland: "Bayern", rate: 3.5 },
   { bundesland: "Berlin", rate: 6.0 },
   { bundesland: "Brandenburg", rate: 6.5 },
-  { bundesland: "Bremen", rate: 5.5 },
+  { bundesland: "Bremen", rate: 5.0 },
   { bundesland: "Hamburg", rate: 5.5 },
   { bundesland: "Hessen", rate: 6.0 },
   { bundesland: "Mecklenburg-Vorpommern", rate: 6.0 },

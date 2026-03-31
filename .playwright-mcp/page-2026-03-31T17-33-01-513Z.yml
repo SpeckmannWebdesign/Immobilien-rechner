@@ -1,0 +1,144 @@
+- generic [active] [ref=e229]:
+  - generic [ref=e230]:
+    - navigation [ref=e233]:
+      - generic [ref=e234]:
+        - generic [ref=e235]:
+          - link "Coolify" [ref=e236] [cursor=pointer]:
+            - /url: /
+          - link "v4.0.0-beta.470" [ref=e237] [cursor=pointer]:
+            - /url: https://github.com/coollabsio/coolify/releases/tag/v4.0.0-beta.470
+        - button / [ref=e239]:
+          - img [ref=e240]
+          - generic [ref=e242]: /
+        - button "Preferences 9+" [ref=e245] [cursor=pointer]:
+          - img "Preferences" [ref=e246]
+          - generic [ref=e248]: 9+
+      - combobox [ref=e251]:
+        - option "Switch team" [disabled]
+        - option "Root Team" [selected]
+      - list [ref=e252]:
+        - listitem [ref=e253]:
+          - list [ref=e254]:
+            - listitem [ref=e255]:
+              - link "Dashboard" [ref=e256] [cursor=pointer]:
+                - /url: /
+                - img [ref=e257]
+                - generic [ref=e259]: Dashboard
+            - listitem [ref=e260]:
+              - link "Projects" [ref=e261] [cursor=pointer]:
+                - /url: /projects
+                - img [ref=e262]
+                - generic [ref=e267]: Projects
+            - listitem [ref=e268]:
+              - link "Servers" [ref=e269] [cursor=pointer]:
+                - /url: /servers
+                - img [ref=e270]
+                - generic [ref=e275]: Servers
+            - listitem [ref=e276]:
+              - link "Sources" [ref=e277] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/sources
+                - img [ref=e278]
+                - generic [ref=e280]: Sources
+            - listitem [ref=e281]:
+              - link "Destinations" [ref=e282] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/destinations
+                - img [ref=e283]
+                - generic [ref=e285]: Destinations
+            - listitem [ref=e286]:
+              - link "S3 Storages" [ref=e287] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/storages
+                - img [ref=e288]
+                - generic [ref=e293]: S3 Storages
+            - listitem [ref=e294]:
+              - link "Shared Variables" [ref=e295] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/shared-variables
+                - img [ref=e296]
+                - generic [ref=e300]: Shared Variables
+            - listitem [ref=e301]:
+              - link "Notifications" [ref=e302] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/notifications/email
+                - img [ref=e303]
+                - generic [ref=e305]: Notifications
+            - listitem [ref=e306]:
+              - link "Keys & Tokens" [ref=e307] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/security/private-key
+                - img [ref=e308]
+                - generic [ref=e310]: Keys & Tokens
+            - listitem [ref=e311]:
+              - link "Tags" [ref=e312] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/tags
+                - img [ref=e313]
+                - generic [ref=e317]: Tags
+            - listitem [ref=e318]:
+              - link "Terminal" [ref=e319] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/terminal
+                - img [ref=e320]
+                - generic [ref=e323]: Terminal
+            - listitem [ref=e324]:
+              - link "Profile" [ref=e325] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/profile
+                - img [ref=e326]
+                - generic [ref=e331]: Profile
+            - listitem [ref=e332]:
+              - link "Teams" [ref=e333] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/team
+                - img [ref=e334]
+                - generic [ref=e342]: Teams
+            - listitem [ref=e343]:
+              - link "Settings" [ref=e344] [cursor=pointer]:
+                - /url: /settings
+                - img [ref=e345]
+                - generic [ref=e349]: Settings
+            - generic:
+              - listitem:
+                - generic "No upgrade available"
+            - listitem [ref=e351]:
+              - link "Sponsor us" [ref=e352] [cursor=pointer]:
+                - /url: https://coolify.io/sponsorships
+                - img [ref=e353]
+                - generic [ref=e357]: Sponsor us
+            - listitem [ref=e358]:
+              - generic "Send us feedback or get help!" [ref=e361] [cursor=pointer]:
+                - img [ref=e362]
+                - generic [ref=e364]: Feedback
+            - listitem [ref=e365]:
+              - button "Logout" [ref=e367]:
+                - img [ref=e368]
+                - generic [ref=e370]: Logout
+    - main [ref=e371]:
+      - generic [ref=e373]:
+        - generic [ref=e374]:
+          - heading "GitHub App" [level=1] [ref=e375]
+          - button "Delete" [ref=e378] [cursor=pointer]
+        - generic [ref=e379]:
+          - heading "Manual Installation" [level=3] [ref=e380]
+          - generic [ref=e381]:
+            - text: If you want to fill the form manually, you can continue below. Only for advanced users.
+            - button "Continue" [ref=e382] [cursor=pointer]
+          - heading "Automated Installation" [level=3] [ref=e383]
+          - generic [ref=e384]:
+            - img [ref=e385]
+            - generic [ref=e387]: You must complete this step before you can use this source!
+          - generic [ref=e389]:
+            - generic [ref=e390]:
+              - generic [ref=e391]:
+                - generic [ref=e392]:
+                  - text: Webhook Endpoint
+                  - img [ref=e395] [cursor=pointer]
+                - combobox [ref=e397]:
+                  - option "Use http://167.235.136.129:8000" [selected]
+                  - option "Use http://2a01:4f8:1c1e:a4f3::1:8000"
+                  - option "Use http://localhost"
+              - button "Register Now" [ref=e398] [cursor=pointer]
+            - generic [ref=e399]:
+              - generic [ref=e401]:
+                - generic [ref=e402]:
+                  - generic [ref=e403]: Mandatory
+                  - img [ref=e406] [cursor=pointer]
+                - checkbox "Mandatory" [checked] [disabled] [ref=e408]
+              - generic [ref=e410]:
+                - generic [ref=e411]:
+                  - text: Preview Deployments
+                  - img [ref=e414] [cursor=pointer]
+                - checkbox "Preview Deployments" [checked] [ref=e416] [cursor=pointer]
+  - list

@@ -79,7 +79,7 @@ export default function DashboardPage() {
           <CardHeader>
             <CardTitle>Rechner nutzen</CardTitle>
             <CardDescription>
-              Starten Sie eine Berechnung mit einem unserer 12 professionellen
+              Starten Sie eine Berechnung mit einem unserer 16 professionellen
               Immobilien-Tools.
             </CardDescription>
           </CardHeader>

@@ -1,0 +1,108 @@
+- generic [ref=e2]:
+  - region
+  - generic [ref=e3]:
+    - link "Skip to content" [ref=e4] [cursor=pointer]:
+      - /url: "#start-of-content"
+    - banner "Global Navigation Menu" [ref=e8]:
+      - generic [ref=e9]:
+        - generic [ref=e10]:
+          - button "Open menu" [ref=e12] [cursor=pointer]:
+            - img [ref=e13]
+          - link "Homepage (g then d)" [ref=e15] [cursor=pointer]:
+            - /url: /
+            - img [ref=e16]
+        - generic [ref=e18]:
+          - navigation "Breadcrumbs" [ref=e19]:
+            - list [ref=e20]:
+              - listitem [ref=e21]:
+                - link "Settings" [ref=e22] [cursor=pointer]:
+                  - /url: /settings/profile
+                  - generic [ref=e23]: Settings
+              - listitem [ref=e24]:
+                - link "Developer Settings" [ref=e25] [cursor=pointer]:
+                  - /url: /settings/apps
+                  - generic [ref=e26]: Developer Settings
+          - button "Search or jump to…" [ref=e29] [cursor=pointer]:
+            - generic [ref=e30]:
+              - generic:
+                - img
+              - generic [ref=e31]:
+                - generic:
+                  - text: Type
+                  - generic: /
+                  - text: to search
+        - generic [ref=e32]:
+          - generic [ref=e33]:
+            - generic [ref=e35]:
+              - link "Chat with Copilot" [ref=e37] [cursor=pointer]:
+                - /url: /copilot
+                - img [ref=e38]
+              - button "Open Copilot…" [ref=e42] [cursor=pointer]:
+                - generic:
+                  - img
+            - button "Create new..." [ref=e44] [cursor=pointer]:
+              - generic [ref=e45]:
+                - generic:
+                  - img
+              - generic:
+                - img
+            - link "Issues (g then i)" [ref=e46] [cursor=pointer]:
+              - /url: /issues
+              - img [ref=e47]
+            - link "Pull requests (g then p)" [ref=e50] [cursor=pointer]:
+              - /url: /pulls
+              - img [ref=e51]
+            - link "Repositories" [ref=e53] [cursor=pointer]:
+              - /url: /repos
+              - img [ref=e54]
+          - link "You have no unread notifications (g then n)" [ref=e56] [cursor=pointer]:
+            - /url: /notifications
+            - img [ref=e57]
+          - button "Open user navigation menu" [ref=e60] [cursor=pointer]:
+            - img "User avatar" [ref=e61]
+  - main [ref=e64]:
+    - generic [ref=e67]:
+      - heading "Create GitHub App" [level=2] [ref=e69]
+      - generic [ref=e70]:
+        - generic [ref=e71]:
+          - term [ref=e72]: GitHub App name
+          - definition [ref=e73]:
+            - textbox "GitHub App name" [ref=e74]: immobilien-rechner
+            - paragraph [ref=e75]: Don't worry, you can always change this later.
+        - button "Create GitHub App for SpeckmannWebdesign" [ref=e76] [cursor=pointer]
+  - contentinfo [ref=e77]:
+    - heading "Footer" [level=2] [ref=e78]
+    - generic [ref=e79]:
+      - generic [ref=e80]:
+        - link "GitHub Homepage" [ref=e81] [cursor=pointer]:
+          - /url: https://github.com
+          - img [ref=e82]
+        - generic [ref=e84]: © 2026 GitHub, Inc.
+      - navigation "Footer" [ref=e85]:
+        - heading "Footer navigation" [level=3] [ref=e86]
+        - list "Footer navigation" [ref=e87]:
+          - listitem [ref=e88]:
+            - link "Terms" [ref=e89] [cursor=pointer]:
+              - /url: https://docs.github.com/site-policy/github-terms/github-terms-of-service
+          - listitem [ref=e90]:
+            - link "Privacy" [ref=e91] [cursor=pointer]:
+              - /url: https://docs.github.com/site-policy/privacy-policies/github-privacy-statement
+          - listitem [ref=e92]:
+            - link "Security" [ref=e93] [cursor=pointer]:
+              - /url: https://github.com/security
+          - listitem [ref=e94]:
+            - link "Status" [ref=e95] [cursor=pointer]:
+              - /url: https://www.githubstatus.com/
+          - listitem [ref=e96]:
+            - link "Community" [ref=e97] [cursor=pointer]:
+              - /url: https://github.community/
+          - listitem [ref=e98]:
+            - link "Docs" [ref=e99] [cursor=pointer]:
+              - /url: https://docs.github.com/
+          - listitem [ref=e100]:
+            - link "Contact" [ref=e101] [cursor=pointer]:
+              - /url: https://support.github.com?tags=dotcom-footer
+          - listitem [ref=e102]:
+            - button "Manage cookies" [ref=e104] [cursor=pointer]
+          - listitem [ref=e105]:
+            - button "Do not share my personal information" [ref=e107] [cursor=pointer]

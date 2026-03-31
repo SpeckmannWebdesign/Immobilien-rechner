@@ -1,0 +1,255 @@
+- generic [active] [ref=e1348]:
+  - generic [ref=e1349]:
+    - navigation [ref=e1352]:
+      - generic [ref=e1353]:
+        - generic [ref=e1354]:
+          - link "Coolify" [ref=e1355] [cursor=pointer]:
+            - /url: /
+          - link "v4.0.0-beta.470" [ref=e1356] [cursor=pointer]:
+            - /url: https://github.com/coollabsio/coolify/releases/tag/v4.0.0-beta.470
+        - button / [ref=e1358]:
+          - img [ref=e1359]
+          - generic [ref=e1361]: /
+        - button "Preferences 9+" [ref=e1364] [cursor=pointer]:
+          - img "Preferences" [ref=e1365]
+          - generic [ref=e1367]: 9+
+      - combobox [ref=e1370]:
+        - option "Switch team" [disabled]
+        - option "Root Team" [selected]
+      - list [ref=e1371]:
+        - listitem [ref=e1372]:
+          - list [ref=e1373]:
+            - listitem [ref=e1374]:
+              - link "Dashboard" [ref=e1375] [cursor=pointer]:
+                - /url: /
+                - img [ref=e1376]
+                - generic [ref=e1378]: Dashboard
+            - listitem [ref=e1379]:
+              - link "Projects" [ref=e1380] [cursor=pointer]:
+                - /url: /projects
+                - img [ref=e1381]
+                - generic [ref=e1386]: Projects
+            - listitem [ref=e1387]:
+              - link "Servers" [ref=e1388] [cursor=pointer]:
+                - /url: /servers
+                - img [ref=e1389]
+                - generic [ref=e1394]: Servers
+            - listitem [ref=e1395]:
+              - link "Sources" [ref=e1396] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/sources
+                - img [ref=e1397]
+                - generic [ref=e1399]: Sources
+            - listitem [ref=e1400]:
+              - link "Destinations" [ref=e1401] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/destinations
+                - img [ref=e1402]
+                - generic [ref=e1404]: Destinations
+            - listitem [ref=e1405]:
+              - link "S3 Storages" [ref=e1406] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/storages
+                - img [ref=e1407]
+                - generic [ref=e1412]: S3 Storages
+            - listitem [ref=e1413]:
+              - link "Shared Variables" [ref=e1414] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/shared-variables
+                - img [ref=e1415]
+                - generic [ref=e1419]: Shared Variables
+            - listitem [ref=e1420]:
+              - link "Notifications" [ref=e1421] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/notifications/email
+                - img [ref=e1422]
+                - generic [ref=e1424]: Notifications
+            - listitem [ref=e1425]:
+              - link "Keys & Tokens" [ref=e1426] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/security/private-key
+                - img [ref=e1427]
+                - generic [ref=e1429]: Keys & Tokens
+            - listitem [ref=e1430]:
+              - link "Tags" [ref=e1431] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/tags
+                - img [ref=e1432]
+                - generic [ref=e1436]: Tags
+            - listitem [ref=e1437]:
+              - link "Terminal" [ref=e1438] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/terminal
+                - img [ref=e1439]
+                - generic [ref=e1442]: Terminal
+            - listitem [ref=e1443]:
+              - link "Profile" [ref=e1444] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/profile
+                - img [ref=e1445]
+                - generic [ref=e1450]: Profile
+            - listitem [ref=e1451]:
+              - link "Teams" [ref=e1452] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/team
+                - img [ref=e1453]
+                - generic [ref=e1461]: Teams
+            - listitem [ref=e1462]:
+              - link "Settings" [ref=e1463] [cursor=pointer]:
+                - /url: /settings
+                - img [ref=e1464]
+                - generic [ref=e1468]: Settings
+            - generic:
+              - listitem:
+                - generic "No upgrade available"
+            - listitem [ref=e1470]:
+              - link "Sponsor us" [ref=e1471] [cursor=pointer]:
+                - /url: https://coolify.io/sponsorships
+                - img [ref=e1472]
+                - generic [ref=e1476]: Sponsor us
+            - listitem [ref=e1477]:
+              - generic "Send us feedback or get help!" [ref=e1480] [cursor=pointer]:
+                - img [ref=e1481]
+                - generic [ref=e1483]: Feedback
+            - listitem [ref=e1484]:
+              - button "Logout" [ref=e1486]:
+                - img [ref=e1487]
+                - generic [ref=e1489]: Logout
+    - main [ref=e1490]:
+      - generic [ref=e1492]:
+        - heading "Configuration" [level=1] [ref=e1493]
+        - navigation [ref=e1494]:
+          - navigation [ref=e1495]:
+            - list [ref=e1496]:
+              - listitem [ref=e1497]:
+                - generic [ref=e1498]:
+                  - link "Immobilien-Rechner" [ref=e1499] [cursor=pointer]:
+                    - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6
+                  - button [ref=e1500]:
+                    - img [ref=e1501]
+              - listitem [ref=e1503]:
+                - generic [ref=e1504]:
+                  - link "production" [ref=e1505] [cursor=pointer]:
+                    - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj
+                  - button [ref=e1506]:
+                    - img [ref=e1507]
+              - listitem [ref=e1509]:
+                - link "immobilien-rechner:main-v11wkfofuu9mujnnup998xai (localhost)" [ref=e1510] [cursor=pointer]:
+                  - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m
+              - generic [ref=e1512]:
+                - link "Running" [ref=e1515] [cursor=pointer]:
+                  - /url: https://github.com/SpeckmannWebdesign/Immobilien-rechner/commit/bac22e8a2f37d46c58e9ef63a10007d31d5d20db
+                - generic [ref=e1516]: (unknown)
+                - img [ref=e1520] [cursor=pointer]
+              - button "Refresh Status" [ref=e1521]:
+                - img [ref=e1522]
+          - generic [ref=e1524]:
+            - navigation [ref=e1525]:
+              - link "Configuration" [ref=e1526] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m
+              - link "Deployments" [ref=e1527] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/deployment
+              - link "Logs" [ref=e1528] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/logs
+                - generic [ref=e1529]: Logs
+              - link "Terminal" [ref=e1530] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/terminal
+              - button "Links" [ref=e1532]:
+                - generic [ref=e1533]: Links
+                - img [ref=e1534]
+            - generic [ref=e1536]:
+              - button "Advanced" [ref=e1539]:
+                - generic [ref=e1540]: Advanced
+                - img [ref=e1541]
+              - generic [ref=e1543]:
+                - button "Redeploy" [ref=e1544] [cursor=pointer]:
+                  - img [ref=e1545]
+                  - text: Redeploy
+                - button "Restart" [ref=e1547] [cursor=pointer]:
+                  - img [ref=e1548]
+                  - text: Restart
+                - button "Stop" [ref=e1553] [cursor=pointer]:
+                  - img [ref=e1554]
+                  - text: Stop
+        - generic [ref=e1556]:
+          - generic [ref=e1557]:
+            - link "General" [ref=e1558] [cursor=pointer]:
+              - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m
+              - generic [ref=e1559]: General
+            - link "Advanced" [ref=e1560] [cursor=pointer]:
+              - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/advanced
+              - generic [ref=e1561]: Advanced
+            - link "Environment Variables" [ref=e1562] [cursor=pointer]:
+              - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/environment-variables
+              - generic [ref=e1563]: Environment Variables
+            - link "Persistent Storage" [ref=e1564] [cursor=pointer]:
+              - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/persistent-storage
+              - generic [ref=e1565]: Persistent Storage
+            - link "Git Source" [ref=e1566] [cursor=pointer]:
+              - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/source
+              - generic [ref=e1567]: Git Source
+            - link "Servers" [ref=e1568] [cursor=pointer]:
+              - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/servers
+              - generic [ref=e1569]: Servers
+            - link "Scheduled Tasks" [ref=e1570] [cursor=pointer]:
+              - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/scheduled-tasks
+              - generic [ref=e1571]: Scheduled Tasks
+            - link "Webhooks" [ref=e1572] [cursor=pointer]:
+              - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/webhooks
+              - generic [ref=e1573]: Webhooks
+            - link "Preview Deployments" [ref=e1574] [cursor=pointer]:
+              - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/preview-deployments
+              - generic [ref=e1575]: Preview Deployments
+            - link "Healthcheck" [ref=e1576] [cursor=pointer]:
+              - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/healthcheck
+              - generic [ref=e1577]: Healthcheck
+            - link "Rollback" [ref=e1578] [cursor=pointer]:
+              - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/rollback
+              - generic [ref=e1579]: Rollback
+            - link "Resource Limits" [ref=e1580] [cursor=pointer]:
+              - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/resource-limits
+              - generic [ref=e1581]: Resource Limits
+            - link "Resource Operations" [ref=e1582] [cursor=pointer]:
+              - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/resource-operations
+              - generic [ref=e1583]: Resource Operations
+            - link "Metrics" [ref=e1584] [cursor=pointer]:
+              - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/metrics
+              - generic [ref=e1585]: Metrics
+            - link "Tags" [ref=e1586] [cursor=pointer]:
+              - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/tags
+              - generic [ref=e1587]: Tags
+            - link "Danger Zone" [ref=e1588] [cursor=pointer]:
+              - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/danger
+              - generic [ref=e1589]: Danger Zone
+          - generic [ref=e1592]:
+            - generic [ref=e1593]:
+              - heading "Source" [level=2] [ref=e1594]
+              - button "Save" [ref=e1595] [cursor=pointer]
+              - generic [ref=e1596]:
+                - link "Open Repository" [ref=e1597] [cursor=pointer]:
+                  - /url: https://github.com/SpeckmannWebdesign/Immobilien-rechner/tree/main/
+                  - text: Open Repository
+                  - img [ref=e1598]
+                - link "Open Commits on Git" [ref=e1600] [cursor=pointer]:
+                  - /url: https://github.com/SpeckmannWebdesign/Immobilien-rechner/commits/main
+                  - text: Open Commits on Git
+                  - img [ref=e1601]
+            - generic [ref=e1603]: Code source of your application.
+            - generic [ref=e1604]:
+              - generic [ref=e1605]: "Currently connected source: Public GitHub"
+              - generic [ref=e1606]:
+                - generic [ref=e1607]:
+                  - generic [ref=e1608]: Repository
+                  - textbox "coollabsio/coolify-example" [ref=e1609]: SpeckmannWebdesign/Immobilien-rechner
+                - generic [ref=e1610]:
+                  - generic [ref=e1611]: Branch
+                  - textbox "main" [ref=e1612]
+              - generic [ref=e1614]:
+                - generic [ref=e1615]: Commit SHA
+                - textbox "HEAD" [ref=e1616]
+            - generic [ref=e1617]:
+              - heading "Change Git Source" [level=3] [ref=e1618]
+              - generic [ref=e1619]:
+                - button "bildungsimpulsec Personal Account" [ref=e1622] [cursor=pointer]:
+                  - generic [ref=e1623]:
+                    - generic [ref=e1624]: bildungsimpulsec
+                    - generic [ref=e1625]: Personal Account
+                - button "flowers-yoga-coolify SpeckmannWebdesign" [ref=e1628] [cursor=pointer]:
+                  - generic [ref=e1629]:
+                    - generic [ref=e1630]: flowers-yoga-coolify
+                    - generic [ref=e1631]: SpeckmannWebdesign
+                - button "speckmann-crm SpeckmannWebdesign" [ref=e1634] [cursor=pointer]:
+                  - generic [ref=e1635]:
+                    - generic [ref=e1636]: speckmann-crm
+                    - generic [ref=e1637]: SpeckmannWebdesign
+  - list

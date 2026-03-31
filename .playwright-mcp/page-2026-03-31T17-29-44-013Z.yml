@@ -1,0 +1,432 @@
+- generic [active] [ref=e412]:
+  - generic [ref=e413]:
+    - navigation [ref=e416]:
+      - generic [ref=e417]:
+        - generic [ref=e418]:
+          - link "Coolify" [ref=e419] [cursor=pointer]:
+            - /url: /
+          - link "v4.0.0-beta.470" [ref=e420] [cursor=pointer]:
+            - /url: https://github.com/coollabsio/coolify/releases/tag/v4.0.0-beta.470
+        - button / [ref=e422]:
+          - img [ref=e423]
+          - generic [ref=e425]: /
+        - button "Preferences 9+" [ref=e428] [cursor=pointer]:
+          - img "Preferences" [ref=e429]
+          - generic [ref=e431]: 9+
+      - combobox [ref=e434]:
+        - option "Switch team" [disabled]
+        - option "Root Team" [selected]
+      - list [ref=e435]:
+        - listitem [ref=e436]:
+          - list [ref=e437]:
+            - listitem [ref=e438]:
+              - link "Dashboard" [ref=e439] [cursor=pointer]:
+                - /url: /
+                - img [ref=e440]
+                - generic [ref=e442]: Dashboard
+            - listitem [ref=e443]:
+              - link "Projects" [ref=e444] [cursor=pointer]:
+                - /url: /projects
+                - img [ref=e445]
+                - generic [ref=e450]: Projects
+            - listitem [ref=e451]:
+              - link "Servers" [ref=e452] [cursor=pointer]:
+                - /url: /servers
+                - img [ref=e453]
+                - generic [ref=e458]: Servers
+            - listitem [ref=e459]:
+              - link "Sources" [ref=e460] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/sources
+                - img [ref=e461]
+                - generic [ref=e463]: Sources
+            - listitem [ref=e464]:
+              - link "Destinations" [ref=e465] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/destinations
+                - img [ref=e466]
+                - generic [ref=e468]: Destinations
+            - listitem [ref=e469]:
+              - link "S3 Storages" [ref=e470] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/storages
+                - img [ref=e471]
+                - generic [ref=e476]: S3 Storages
+            - listitem [ref=e477]:
+              - link "Shared Variables" [ref=e478] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/shared-variables
+                - img [ref=e479]
+                - generic [ref=e483]: Shared Variables
+            - listitem [ref=e484]:
+              - link "Notifications" [ref=e485] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/notifications/email
+                - img [ref=e486]
+                - generic [ref=e488]: Notifications
+            - listitem [ref=e489]:
+              - link "Keys & Tokens" [ref=e490] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/security/private-key
+                - img [ref=e491]
+                - generic [ref=e493]: Keys & Tokens
+            - listitem [ref=e494]:
+              - link "Tags" [ref=e495] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/tags
+                - img [ref=e496]
+                - generic [ref=e500]: Tags
+            - listitem [ref=e501]:
+              - link "Terminal" [ref=e502] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/terminal
+                - img [ref=e503]
+                - generic [ref=e506]: Terminal
+            - listitem [ref=e507]:
+              - link "Profile" [ref=e508] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/profile
+                - img [ref=e509]
+                - generic [ref=e514]: Profile
+            - listitem [ref=e515]:
+              - link "Teams" [ref=e516] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/team
+                - img [ref=e517]
+                - generic [ref=e525]: Teams
+            - listitem [ref=e526]:
+              - link "Settings" [ref=e527] [cursor=pointer]:
+                - /url: /settings
+                - img [ref=e528]
+                - generic [ref=e532]: Settings
+            - generic:
+              - listitem:
+                - generic "No upgrade available"
+            - listitem [ref=e534]:
+              - link "Sponsor us" [ref=e535] [cursor=pointer]:
+                - /url: https://coolify.io/sponsorships
+                - img [ref=e536]
+                - generic [ref=e540]: Sponsor us
+            - listitem [ref=e541]:
+              - generic "Send us feedback or get help!" [ref=e544] [cursor=pointer]:
+                - img [ref=e545]
+                - generic [ref=e547]: Feedback
+            - listitem [ref=e548]:
+              - button "Logout" [ref=e550]:
+                - img [ref=e551]
+                - generic [ref=e553]: Logout
+    - main [ref=e554]:
+      - generic [ref=e556]:
+        - heading "Configuration" [level=1] [ref=e557]
+        - navigation [ref=e558]:
+          - navigation [ref=e559]:
+            - list [ref=e560]:
+              - listitem [ref=e561]:
+                - generic [ref=e562]:
+                  - link "Immobilien-Rechner" [ref=e563] [cursor=pointer]:
+                    - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6
+                  - button [ref=e564]:
+                    - img [ref=e565]
+              - listitem [ref=e567]:
+                - generic [ref=e568]:
+                  - link "production" [ref=e569] [cursor=pointer]:
+                    - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj
+                  - button [ref=e570]:
+                    - img [ref=e571]
+              - listitem [ref=e573]:
+                - link "immobilien-rechner:main-v11wkfofuu9mujnnup998xai (localhost)" [ref=e574] [cursor=pointer]:
+                  - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m
+              - generic [ref=e576]:
+                - link "Running" [ref=e579] [cursor=pointer]:
+                  - /url: https://github.com/SpeckmannWebdesign/Immobilien-rechner/commit/bac22e8a2f37d46c58e9ef63a10007d31d5d20db
+                - generic [ref=e580]: (unknown)
+                - img [ref=e584] [cursor=pointer]
+              - button "Refresh Status" [ref=e585]:
+                - img [ref=e586]
+          - generic [ref=e588]:
+            - navigation [ref=e589]:
+              - link "Configuration" [ref=e590] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m
+              - link "Deployments" [ref=e591] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/deployment
+              - link "Logs" [ref=e592] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/logs
+                - generic [ref=e593]: Logs
+              - link "Terminal" [ref=e594] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/terminal
+              - button "Links" [ref=e596]:
+                - generic [ref=e597]: Links
+                - img [ref=e598]
+            - generic [ref=e600]:
+              - button "Advanced" [ref=e603]:
+                - generic [ref=e604]: Advanced
+                - img [ref=e605]
+              - generic [ref=e607]:
+                - button "Redeploy" [ref=e608] [cursor=pointer]:
+                  - img [ref=e609]
+                  - text: Redeploy
+                - button "Restart" [ref=e611] [cursor=pointer]:
+                  - img [ref=e612]
+                  - text: Restart
+                - button "Stop" [ref=e617] [cursor=pointer]:
+                  - img [ref=e618]
+                  - text: Stop
+        - generic [ref=e620]:
+          - generic [ref=e621]:
+            - link "General" [ref=e622] [cursor=pointer]:
+              - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m
+              - generic [ref=e623]: General
+            - link "Advanced" [ref=e624] [cursor=pointer]:
+              - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/advanced
+              - generic [ref=e625]: Advanced
+            - link "Environment Variables" [ref=e626] [cursor=pointer]:
+              - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/environment-variables
+              - generic [ref=e627]: Environment Variables
+            - link "Persistent Storage" [ref=e628] [cursor=pointer]:
+              - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/persistent-storage
+              - generic [ref=e629]: Persistent Storage
+            - link "Git Source" [ref=e630] [cursor=pointer]:
+              - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/source
+              - generic [ref=e631]: Git Source
+            - link "Servers" [ref=e632] [cursor=pointer]:
+              - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/servers
+              - generic [ref=e633]: Servers
+            - link "Scheduled Tasks" [ref=e634] [cursor=pointer]:
+              - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/scheduled-tasks
+              - generic [ref=e635]: Scheduled Tasks
+            - link "Webhooks" [ref=e636] [cursor=pointer]:
+              - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/webhooks
+              - generic [ref=e637]: Webhooks
+            - link "Preview Deployments" [ref=e638] [cursor=pointer]:
+              - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/preview-deployments
+              - generic [ref=e639]: Preview Deployments
+            - link "Healthcheck" [ref=e640] [cursor=pointer]:
+              - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/healthcheck
+              - generic [ref=e641]: Healthcheck
+            - link "Rollback" [ref=e642] [cursor=pointer]:
+              - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/rollback
+              - generic [ref=e643]: Rollback
+            - link "Resource Limits" [ref=e644] [cursor=pointer]:
+              - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/resource-limits
+              - generic [ref=e645]: Resource Limits
+            - link "Resource Operations" [ref=e646] [cursor=pointer]:
+              - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/resource-operations
+              - generic [ref=e647]: Resource Operations
+            - link "Metrics" [ref=e648] [cursor=pointer]:
+              - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/metrics
+              - generic [ref=e649]: Metrics
+            - link "Tags" [ref=e650] [cursor=pointer]:
+              - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/tags
+              - generic [ref=e651]: Tags
+            - link "Danger Zone" [ref=e652] [cursor=pointer]:
+              - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/danger
+              - generic [ref=e653]: Danger Zone
+          - generic [ref=e656]:
+            - generic [ref=e657]:
+              - heading "General" [level=2] [ref=e658]
+              - button "Save" [ref=e659] [cursor=pointer]
+            - generic [ref=e660]: General configuration for your application.
+            - generic [ref=e661]:
+              - generic [ref=e662]:
+                - generic [ref=e663]:
+                  - generic [ref=e664]:
+                    - text: Name
+                    - generic [ref=e665]: "*"
+                  - textbox [ref=e666]: immobilien-rechner:main-v11wkfofuu9mujnnup998xai
+                - generic [ref=e667]:
+                  - generic [ref=e668]: Description
+                  - textbox [ref=e669]
+              - generic [ref=e672]:
+                - generic [ref=e673]:
+                  - text: Build Pack
+                  - generic [ref=e674]: "*"
+                - combobox [ref=e675]:
+                  - option "Nixpacks" [selected]
+                  - option "Static"
+                  - option "Dockerfile"
+                  - option "Docker Compose"
+              - generic [ref=e678]:
+                - generic [ref=e679]:
+                  - text: Is it a static site?
+                  - img [ref=e682] [cursor=pointer]
+                - checkbox "Is it a static site?" [ref=e684] [cursor=pointer]
+              - generic [ref=e685]:
+                - generic [ref=e686]:
+                  - generic [ref=e687]:
+                    - text: Domains
+                    - img [ref=e690] [cursor=pointer]
+                  - textbox "https://coolify.io" [ref=e692]: https://immobilien-rechner.net,https://www.immobilien-rechner.net
+                - button "Generate Domain" [ref=e693] [cursor=pointer]
+              - generic [ref=e694]:
+                - generic [ref=e695]:
+                  - generic [ref=e696]:
+                    - text: Direction
+                    - generic [ref=e697]: "*"
+                    - img [ref=e700] [cursor=pointer]
+                  - combobox [ref=e702]:
+                    - option "Allow www & non-www." [selected]
+                    - option "Redirect to www."
+                    - option "Redirect to non-www."
+                - button "Set Direction" [ref=e704] [cursor=pointer]:
+                  - generic [ref=e705]: Set Direction
+              - generic [ref=e706]:
+                - heading "Docker Registry" [level=3] [ref=e707]
+                - img [ref=e710] [cursor=pointer]
+              - generic [ref=e712]:
+                - generic [ref=e713]:
+                  - generic [ref=e714]:
+                    - text: Docker Image
+                    - img [ref=e717] [cursor=pointer]
+                  - textbox "Empty means it won't push the image to a docker registry." [ref=e719]
+                - generic [ref=e720]:
+                  - generic [ref=e721]:
+                    - text: Docker Image Tag
+                    - img [ref=e724] [cursor=pointer]
+                  - textbox "Empty means only push commit sha tag." [ref=e726]
+              - generic [ref=e727]:
+                - heading "Build" [level=3] [ref=e728]
+                - generic [ref=e729]:
+                  - generic [ref=e730]:
+                    - generic [ref=e731]:
+                      - text: Install Command
+                      - img [ref=e734] [cursor=pointer]
+                    - textbox [ref=e736]
+                  - generic [ref=e737]:
+                    - generic [ref=e738]:
+                      - text: Build Command
+                      - img [ref=e741] [cursor=pointer]
+                    - textbox [ref=e743]
+                  - generic [ref=e744]:
+                    - generic [ref=e745]:
+                      - text: Start Command
+                      - img [ref=e748] [cursor=pointer]
+                    - textbox [ref=e750]
+                - generic [ref=e751]:
+                  - text: Nixpacks will detect the required configuration automatically.
+                  - link "Framework Specific Docs" [ref=e752] [cursor=pointer]:
+                    - /url: https://coolify.io/docs/applications/
+                - generic [ref=e753]:
+                  - generic [ref=e754]:
+                    - generic [ref=e755]:
+                      - generic [ref=e756]:
+                        - text: Base Directory
+                        - img [ref=e759] [cursor=pointer]
+                      - textbox / [ref=e761]
+                    - generic [ref=e762]:
+                      - generic [ref=e763]: Publish Directory
+                      - textbox / [ref=e764]
+                  - generic [ref=e765]:
+                    - generic [ref=e766]:
+                      - text: Custom Docker Options
+                      - img [ref=e769] [cursor=pointer]
+                    - textbox "--cap-add SYS_ADMIN --device=/dev/fuse --security-opt apparmor:unconfined --ulimit nofile=1024:1024 --tmpfs /run:rw,noexec,nosuid,size=65536k --hostname=myapp" [ref=e771]
+                  - generic [ref=e774]:
+                    - generic [ref=e775]:
+                      - text: Use a Build Server?
+                      - img [ref=e778] [cursor=pointer]
+                    - checkbox "Use a Build Server?" [ref=e780] [cursor=pointer]
+              - heading "Network" [level=3] [ref=e781]
+              - generic [ref=e782]:
+                - generic [ref=e783]:
+                  - generic [ref=e784]:
+                    - text: Ports Exposes
+                    - generic [ref=e785]: "*"
+                    - img [ref=e788] [cursor=pointer]
+                  - textbox "3000,3001" [ref=e790]: "3000"
+                - generic [ref=e791]:
+                  - generic [ref=e792]:
+                    - text: Port Mappings
+                    - img [ref=e795] [cursor=pointer]
+                  - textbox "3000:3000" [ref=e797]
+                - generic [ref=e798]:
+                  - generic [ref=e799]:
+                    - text: Network Aliases
+                    - img [ref=e802] [cursor=pointer]
+                  - textbox [ref=e804]
+              - heading "HTTP Basic Authentication" [level=3] [ref=e805]
+              - generic [ref=e809]:
+                - generic [ref=e810]:
+                  - text: Enable
+                  - img [ref=e813] [cursor=pointer]
+                - checkbox "Enable" [ref=e815] [cursor=pointer]
+              - heading "Labels" [level=3] [ref=e816]
+              - generic [ref=e817]:
+                - generic [ref=e818]: Container Labels
+                - code [ref=e823]:
+                  - generic [ref=e824]:
+                    - generic [ref=e826]:
+                      - generic [ref=e829]: "1"
+                      - generic [ref=e831]: "2"
+                      - generic [ref=e833]: "3"
+                      - generic [ref=e835]: "4"
+                      - generic [ref=e837]: "5"
+                      - generic [ref=e839]: "6"
+                      - generic [ref=e841]: "7"
+                      - generic [ref=e843]: "8"
+                      - generic [ref=e845]: "9"
+                      - generic [ref=e847]: "10"
+                      - generic [ref=e849]: "11"
+                      - generic [ref=e851]: "12"
+                      - generic [ref=e853]: "13"
+                      - generic [ref=e855]: "14"
+                      - generic [ref=e857]: "15"
+                      - generic [ref=e859]: "16"
+                      - generic [ref=e861]: "17"
+                      - generic [ref=e863]: "18"
+                      - generic [ref=e865]: "19"
+                      - generic [ref=e867]: "20"
+                      - generic [ref=e869]: "21"
+                      - generic [ref=e871]: "22"
+                      - generic [ref=e873]: "23"
+                      - generic [ref=e875]: "24"
+                      - generic [ref=e877]: "25"
+                      - generic [ref=e879]: "26"
+                      - generic [ref=e881]: "27"
+                      - generic [ref=e883]: "28"
+                    - generic [ref=e914]:
+                      - generic [ref=e916]: traefik.enable=true
+                      - generic [ref=e918]: traefik.http.middlewares.gzip.compress=true
+                      - generic [ref=e920]: traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https
+                      - generic [ref=e922]: traefik.http.routers.http-0-d72171zwny4k2bcy4anoii7m.entryPoints=http
+                      - generic [ref=e924]: traefik.http.routers.http-0-d72171zwny4k2bcy4anoii7m.middlewares=redirect-to-https
+                      - generic [ref=e926]: "traefik.http.routers.http-0-d72171zwny4k2bcy4anoii7m.rule=Host(`immobilien-rechner.net`) && PathPrefix(`/`)"
+                      - generic [ref=e928]: traefik.http.routers.http-0-d72171zwny4k2bcy4anoii7m.service=http-0-d72171zwny4k2bcy4anoii7m
+                      - generic [ref=e930]: traefik.http.routers.http-1-d72171zwny4k2bcy4anoii7m.entryPoints=http
+                      - generic [ref=e932]: traefik.http.routers.http-1-d72171zwny4k2bcy4anoii7m.middlewares=redirect-to-https
+                      - generic [ref=e934]: "traefik.http.routers.http-1-d72171zwny4k2bcy4anoii7m.rule=Host(`www.immobilien-rechner.net`) && PathPrefix(`/`)"
+                      - generic [ref=e936]: traefik.http.routers.http-1-d72171zwny4k2bcy4anoii7m.service=http-1-d72171zwny4k2bcy4anoii7m
+                      - generic [ref=e938]: traefik.http.routers.https-0-d72171zwny4k2bcy4anoii7m.entryPoints=https
+                      - generic [ref=e940]: traefik.http.routers.https-0-d72171zwny4k2bcy4anoii7m.middlewares=gzip
+                      - generic [ref=e942]: "traefik.http.routers.https-0-d72171zwny4k2bcy4anoii7m.rule=Host(`immobilien-rechner.net`) && PathPrefix(`/`)"
+                      - generic [ref=e944]: traefik.http.routers.https-0-d72171zwny4k2bcy4anoii7m.service=https-0-d72171zwny4k2bcy4anoii7m
+                      - generic [ref=e946]: traefik.http.routers.https-0-d72171zwny4k2bcy4anoii7m.tls.certresolver=letsencrypt
+                      - generic [ref=e948]: traefik.http.routers.https-0-d72171zwny4k2bcy4anoii7m.tls=true
+                      - generic [ref=e950]: traefik.http.routers.https-1-d72171zwny4k2bcy4anoii7m.entryPoints=https
+                      - generic [ref=e952]: traefik.http.routers.https-1-d72171zwny4k2bcy4anoii7m.middlewares=gzip
+                      - generic [ref=e954]: "traefik.http.routers.https-1-d72171zwny4k2bcy4anoii7m.rule=Host(`www.immobilien-rechner.net`) && PathPrefix(`/`)"
+                      - generic [ref=e956]: traefik.http.routers.https-1-d72171zwny4k2bcy4anoii7m.service=https-1-d72171zwny4k2bcy4anoii7m
+                      - generic [ref=e958]: traefik.http.routers.https-1-d72171zwny4k2bcy4anoii7m.tls.certresolver=letsencrypt
+                      - generic [ref=e960]: traefik.http.routers.https-1-d72171zwny4k2bcy4anoii7m.tls=true
+                      - generic [ref=e962]: traefik.http.services.http-0-d72171zwny4k2bcy4anoii7m.loadbalancer.server.port=3000
+                      - generic [ref=e964]: traefik.http.services.http-1-d72171zwny4k2bcy4anoii7m.loadbalancer.server.port=3000
+                      - generic [ref=e966]: traefik.http.services.https-0-d72171zwny4k2bcy4anoii7m.loadbalancer.server.port=3000
+                      - generic [ref=e968]: traefik.http.services.https-1-d72171zwny4k2bcy4anoii7m.loadbalancer.server.port=3000
+                      - generic [ref=e970]: caddy_0.encode=zstd gzip
+                    - textbox "Editor content" [ref=e972]
+              - generic [ref=e973]:
+                - generic [ref=e975]:
+                  - generic [ref=e976]:
+                    - text: Readonly labels
+                    - img [ref=e979] [cursor=pointer]
+                  - checkbox "Readonly labels" [checked] [ref=e981] [cursor=pointer]
+                - generic [ref=e983]:
+                  - generic [ref=e984]:
+                    - text: Escape special characters in labels?
+                    - img [ref=e987] [cursor=pointer]
+                  - checkbox "Escape special characters in labels?" [checked] [ref=e989] [cursor=pointer]
+              - button "Reset Labels to Defaults" [ref=e991] [cursor=pointer]
+              - heading "Pre/Post Deployment Commands" [level=3] [ref=e992]
+              - generic [ref=e994]:
+                - generic [ref=e995]:
+                  - text: Pre-deployment
+                  - img [ref=e998] [cursor=pointer]
+                - textbox "php artisan migrate" [ref=e1000]
+              - generic [ref=e1002]:
+                - generic [ref=e1003]:
+                  - text: Post-deployment
+                  - img [ref=e1006] [cursor=pointer]
+                - textbox "php artisan migrate" [ref=e1008]
+  - list
+  - generic [ref=e1009]:
+    - alert
+    - alert

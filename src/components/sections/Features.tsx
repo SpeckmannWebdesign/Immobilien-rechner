@@ -6,7 +6,7 @@ import { Calculator, Code2, Shield, Zap } from "lucide-react"
 const features = [
   {
     icon: Calculator,
-    title: "12 Profi-Rechner",
+    title: "16 Profi-Rechner",
     description:
       "Von Rendite über Finanzierung bis Nebenkostenabrechnung. Alle Tools, die Immobilien-Profis täglich brauchen.",
   },

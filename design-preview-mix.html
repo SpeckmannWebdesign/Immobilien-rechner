@@ -1,0 +1,2113 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Immobilien-Rechner — Design Preview Mix</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ========================================
+   DESIGN SYSTEM — Mix: Light Base + Dark Hero/CTA
+   ======================================== */
+:root {
+  /* Light Backgrounds */
+  --bg-base: #FFFFFF;
+  --bg-surface: #F7F8FB;
+  --bg-elevated: #FFFFFF;
+  --bg-elevated-hover: #F0F1F5;
+
+  /* Dark Backgrounds (Hero, CTA) */
+  --bg-dark: #0B0D14;
+  --bg-dark-surface: #13151E;
+  --bg-dark-elevated: #1B1D28;
+
+  /* Borders */
+  --border: #E3E5EB;
+  --border-hover: #CACDD6;
+  --border-dark: #2A2D3A;
+
+  /* Primary */
+  --primary: #4338CA;
+  --primary-light: #5B52E0;
+  --primary-soft: rgba(67,56,202,0.08);
+  --primary-glow: rgba(67,56,202,0.2);
+
+  /* Semantic */
+  --success: #059669;
+  --success-soft: rgba(5,150,105,0.08);
+  --warning: #B45309;
+  --warning-soft: rgba(180,83,9,0.08);
+  --danger: #DC2626;
+  --danger-soft: rgba(220,38,38,0.08);
+  --info: #0E7490;
+
+  /* Text — Light mode */
+  --text-primary: #111827;
+  --text-secondary: #4B5563;
+  --text-muted: #9CA3AF;
+
+  /* Text — Dark sections */
+  --text-light: #F1F5F9;
+  --text-light-secondary: #94A3B8;
+  --text-light-muted: #64748B;
+
+  /* Gradients */
+  --gradient-hero: linear-gradient(135deg, #4338CA 0%, #0E7490 50%, #059669 100%);
+
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg-base);
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ========================================
+   SVG ICON SYSTEM (Monochrome)
+   ======================================== */
+.icon-svg {
+  width: 22px;
+  height: 22px;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0;
+}
+
+.icon-svg.sm { width: 18px; height: 18px; }
+.icon-svg.lg { width: 28px; height: 28px; }
+
+.icon-circle {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.icon-circle.muted {
+  background: var(--bg-surface);
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+}
+
+.icon-circle.dark {
+  background: var(--bg-dark-elevated);
+  color: var(--text-light-secondary);
+  border: 1px solid var(--border-dark);
+}
+
+/* ========================================
+   NAVIGATION (Light, glass)
+   ======================================== */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 0 40px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255,255,255,0.8);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid var(--border);
+  transition: all 0.3s;
+}
+
+.nav.dark-section {
+  background: rgba(11,13,20,0.8);
+  border-bottom-color: var(--border-dark);
+}
+
+.nav-logo {
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+}
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+  align-items: center;
+}
+
+.nav-links a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--text-primary); }
+
+.nav-cta {
+  background: var(--primary);
+  color: white !important;
+  padding: 8px 20px;
+  border-radius: var(--radius-sm);
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  transition: all 0.2s !important;
+}
+
+.nav-cta:hover {
+  background: var(--primary-light) !important;
+  transform: translateY(-1px);
+}
+
+/* Section Nav */
+.section-nav {
+  position: fixed;
+  top: 64px; left: 0; right: 0;
+  z-index: 99;
+  background: rgba(247,248,251,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  padding: 8px 20px;
+}
+
+.section-nav a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 6px 16px;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s;
+}
+
+.section-nav a:hover, .section-nav a.active {
+  color: var(--text-primary);
+  background: var(--bg-elevated);
+}
+
+/* ========================================
+   HERO — DARK SECTION
+   ======================================== */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 40px 80px;
+  background: var(--bg-dark);
+  color: var(--text-light);
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -20%; left: -10%;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(67,56,202,0.12) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: float 8s ease-in-out infinite;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -10%; right: -5%;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(14,116,144,0.08) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: float 10s ease-in-out infinite reverse;
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(30px, -20px) scale(1.05); }
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  background: var(--bg-dark-elevated);
+  border: 1px solid var(--border-dark);
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  color: var(--text-light-secondary);
+  margin-bottom: 32px;
+  position: relative; z-index: 1;
+}
+
+.hero-badge .dot {
+  width: 6px; height: 6px;
+  background: var(--success);
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+.hero h1 {
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  text-align: center;
+  margin-bottom: 24px;
+  position: relative; z-index: 1;
+}
+
+.gradient-text {
+  background: var(--gradient-hero);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 200% 200%;
+  animation: gradient-shift 4s ease-in-out infinite;
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.hero-subtitle {
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  color: var(--text-light-secondary);
+  text-align: center;
+  max-width: 560px;
+  margin-bottom: 40px;
+  line-height: 1.6;
+  position: relative; z-index: 1;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 64px;
+  position: relative; z-index: 1;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  border-radius: var(--radius-sm);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.btn-primary:hover {
+  background: var(--primary-light);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px var(--primary-glow);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--text-light-secondary);
+  border: 1px solid var(--border-dark);
+  padding: 14px 28px;
+  border-radius: var(--radius-sm);
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.btn-secondary:hover {
+  border-color: var(--text-light-muted);
+  color: var(--text-light);
+}
+
+.btn-secondary.light {
+  color: var(--text-secondary);
+  border-color: var(--border);
+}
+
+.btn-secondary.light:hover {
+  border-color: var(--border-hover);
+  color: var(--text-primary);
+  background: var(--bg-surface);
+}
+
+/* Hero Mockup */
+.hero-mockup {
+  position: relative; z-index: 1;
+  width: 100%;
+  max-width: 880px;
+  background: var(--bg-dark-surface);
+  border: 1px solid var(--border-dark);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  transform: perspective(1200px) rotateX(2deg);
+  transition: transform 0.5s ease;
+}
+
+.hero-mockup:hover {
+  transform: perspective(1200px) rotateX(0deg);
+}
+
+.mockup-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  background: var(--bg-dark-elevated);
+  border-bottom: 1px solid var(--border-dark);
+}
+
+.mockup-dot { width: 10px; height: 10px; border-radius: 50%; }
+.mockup-dot.r { background: #FF5F57; }
+.mockup-dot.y { background: #FEBC2E; }
+.mockup-dot.g { background: #28C840; }
+
+.mockup-body {
+  padding: 24px;
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 20px;
+}
+
+.mockup-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.mockup-input-row label {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-light-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 5px;
+}
+
+.mockup-input-row input {
+  width: 100%;
+  background: var(--bg-dark);
+  border: 1px solid var(--border-dark);
+  border-radius: 6px;
+  padding: 9px 12px;
+  color: var(--text-light);
+  font-size: 14px;
+  font-family: inherit;
+  font-variant-numeric: tabular-nums;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.mockup-input-row input:focus {
+  border-color: var(--primary);
+}
+
+.mockup-results {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mockup-metric-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.mockup-metric {
+  background: var(--bg-dark-elevated);
+  border: 1px solid var(--border-dark);
+  border-radius: var(--radius-sm);
+  padding: 14px;
+}
+
+.mockup-metric .m-label {
+  font-size: 11px;
+  color: var(--text-light-muted);
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.mockup-metric .m-value {
+  font-size: 22px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+.mockup-metric .m-value.green { color: var(--success); }
+.mockup-metric .m-value.blue { color: #818CF8; }
+
+/* ========================================
+   SECTIONS — LIGHT
+   ======================================== */
+.section {
+  padding: 100px 40px;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.section-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin-bottom: 12px;
+  color: var(--text-primary);
+}
+
+.section-subtitle {
+  font-size: 17px;
+  color: var(--text-secondary);
+  max-width: 560px;
+  margin-bottom: 48px;
+  line-height: 1.6;
+}
+
+/* ========================================
+   TOOLS GRID — Light, clean
+   ======================================== */
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.tool-card {
+  background: var(--bg-base);
+  padding: 28px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tool-card:hover {
+  background: var(--bg-surface);
+}
+
+.tool-card .tool-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.tool-card .tool-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.tool-card .tool-desc {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.tool-card .tool-category {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.tool-card .mini-chart {
+  height: 48px;
+  margin-top: 4px;
+}
+
+/* ========================================
+   FEATURES
+   ======================================== */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.feature-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  transition: all 0.2s;
+}
+
+.feature-card:hover {
+  border-color: var(--border-hover);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+}
+
+.feature-card .icon-circle { margin-bottom: 20px; }
+
+.feature-card h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.feature-card p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* ========================================
+   STATS
+   ======================================== */
+.stats-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.stat-item {
+  background: var(--bg-base);
+  padding: 40px 24px;
+  text-align: center;
+}
+
+.stat-value {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.stat-label {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+/* ========================================
+   PRICING
+   ======================================== */
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.price-card {
+  background: var(--bg-base);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.price-card:hover {
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+  transform: translateY(-2px);
+}
+
+.price-card.popular {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 1px var(--primary), 0 8px 30px rgba(67,56,202,0.08);
+}
+
+.popular-badge {
+  position: absolute;
+  top: -11px; left: 50%;
+  transform: translateX(-50%);
+  background: var(--primary);
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 3px 14px;
+  border-radius: var(--radius-sm);
+}
+
+.price-card h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.price-card .price {
+  font-size: 44px;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+}
+
+.price-card .price span {
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+.price-period {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+}
+
+.price-features { list-style: none; margin-bottom: 24px; }
+
+.price-features li {
+  padding: 7px 0;
+  font-size: 14px;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.price-features .check { color: var(--success); }
+.price-features .x { color: var(--text-muted); }
+
+.price-btn {
+  width: 100%;
+  padding: 12px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+  font-family: inherit;
+}
+
+.price-btn.primary {
+  background: var(--primary);
+  color: white;
+}
+
+.price-btn.primary:hover { background: var(--primary-light); }
+
+.price-btn.outline {
+  background: var(--bg-base);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+}
+
+.price-btn.outline:hover {
+  background: var(--bg-surface);
+  border-color: var(--border-hover);
+}
+
+/* ========================================
+   CALCULATOR PAGE — Light with Bento
+   ======================================== */
+.calc-section {
+  background: var(--bg-surface);
+  border-top: 1px solid var(--border);
+}
+
+.calc-header {
+  padding: 24px 0;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 32px;
+}
+
+.calc-breadcrumb {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.calc-breadcrumb a { color: var(--primary); text-decoration: none; }
+
+.calc-header h2 {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.calc-layout {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+/* Input Panel */
+.input-panel {
+  background: var(--bg-base);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  position: sticky;
+  top: 140px;
+}
+
+.input-panel h3 {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.input-group { margin-bottom: 18px; }
+
+.input-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+}
+
+.input-field {
+  width: 100%;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 10px 14px;
+  color: var(--text-primary);
+  font-size: 15px;
+  font-family: inherit;
+  font-variant-numeric: tabular-nums;
+  transition: all 0.2s;
+  outline: none;
+}
+
+.input-field:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(67,56,202,0.08);
+  background: var(--bg-base);
+}
+
+select.input-field {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%239CA3AF' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 36px;
+}
+
+.range-slider {
+  width: 100%;
+  -webkit-appearance: none;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--border);
+  outline: none;
+  margin-top: 8px;
+}
+
+.range-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  background: var(--primary);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.range-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+  box-shadow: 0 0 0 4px rgba(67,56,202,0.12);
+}
+
+/* Bento Result Cards */
+.bento-grid { display: grid; gap: 12px; }
+.bento-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+.bento-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+
+.bento-card {
+  background: var(--bg-base);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  transition: all 0.2s;
+}
+
+.bento-card:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+  transform: translateY(-1px);
+}
+
+.bento-card .card-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.bento-card .card-value {
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  transition: all 0.3s ease;
+}
+
+.bento-card .card-value.green { color: var(--success); }
+.bento-card .card-value.red { color: var(--danger); }
+.bento-card .card-value.blue { color: var(--primary); }
+.bento-card .card-value.amber { color: var(--warning); }
+
+.bento-card .card-sub {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* Chart Container */
+.chart-container {
+  background: var(--bg-base);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+}
+
+.chart-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+}
+
+.donut-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.donut-center {
+  position: absolute;
+  text-align: center;
+}
+
+.donut-center .donut-value {
+  font-size: 32px;
+  font-weight: 900;
+  color: var(--success);
+  letter-spacing: -0.03em;
+  transition: all 0.3s;
+}
+
+.donut-center .donut-label {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.chart-legend {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 8px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.legend-dot {
+  width: 10px; height: 10px;
+  border-radius: 3px;
+}
+
+/* ========================================
+   DEUTSCHLAND KARTE
+   ======================================== */
+.map-section { border-top: 1px solid var(--border); }
+
+.map-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+.map-container {
+  background: var(--bg-base);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+}
+
+.state-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.state-table th {
+  text-align: left;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 10px 14px;
+  border-bottom: 2px solid var(--border);
+}
+
+.state-table td {
+  padding: 10px 14px;
+  font-size: 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.state-table tr:hover td { background: var(--bg-surface); }
+
+.state-table .rate { font-weight: 700; font-variant-numeric: tabular-nums; }
+
+.rate-bar {
+  height: 4px;
+  border-radius: 2px;
+  background: var(--bg-surface);
+  overflow: hidden;
+}
+
+.rate-bar-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.5s ease;
+}
+
+/* ========================================
+   DASHBOARD
+   ======================================== */
+.dashboard-section { border-top: 1px solid var(--border); }
+
+.dashboard-layout {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  min-height: 550px;
+  background: var(--bg-base);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.sidebar {
+  background: var(--bg-surface);
+  border-right: 1px solid var(--border);
+  padding: 20px 0;
+}
+
+.sidebar-logo {
+  padding: 0 18px 20px;
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.sidebar-nav { list-style: none; }
+
+.sidebar-nav li a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 18px;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.15s;
+  border-left: 2px solid transparent;
+}
+
+.sidebar-nav li a:hover { color: var(--text-secondary); background: rgba(0,0,0,0.02); }
+
+.sidebar-nav li a.active {
+  color: var(--primary);
+  background: var(--primary-soft);
+  border-left-color: var(--primary);
+  font-weight: 600;
+}
+
+.sidebar-divider { height: 1px; background: var(--border); margin: 12px 0; }
+
+.dashboard-main { padding: 28px; }
+
+.dashboard-welcome { font-size: 22px; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 4px; }
+.dashboard-date { font-size: 14px; color: var(--text-muted); margin-bottom: 28px; }
+
+.dashboard-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.dash-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 18px;
+}
+
+.dash-card .dash-label { font-size: 12px; color: var(--text-muted); font-weight: 500; margin-bottom: 6px; }
+.dash-card .dash-value { font-size: 22px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.dash-card .dash-change { font-size: 12px; color: var(--success); margin-top: 2px; }
+
+.dashboard-bottom { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+.dash-panel {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 18px;
+}
+
+.dash-panel h3 { font-size: 14px; font-weight: 700; margin-bottom: 14px; }
+
+.recent-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.recent-item:last-child { border: none; }
+.recent-item .recent-name { font-size: 13px; font-weight: 500; display: flex; align-items: center; gap: 8px; }
+.recent-item .recent-value { font-size: 13px; font-weight: 700; font-variant-numeric: tabular-nums; }
+
+/* ========================================
+   CTA — DARK SECTION
+   ======================================== */
+.cta-section {
+  background: var(--bg-dark);
+  color: var(--text-light);
+  text-align: center;
+  padding: 100px 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-section::before {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(67,56,202,0.1), transparent 70%);
+  border-radius: 50%;
+}
+
+.cta-section h2 {
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin-bottom: 12px;
+  position: relative;
+}
+
+.cta-section p {
+  font-size: 17px;
+  color: var(--text-light-secondary);
+  margin-bottom: 32px;
+  position: relative;
+}
+
+.cta-section .btn-primary { position: relative; }
+
+/* ========================================
+   FOOTER
+   ======================================== */
+.footer {
+  border-top: 1px solid var(--border);
+  padding: 56px 40px 28px;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 32px;
+  margin-bottom: 40px;
+}
+
+.footer-brand { font-size: 15px; font-weight: 800; margin-bottom: 10px; }
+.footer-desc { font-size: 14px; color: var(--text-muted); line-height: 1.5; }
+
+.footer h4 {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 14px;
+}
+
+.footer ul { list-style: none; }
+.footer ul li { margin-bottom: 8px; }
+.footer ul a { color: var(--text-muted); text-decoration: none; font-size: 14px; transition: color 0.15s; }
+.footer ul a:hover { color: var(--text-primary); }
+
+.footer-bottom {
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* ========================================
+   SECTION DIVIDER
+   ======================================== */
+.section-divider {
+  text-align: center;
+  padding: 64px 40px 16px;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.section-divider h2 {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 6px 20px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  display: inline-block;
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+@media (max-width: 768px) {
+  .nav { padding: 0 20px; }
+  .section { padding: 60px 20px; }
+  .hero { padding: 100px 20px 60px; }
+  .hero h1 { font-size: 2.5rem; }
+  .tools-grid { grid-template-columns: 1fr; }
+  .features-grid { grid-template-columns: 1fr; }
+  .stats-bar { grid-template-columns: repeat(2, 1fr); }
+  .pricing-grid { grid-template-columns: 1fr; }
+  .calc-layout { grid-template-columns: 1fr; }
+  .input-panel { position: static; }
+  .map-layout { grid-template-columns: 1fr; }
+  .dashboard-layout { grid-template-columns: 1fr; }
+  .sidebar { display: none; }
+  .dashboard-cards { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .bento-grid.cols-3 { grid-template-columns: 1fr; }
+  .mockup-body { grid-template-columns: 1fr; }
+  .section-nav { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav class="nav" id="mainNav">
+  <div class="nav-logo">Immobilien-Rechner</div>
+  <ul class="nav-links">
+    <li><a href="#tools">Rechner</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#pricing">Preise</a></li>
+    <li><a href="#" style="color:var(--text-muted);">Anmelden</a></li>
+    <li><a href="#" class="nav-cta">Kostenlos testen</a></li>
+  </ul>
+</nav>
+
+<div class="section-nav">
+  <a href="#hero" class="active">Landing Page</a>
+  <a href="#calculator">Rechner-Demo</a>
+  <a href="#map">Deutschland-Karte</a>
+  <a href="#dashboard">Dashboard</a>
+</div>
+
+<!-- ========================================
+     HERO — DARK
+     ======================================== -->
+<section class="hero" id="hero">
+  <div class="hero-badge">
+    <span class="dot"></span>
+    12 professionelle Rechner — 14 Tage kostenlos
+  </div>
+
+  <h1>
+    Immobilien-<br>
+    <span class="gradient-text">Entscheidungen.</span><br>
+    Datenbasiert. Sofort.
+  </h1>
+
+  <p class="hero-subtitle">
+    Professionelle Analyse-Tools für Makler, Investoren und Hausverwaltungen.
+    Rendite berechnen, Cashflows analysieren, Finanzierungen planen.
+  </p>
+
+  <div class="hero-buttons">
+    <button class="btn-primary">14 Tage kostenlos testen</button>
+    <button class="btn-secondary">Alle Rechner ansehen</button>
+  </div>
+
+  <!-- Live Mockup -->
+  <div class="hero-mockup">
+    <div class="mockup-bar">
+      <span class="mockup-dot r"></span>
+      <span class="mockup-dot y"></span>
+      <span class="mockup-dot g"></span>
+      <span style="flex:1;text-align:center;font-size:13px;color:var(--text-light-muted);font-weight:500;">Rendite-Rechner</span>
+    </div>
+    <div class="mockup-body">
+      <div class="mockup-inputs">
+        <div class="mockup-input-row">
+          <label>Kaufpreis</label>
+          <input type="text" value="285.000 €" readonly>
+        </div>
+        <div class="mockup-input-row">
+          <label>Monatl. Kaltmiete</label>
+          <input type="text" value="1.250 €" readonly>
+        </div>
+        <div class="mockup-input-row">
+          <label>Kaufnebenkosten</label>
+          <input type="text" value="12,07 %" readonly>
+        </div>
+        <div class="mockup-input-row">
+          <label>Eigenkapital</label>
+          <input type="text" value="80.000 €" readonly>
+        </div>
+      </div>
+      <div class="mockup-results">
+        <div class="mockup-metric-row">
+          <div class="mockup-metric">
+            <div class="m-label">Brutto-Rendite</div>
+            <div class="m-value green" id="hero-brutto">5,26%</div>
+          </div>
+          <div class="mockup-metric">
+            <div class="m-label">Netto-Rendite</div>
+            <div class="m-value green">3,82%</div>
+          </div>
+          <div class="mockup-metric">
+            <div class="m-label">EK-Rendite</div>
+            <div class="m-value blue">12,41%</div>
+          </div>
+        </div>
+        <div style="background:var(--bg-dark-elevated);border:1px solid var(--border-dark);border-radius:var(--radius-sm);padding:16px;flex:1;">
+          <canvas id="heroDonut" width="380" height="140"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================
+     TOOLS — LIGHT
+     ======================================== -->
+<section class="section" id="tools">
+  <div class="section-label">12 Profi-Rechner</div>
+  <h2 class="section-title">Alle Tools, die Sie brauchen.</h2>
+  <p class="section-subtitle">Von der ersten Analyse bis zur Hausverwaltung — jeder Rechner mit Live-Ergebnissen.</p>
+
+  <div class="tools-grid">
+    <div class="tool-card">
+      <div class="tool-category">Investoren & Makler</div>
+      <div class="tool-head">
+        <div class="icon-circle muted"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-9-9"/><path d="M21 3v6h-6"/></svg></div>
+        <div class="tool-name">Rendite-Rechner</div>
+      </div>
+      <div class="tool-desc">Brutto-, Netto- und Eigenkapitalrendite auf einen Blick.</div>
+      <div class="mini-chart"><canvas id="mc1" width="200" height="45"></canvas></div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-category">Investoren & Makler</div>
+      <div class="tool-head">
+        <div class="icon-circle muted"><svg class="icon-svg" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></div>
+        <div class="tool-name">Kaufnebenkosten</div>
+      </div>
+      <div class="tool-desc">Notar, Grundbuch, Makler, Grunderwerbsteuer.</div>
+      <div class="mini-chart"><canvas id="mc2" width="200" height="45"></canvas></div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-category">Investoren & Makler</div>
+      <div class="tool-head">
+        <div class="icon-circle muted"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+        <div class="tool-name">Finanzierungsrechner</div>
+      </div>
+      <div class="tool-desc">Annuität, Zinsbindung, Sondertilgung.</div>
+      <div class="mini-chart"><canvas id="mc3" width="200" height="45"></canvas></div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-category">Investoren & Makler</div>
+      <div class="tool-head">
+        <div class="icon-circle muted"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg></div>
+        <div class="tool-name">Cashflow-Rechner</div>
+      </div>
+      <div class="tool-desc">Monatliche Einnahmen vs. Ausgaben.</div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-category">Investoren & Makler</div>
+      <div class="tool-head">
+        <div class="icon-circle muted"><svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg></div>
+        <div class="tool-name">Grunderwerbsteuer</div>
+      </div>
+      <div class="tool-desc">Interaktive Deutschland-Karte.</div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-category">Erweitert</div>
+      <div class="tool-head">
+        <div class="icon-circle muted"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/></svg></div>
+        <div class="tool-name">Steuerersparnis</div>
+      </div>
+      <div class="tool-desc">AfA-Berechnung und Steuervorteil.</div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-category">Erweitert</div>
+      <div class="tool-head">
+        <div class="icon-circle muted"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+        <div class="tool-name">Mietsteigerung</div>
+      </div>
+      <div class="tool-desc">Prognose über 10–30 Jahre.</div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-category">Erweitert</div>
+      <div class="tool-head">
+        <div class="icon-circle muted"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+        <div class="tool-name">Instandhaltung</div>
+      </div>
+      <div class="tool-desc">Peters'sche Formel.</div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-category">Erweitert</div>
+      <div class="tool-head">
+        <div class="icon-circle muted"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2v-4M9 21H5a2 2 0 0 1-2-2v-4"/></svg></div>
+        <div class="tool-name">Objektvergleich</div>
+      </div>
+      <div class="tool-desc">Bis zu 3 Objekte vergleichen.</div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-category">Erweitert</div>
+      <div class="tool-head">
+        <div class="icon-circle muted"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg></div>
+        <div class="tool-name">Tilgungsplan</div>
+      </div>
+      <div class="tool-desc">PDF-Export inklusive.</div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-category">Hausverwaltungen</div>
+      <div class="tool-head">
+        <div class="icon-circle muted"><svg class="icon-svg" viewBox="0 0 24 24"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+        <div class="tool-name">Nebenkosten</div>
+      </div>
+      <div class="tool-desc">Umlagefähige Kosten berechnen.</div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-category">Hausverwaltungen</div>
+      <div class="tool-head">
+        <div class="icon-circle muted"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <div class="tool-name">Mieterhöhung</div>
+      </div>
+      <div class="tool-desc">Kappungsgrenzen rechtssicher.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section" id="features">
+  <div class="section-label">Warum wir</div>
+  <h2 class="section-title">Professionelle Tools. Kein Kompromiss.</h2>
+  <p class="section-subtitle">Für Profis gebaut, die schnelle und fundierte Entscheidungen treffen.</p>
+
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="icon-circle muted"><svg class="icon-svg lg" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/></svg></div>
+      <h3>12 Profi-Rechner</h3>
+      <p>Rendite, Cashflow, Finanzierung, Steuer — alle Analysen die Sie für fundierte Immobilien-Entscheidungen brauchen.</p>
+    </div>
+    <div class="feature-card">
+      <div class="icon-circle muted"><svg class="icon-svg lg" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div>
+      <h3>Auf Ihrer Website einbetten</h3>
+      <p>Embed-Code für Ihre Website. Professionelle Rechner unter Ihrer eigenen Marke.</p>
+    </div>
+    <div class="feature-card">
+      <div class="icon-circle muted"><svg class="icon-svg lg" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+      <h3>100% DSGVO-konform</h3>
+      <p>Hosting in Deutschland. Keine Daten an Dritte. Keine Tracking-Cookies.</p>
+    </div>
+    <div class="feature-card">
+      <div class="icon-circle muted"><svg class="icon-svg lg" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+      <h3>Sofort einsatzbereit</h3>
+      <p>Kein Setup, keine Installation. Registrieren und sofort starten.</p>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div style="max-width:1120px;margin:0 auto;padding:0 40px;">
+  <div class="stats-bar">
+    <div class="stat-item"><div class="stat-value" data-count="12">0</div><div class="stat-label">Profi-Rechner</div></div>
+    <div class="stat-item"><div class="stat-value" data-count="16">0</div><div class="stat-label">Bundesländer</div></div>
+    <div class="stat-item"><div class="stat-value" data-count="14">0</div><div class="stat-label">Tage kostenlos</div></div>
+    <div class="stat-item"><div class="stat-value" data-count="100">0</div><div class="stat-label">% DSGVO-konform</div></div>
+  </div>
+</div>
+
+<!-- PRICING -->
+<section class="section" id="pricing">
+  <div style="text-align:center;">
+    <div class="section-label">Preise</div>
+    <h2 class="section-title" style="text-align:center;">Einfach. Transparent. Fair.</h2>
+    <p class="section-subtitle" style="margin:0 auto 40px;text-align:center;">14 Tage kostenlos. Jederzeit kündbar.</p>
+  </div>
+
+  <div class="pricing-grid">
+    <div class="price-card">
+      <h3>Starter</h3>
+      <div class="price">19€ <span>/ Monat</span></div>
+      <div class="price-period">Nur Dashboard-Zugang</div>
+      <ul class="price-features">
+        <li><span class="check">&#10003;</span> Alle 12 Rechner im Dashboard</li>
+        <li><span class="check">&#10003;</span> Unbegrenzte Berechnungen</li>
+        <li><span class="x">&#10005;</span> Keine Embed-Widgets</li>
+        <li><span class="x">&#10005;</span> Kein PDF-Export</li>
+      </ul>
+      <button class="price-btn outline">Kostenlos testen</button>
+    </div>
+    <div class="price-card popular">
+      <div class="popular-badge">Beliebtester Plan</div>
+      <h3>Pro</h3>
+      <div class="price">39€ <span>/ Monat</span></div>
+      <div class="price-period">Dashboard + 1 Embed</div>
+      <ul class="price-features">
+        <li><span class="check">&#10003;</span> Alle 12 Rechner im Dashboard</li>
+        <li><span class="check">&#10003;</span> Unbegrenzte Berechnungen</li>
+        <li><span class="check">&#10003;</span> 1 Embed-Widget</li>
+        <li><span class="check">&#10003;</span> PDF-Export</li>
+        <li><span class="check">&#10003;</span> Prioritäts-Support</li>
+      </ul>
+      <button class="price-btn primary">Kostenlos testen</button>
+    </div>
+    <div class="price-card">
+      <h3>Business</h3>
+      <div class="price">69€ <span>/ Monat</span></div>
+      <div class="price-period">Alles inklusive</div>
+      <ul class="price-features">
+        <li><span class="check">&#10003;</span> Alle 12 Rechner im Dashboard</li>
+        <li><span class="check">&#10003;</span> Unbegrenzte Berechnungen</li>
+        <li><span class="check">&#10003;</span> Alle 12 Embed-Widgets</li>
+        <li><span class="check">&#10003;</span> PDF-Export</li>
+        <li><span class="check">&#10003;</span> Custom Branding</li>
+      </ul>
+      <button class="price-btn outline">Kostenlos testen</button>
+    </div>
+  </div>
+</section>
+
+<!-- CTA — DARK -->
+<section class="cta-section">
+  <h2>Bereit für bessere<br><span class="gradient-text">Immobilien-Analysen?</span></h2>
+  <p>Starten Sie jetzt kostenlos. Kein Risiko, keine Kreditkarte.</p>
+  <button class="btn-primary" style="font-size:16px;padding:16px 36px;">14 Tage kostenlos testen</button>
+</section>
+
+<!-- ========================================
+     RECHNER DEMO — Live Berechnung
+     ======================================== -->
+<div class="section-divider" id="calculator">
+  <h2>Rechner-Seite: Rendite-Rechner (Live)</h2>
+</div>
+
+<section class="section calc-section">
+  <div class="calc-header">
+    <div class="calc-breadcrumb"><a href="#">Dashboard</a> / <a href="#">Rechner</a> / Rendite-Rechner</div>
+    <h2>
+      <svg class="icon-svg lg" viewBox="0 0 24 24" style="color:var(--text-muted);"><path d="M21 12a9 9 0 1 1-9-9"/><path d="M21 3v6h-6"/></svg>
+      Rendite-Rechner
+    </h2>
+  </div>
+
+  <div class="calc-layout">
+    <div class="input-panel">
+      <h3>Eingaben</h3>
+
+      <div class="input-group">
+        <label class="input-label">Kaufpreis</label>
+        <input type="text" class="input-field" id="c_kaufpreis_display" value="285.000 €">
+        <input type="range" class="range-slider" id="c_kaufpreis" min="50000" max="1000000" value="285000" step="5000">
+      </div>
+
+      <div class="input-group">
+        <label class="input-label">Monatliche Kaltmiete</label>
+        <input type="text" class="input-field" id="c_miete_display" value="1.250 €">
+        <input type="range" class="range-slider" id="c_miete" min="200" max="5000" value="1250" step="50">
+      </div>
+
+      <div class="input-group">
+        <label class="input-label">Kaufnebenkosten</label>
+        <input type="text" class="input-field" id="c_nk_display" value="12,07 %">
+        <input type="range" class="range-slider" id="c_nk" min="5" max="18" value="12.07" step="0.01">
+      </div>
+
+      <div class="input-group">
+        <label class="input-label">Eigenkapital</label>
+        <input type="text" class="input-field" id="c_ek_display" value="80.000 €">
+        <input type="range" class="range-slider" id="c_ek" min="0" max="500000" value="80000" step="5000">
+      </div>
+
+      <div class="input-group">
+        <label class="input-label">Jährl. Bewirtschaftungskosten</label>
+        <input type="text" class="input-field" id="c_bk_display" value="3.600 €">
+        <input type="range" class="range-slider" id="c_bk" min="0" max="15000" value="3600" step="100">
+      </div>
+
+      <div class="input-group">
+        <label class="input-label">Zinssatz</label>
+        <input type="text" class="input-field" id="c_zins_display" value="3,50 %">
+        <input type="range" class="range-slider" id="c_zins" min="1" max="8" value="3.5" step="0.1">
+      </div>
+    </div>
+
+    <!-- Live Results -->
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div class="bento-grid cols-3">
+        <div class="bento-card"><div class="card-label">Bruttomietrendite</div><div class="card-value green" id="r_brutto">5,26%</div><div class="card-sub">Jahresmiete / Kaufpreis</div></div>
+        <div class="bento-card"><div class="card-label">Nettomietrendite</div><div class="card-value green" id="r_netto">3,56%</div><div class="card-sub">Nach Bewirtschaftung</div></div>
+        <div class="bento-card"><div class="card-label">EK-Rendite</div><div class="card-value blue" id="r_ek">12,41%</div><div class="card-sub">Hebel-Effekt</div></div>
+      </div>
+
+      <div class="chart-container">
+        <div class="chart-title">Kapitalverteilung</div>
+        <div class="donut-container">
+          <canvas id="resultDonut" width="260" height="260"></canvas>
+          <div class="donut-center">
+            <div class="donut-value" id="r_donut_value">5,26%</div>
+            <div class="donut-label">Brutto-Rendite</div>
+          </div>
+        </div>
+        <div class="chart-legend">
+          <div class="legend-item"><div class="legend-dot" style="background:#4338CA;"></div> Eigenkapital</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#0E7490;"></div> Fremdkapital</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#B45309;"></div> Nebenkosten</div>
+        </div>
+      </div>
+
+      <div class="bento-grid cols-2">
+        <div class="bento-card"><div class="card-label">Gesamtinvestition</div><div class="card-value" id="r_gesamt" style="color:var(--info);">319.400 €</div><div class="card-sub">inkl. Kaufnebenkosten</div></div>
+        <div class="bento-card"><div class="card-label">Kaufnebenkosten</div><div class="card-value amber" id="r_kosten">34.400 €</div><div class="card-sub" id="r_kosten_pct">12,07% vom Kaufpreis</div></div>
+        <div class="bento-card"><div class="card-label">Jahresreinertrag</div><div class="card-value green" id="r_reinertrag">11.400 €</div><div class="card-sub" id="r_reinertrag_sub">15.000 € Miete − 3.600 € Kosten</div></div>
+        <div class="bento-card"><div class="card-label">Jährl. Zinskosten</div><div class="card-value red" id="r_zins">8.379 €</div><div class="card-sub" id="r_zins_sub">3,50% auf 239.400 € FK</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEUTSCHLAND KARTE -->
+<div class="section-divider" id="map">
+  <h2>Grunderwerbsteuer — Deutschland-Karte</h2>
+</div>
+
+<section class="section map-section">
+  <div class="calc-header">
+    <div class="calc-breadcrumb"><a href="#">Dashboard</a> / <a href="#">Rechner</a> / Grunderwerbsteuer</div>
+    <h2>
+      <svg class="icon-svg lg" viewBox="0 0 24 24" style="color:var(--text-muted);"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+      Grunderwerbsteuer-Rechner
+    </h2>
+  </div>
+
+  <div class="map-layout">
+    <div class="map-container">
+      <div class="chart-title">Steuersätze nach Bundesland</div>
+      <svg id="germanyMap" viewBox="0 0 500 600" style="width:100%;height:auto;">
+        <path d="M250,30 L280,25 L310,40 L305,70 L290,90 L260,85 L240,65 Z" fill="#DC2626" fill-opacity="0.15" stroke="var(--border)" stroke-width="1.5" data-state="SH" data-rate="6.5" style="cursor:pointer;transition:all 0.2s;" onmouseenter="hlState(this)" onmouseleave="ulState(this)"/>
+        <path d="M270,90 L290,90 L295,105 L275,110 L265,100 Z" fill="#B45309" fill-opacity="0.15" stroke="var(--border)" stroke-width="1.5" data-state="HH" data-rate="5.5" style="cursor:pointer;transition:all 0.2s;" onmouseenter="hlState(this)" onmouseleave="ulState(this)"/>
+        <path d="M160,80 L240,65 L265,100 L275,110 L295,105 L310,120 L340,110 L350,140 L320,170 L290,180 L250,200 L200,190 L170,170 L140,140 L150,100 Z" fill="#B45309" fill-opacity="0.15" stroke="var(--border)" stroke-width="1.5" data-state="NI" data-rate="5.0" style="cursor:pointer;transition:all 0.2s;" onmouseenter="hlState(this)" onmouseleave="ulState(this)"/>
+        <path d="M215,105 L235,100 L240,115 L220,118 Z" fill="#B45309" fill-opacity="0.15" stroke="var(--border)" stroke-width="1.5" data-state="HB" data-rate="5.0" style="cursor:pointer;transition:all 0.2s;" onmouseenter="hlState(this)" onmouseleave="ulState(this)"/>
+        <path d="M310,40 L370,30 L420,45 L410,80 L380,90 L340,110 L310,120 L305,70 Z" fill="#DC2626" fill-opacity="0.15" stroke="var(--border)" stroke-width="1.5" data-state="MV" data-rate="6.0" style="cursor:pointer;transition:all 0.2s;" onmouseenter="hlState(this)" onmouseleave="ulState(this)"/>
+        <path d="M340,110 L380,90 L410,80 L430,120 L440,170 L420,220 L380,230 L350,210 L320,170 Z" fill="#DC2626" fill-opacity="0.15" stroke="var(--border)" stroke-width="1.5" data-state="BB" data-rate="6.5" style="cursor:pointer;transition:all 0.2s;" onmouseenter="hlState(this)" onmouseleave="ulState(this)"/>
+        <path d="M380,140 L400,135 L405,155 L390,160 Z" fill="#DC2626" fill-opacity="0.15" stroke="var(--border)" stroke-width="1.5" data-state="BE" data-rate="6.0" style="cursor:pointer;transition:all 0.2s;" onmouseenter="hlState(this)" onmouseleave="ulState(this)"/>
+        <path d="M290,180 L320,170 L350,210 L340,250 L300,260 L270,240 L260,210 Z" fill="#B45309" fill-opacity="0.15" stroke="var(--border)" stroke-width="1.5" data-state="ST" data-rate="5.0" style="cursor:pointer;transition:all 0.2s;" onmouseenter="hlState(this)" onmouseleave="ulState(this)"/>
+        <path d="M140,140 L170,170 L200,190 L190,230 L160,260 L120,250 L90,220 L100,170 Z" fill="#DC2626" fill-opacity="0.15" stroke="var(--border)" stroke-width="1.5" data-state="NW" data-rate="6.5" style="cursor:pointer;transition:all 0.2s;" onmouseenter="hlState(this)" onmouseleave="ulState(this)"/>
+        <path d="M160,260 L190,230 L200,190 L250,200 L260,210 L250,260 L230,290 L200,300 L170,290 Z" fill="#DC2626" fill-opacity="0.15" stroke="var(--border)" stroke-width="1.5" data-state="HE" data-rate="6.0" style="cursor:pointer;transition:all 0.2s;" onmouseenter="hlState(this)" onmouseleave="ulState(this)"/>
+        <path d="M260,210 L270,240 L300,260 L340,250 L330,290 L290,300 L260,290 L230,290 L250,260 Z" fill="#B45309" fill-opacity="0.15" stroke="var(--border)" stroke-width="1.5" data-state="TH" data-rate="5.0" style="cursor:pointer;transition:all 0.2s;" onmouseenter="hlState(this)" onmouseleave="ulState(this)"/>
+        <path d="M340,250 L350,210 L380,230 L420,220 L430,260 L410,300 L370,310 L330,290 Z" fill="#059669" fill-opacity="0.15" stroke="var(--border)" stroke-width="1.5" data-state="SN" data-rate="3.5" style="cursor:pointer;transition:all 0.2s;" onmouseenter="hlState(this)" onmouseleave="ulState(this)"/>
+        <path d="M100,270 L120,250 L160,260 L170,290 L160,330 L130,350 L100,330 L80,300 Z" fill="#B45309" fill-opacity="0.15" stroke="var(--border)" stroke-width="1.5" data-state="RP" data-rate="5.0" style="cursor:pointer;transition:all 0.2s;" onmouseenter="hlState(this)" onmouseleave="ulState(this)"/>
+        <path d="M80,300 L100,330 L90,350 L70,340 Z" fill="#DC2626" fill-opacity="0.15" stroke="var(--border)" stroke-width="1.5" data-state="SL" data-rate="6.5" style="cursor:pointer;transition:all 0.2s;" onmouseenter="hlState(this)" onmouseleave="ulState(this)"/>
+        <path d="M130,350 L160,330 L170,290 L200,300 L230,290 L240,320 L260,360 L240,400 L210,430 L170,440 L140,410 L120,380 Z" fill="#B45309" fill-opacity="0.15" stroke="var(--border)" stroke-width="1.5" data-state="BW" data-rate="5.0" style="cursor:pointer;transition:all 0.2s;" onmouseenter="hlState(this)" onmouseleave="ulState(this)"/>
+        <path d="M230,290 L260,290 L290,300 L330,290 L370,310 L400,340 L420,390 L400,440 L370,470 L330,480 L290,460 L260,430 L210,430 L240,400 L260,360 L240,320 Z" fill="#059669" fill-opacity="0.15" stroke="var(--border)" stroke-width="1.5" data-state="BY" data-rate="3.5" style="cursor:pointer;transition:all 0.2s;" onmouseenter="hlState(this)" onmouseleave="ulState(this)"/>
+        <g id="mapTooltip" style="display:none;pointer-events:none;">
+          <rect x="0" y="0" width="180" height="56" rx="8" fill="white" stroke="var(--border)" style="filter:drop-shadow(0 4px 12px rgba(0,0,0,0.08));"/>
+          <text id="ttState" x="12" y="22" fill="#111827" font-size="14" font-weight="700" font-family="Inter,sans-serif"></text>
+          <text id="ttRate" x="12" y="42" fill="#059669" font-size="13" font-weight="600" font-family="Inter,sans-serif"></text>
+        </g>
+      </svg>
+      <div class="chart-legend" style="margin-top:16px;">
+        <div class="legend-item"><div class="legend-dot" style="background:#059669;opacity:0.3;"></div> 3,5%</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#B45309;opacity:0.3;"></div> 5,0–5,5%</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#DC2626;opacity:0.3;"></div> 6,0–6,5%</div>
+      </div>
+    </div>
+
+    <div>
+      <div class="input-panel" style="position:static;margin-bottom:12px;">
+        <div class="input-group" style="margin-bottom:0;">
+          <label class="input-label">Kaufpreis</label>
+          <input type="text" class="input-field" value="350.000 €">
+        </div>
+      </div>
+      <div style="background:var(--bg-base);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;">
+        <table class="state-table">
+          <thead><tr><th>Bundesland</th><th>Satz</th><th>Steuer</th><th style="width:100px;"></th></tr></thead>
+          <tbody>
+            <tr><td>Bayern</td><td class="rate" style="color:var(--success)">3,5%</td><td style="font-variant-numeric:tabular-nums;">12.250 €</td><td><div class="rate-bar"><div class="rate-bar-fill" style="width:54%;background:var(--success);"></div></div></td></tr>
+            <tr><td>Sachsen</td><td class="rate" style="color:var(--success)">3,5%</td><td style="font-variant-numeric:tabular-nums;">12.250 €</td><td><div class="rate-bar"><div class="rate-bar-fill" style="width:54%;background:var(--success);"></div></div></td></tr>
+            <tr><td>Hamburg</td><td class="rate" style="color:var(--warning)">5,5%</td><td style="font-variant-numeric:tabular-nums;">19.250 €</td><td><div class="rate-bar"><div class="rate-bar-fill" style="width:85%;background:var(--warning);"></div></div></td></tr>
+            <tr><td>Niedersachsen</td><td class="rate" style="color:var(--warning)">5,0%</td><td style="font-variant-numeric:tabular-nums;">17.500 €</td><td><div class="rate-bar"><div class="rate-bar-fill" style="width:77%;background:var(--warning);"></div></div></td></tr>
+            <tr><td>Hessen</td><td class="rate" style="color:var(--danger)">6,0%</td><td style="font-variant-numeric:tabular-nums;">21.000 €</td><td><div class="rate-bar"><div class="rate-bar-fill" style="width:92%;background:var(--danger);"></div></div></td></tr>
+            <tr><td>NRW</td><td class="rate" style="color:var(--danger)">6,5%</td><td style="font-variant-numeric:tabular-nums;">22.750 €</td><td><div class="rate-bar"><div class="rate-bar-fill" style="width:100%;background:var(--danger);"></div></div></td></tr>
+            <tr><td>Brandenburg</td><td class="rate" style="color:var(--danger)">6,5%</td><td style="font-variant-numeric:tabular-nums;">22.750 €</td><td><div class="rate-bar"><div class="rate-bar-fill" style="width:100%;background:var(--danger);"></div></div></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DASHBOARD -->
+<div class="section-divider" id="dashboard"><h2>Dashboard</h2></div>
+
+<section class="section dashboard-section">
+  <div class="dashboard-layout">
+    <div class="sidebar">
+      <div class="sidebar-logo">Immobilien-Rechner</div>
+      <ul class="sidebar-nav">
+        <li><a href="#" class="active"><svg class="icon-svg sm" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg> Dashboard</a></li>
+        <li><a href="#"><svg class="icon-svg sm" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/></svg> Rechner</a></li>
+        <li><a href="#"><svg class="icon-svg sm" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg> Einbettung</a></li>
+        <li><a href="#"><svg class="icon-svg sm" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg> Analytics</a></li>
+        <li><a href="#"><svg class="icon-svg sm" viewBox="0 0 24 24"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Profil</a></li>
+        <div class="sidebar-divider"></div>
+        <li><a href="#"><svg class="icon-svg sm" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/></svg> Abo</a></li>
+      </ul>
+    </div>
+    <div class="dashboard-main">
+      <div class="dashboard-welcome">Willkommen zurück, Marcel</div>
+      <div class="dashboard-date">Montag, 31. März 2026</div>
+      <div class="dashboard-cards">
+        <div class="dash-card"><div class="dash-label">Aktueller Plan</div><div class="dash-value" style="color:var(--primary);">Pro</div><div class="dash-change">&#10003; Aktiv</div></div>
+        <div class="dash-card"><div class="dash-label">Rechner genutzt</div><div class="dash-value">12/12</div><div class="dash-change">Alle verfügbar</div></div>
+        <div class="dash-card"><div class="dash-label">Embed-Views</div><div class="dash-value">1.247</div><div class="dash-change">+18% diese Woche</div></div>
+        <div class="dash-card"><div class="dash-label">Berechnungen</div><div class="dash-value">3.891</div><div class="dash-change">+24% diesen Monat</div></div>
+      </div>
+      <div class="dashboard-bottom">
+        <div class="dash-panel">
+          <h3>Letzte Berechnungen</h3>
+          <div class="recent-item"><span class="recent-name"><svg class="icon-svg sm" viewBox="0 0 24 24" style="color:var(--text-muted);"><path d="M21 12a9 9 0 1 1-9-9"/><path d="M21 3v6h-6"/></svg> Rendite</span><span class="recent-value" style="color:var(--success);">5,26%</span></div>
+          <div class="recent-item"><span class="recent-name"><svg class="icon-svg sm" viewBox="0 0 24 24" style="color:var(--text-muted);"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg> Cashflow</span><span class="recent-value" style="color:var(--success);">+342 €</span></div>
+          <div class="recent-item"><span class="recent-name"><svg class="icon-svg sm" viewBox="0 0 24 24" style="color:var(--text-muted);"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg> Finanzierung</span><span class="recent-value" style="color:var(--warning);">1.187 €/M</span></div>
+          <div class="recent-item"><span class="recent-name"><svg class="icon-svg sm" viewBox="0 0 24 24" style="color:var(--text-muted);"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg> Tilgungsplan</span><span class="recent-value" style="color:var(--text-muted);">25 Jahre</span></div>
+        </div>
+        <div class="dash-panel">
+          <h3>Nutzung (7 Tage)</h3>
+          <canvas id="sparkChart" width="380" height="180"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div><div class="footer-brand">Immobilien-Rechner</div><p class="footer-desc">Professionelle Immobilien-Tools. DSGVO-konform, hosted in Deutschland.</p></div>
+    <div><h4>Produkt</h4><ul><li><a href="#">Alle Rechner</a></li><li><a href="#">Preise</a></li><li><a href="#">Einbettung</a></li></ul></div>
+    <div><h4>Rechtliches</h4><ul><li><a href="#">Impressum</a></li><li><a href="#">Datenschutz</a></li><li><a href="#">AGB</a></li><li><a href="#">Widerruf</a></li></ul></div>
+    <div><h4>Support</h4><ul><li><a href="#">Kontakt</a></li><li><a href="#">FAQ</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><span>&copy; 2026 Speckmann Webdesign GmbH</span><span>Hosted in Deutschland</span></div>
+</footer>
+
+<!-- ========================================
+     JAVASCRIPT — Live Calculation + Charts
+     ======================================== -->
+<script>
+// ===========================
+// FORMAT HELPERS
+// ===========================
+const fmtEur = v => v.toLocaleString('de-DE', {maximumFractionDigits: 0}) + ' €';
+const fmtPct = v => v.toFixed(2).replace('.', ',') + '%';
+const fmtPct1 = v => v.toFixed(1).replace('.', ',') + ' %';
+
+// ===========================
+// LIVE CALCULATION ENGINE
+// ===========================
+function calculate() {
+  const kp = parseFloat(document.getElementById('c_kaufpreis').value);
+  const miete = parseFloat(document.getElementById('c_miete').value);
+  const nkPct = parseFloat(document.getElementById('c_nk').value);
+  const ek = parseFloat(document.getElementById('c_ek').value);
+  const bk = parseFloat(document.getElementById('c_bk').value);
+  const zins = parseFloat(document.getElementById('c_zins').value);
+
+  // Display values
+  document.getElementById('c_kaufpreis_display').value = fmtEur(kp);
+  document.getElementById('c_miete_display').value = fmtEur(miete);
+  document.getElementById('c_nk_display').value = fmtPct1(nkPct);
+  document.getElementById('c_ek_display').value = fmtEur(ek);
+  document.getElementById('c_bk_display').value = fmtEur(bk);
+  document.getElementById('c_zins_display').value = fmtPct1(zins);
+
+  // Calculations
+  const jahresmiete = miete * 12;
+  const nebenkosten = kp * (nkPct / 100);
+  const gesamt = kp + nebenkosten;
+  const fk = gesamt - ek;
+  const reinertrag = jahresmiete - bk;
+  const zinskosten = fk * (zins / 100);
+
+  const brutto = (jahresmiete / kp) * 100;
+  const netto = (reinertrag / gesamt) * 100;
+  const ekRendite = ek > 0 ? ((reinertrag - zinskosten) / ek) * 100 : 0;
+
+  // Update UI
+  document.getElementById('r_brutto').textContent = fmtPct(brutto);
+  document.getElementById('r_netto').textContent = fmtPct(netto);
+  document.getElementById('r_ek').textContent = fmtPct(ekRendite);
+  document.getElementById('r_donut_value').textContent = fmtPct(brutto);
+  document.getElementById('r_gesamt').textContent = fmtEur(gesamt);
+  document.getElementById('r_kosten').textContent = fmtEur(nebenkosten);
+  document.getElementById('r_kosten_pct').textContent = fmtPct1(nkPct) + ' vom Kaufpreis';
+  document.getElementById('r_reinertrag').textContent = fmtEur(reinertrag);
+  document.getElementById('r_reinertrag_sub').textContent = fmtEur(jahresmiete) + ' Miete − ' + fmtEur(bk) + ' Kosten';
+  document.getElementById('r_zins').textContent = fmtEur(zinskosten);
+  document.getElementById('r_zins_sub').textContent = fmtPct1(zins) + ' auf ' + fmtEur(fk) + ' FK';
+
+  // Color coding
+  document.getElementById('r_brutto').className = 'card-value ' + (brutto >= 4 ? 'green' : brutto >= 3 ? 'amber' : 'red');
+  document.getElementById('r_netto').className = 'card-value ' + (netto >= 3 ? 'green' : netto >= 2 ? 'amber' : 'red');
+  document.getElementById('r_ek').className = 'card-value ' + (ekRendite >= 5 ? 'green' : ekRendite >= 0 ? 'blue' : 'red');
+  document.getElementById('r_donut_value').style.color = brutto >= 4 ? 'var(--success)' : brutto >= 3 ? 'var(--warning)' : 'var(--danger)';
+
+  // Redraw donut
+  drawDonut('resultDonut', [ek, fk, nebenkosten], ['#4338CA', '#0E7490', '#B45309'], 100, 22);
+}
+
+// Bind all sliders
+['c_kaufpreis','c_miete','c_nk','c_ek','c_bk','c_zins'].forEach(id => {
+  document.getElementById(id).addEventListener('input', calculate);
+});
+
+// ===========================
+// DONUT CHART
+// ===========================
+function drawDonut(canvasId, data, colors, size, lineWidth) {
+  const canvas = document.getElementById(canvasId);
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const cx = canvas.width / 2;
+  const cy = canvas.height / 2;
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  let angle = -Math.PI / 2;
+  const total = data.reduce((a, b) => a + b, 0) || 1;
+
+  data.forEach((v, i) => {
+    const slice = (v / total) * Math.PI * 2;
+    ctx.beginPath();
+    ctx.arc(cx, cy, size, angle, angle + slice);
+    ctx.lineWidth = lineWidth;
+    ctx.strokeStyle = colors[i];
+    ctx.lineCap = 'round';
+    ctx.stroke();
+    angle += slice;
+  });
+}
+
+// ===========================
+// MINI CHARTS
+// ===========================
+function drawMiniLine(id, data, color, fill) {
+  const c = document.getElementById(id);
+  if (!c) return;
+  const ctx = c.getContext('2d');
+  const w = c.width, h = c.height, p = 4;
+  ctx.clearRect(0, 0, w, h);
+  const max = Math.max(...data), min = Math.min(...data), range = max - min || 1;
+  const pts = data.map((v, i) => ({
+    x: p + (i / (data.length - 1)) * (w - p * 2),
+    y: h - p - ((v - min) / range) * (h - p * 2)
+  }));
+
+  if (fill) {
+    ctx.beginPath();
+    ctx.moveTo(pts[0].x, h);
+    pts.forEach(pt => ctx.lineTo(pt.x, pt.y));
+    ctx.lineTo(pts[pts.length - 1].x, h);
+    ctx.closePath();
+    const g = ctx.createLinearGradient(0, 0, 0, h);
+    g.addColorStop(0, color + '20');
+    g.addColorStop(1, 'transparent');
+    ctx.fillStyle = g;
+    ctx.fill();
+  }
+
+  ctx.beginPath();
+  ctx.moveTo(pts[0].x, pts[0].y);
+  for (let i = 1; i < pts.length; i++) {
+    const cpx = (pts[i - 1].x + pts[i].x) / 2;
+    ctx.bezierCurveTo(cpx, pts[i - 1].y, cpx, pts[i].y, pts[i].x, pts[i].y);
+  }
+  ctx.strokeStyle = color;
+  ctx.lineWidth = 2;
+  ctx.stroke();
+}
+
+function drawMiniBar(id, data, color) {
+  const c = document.getElementById(id);
+  if (!c) return;
+  const ctx = c.getContext('2d');
+  const w = c.width, h = c.height;
+  ctx.clearRect(0, 0, w, h);
+  const bw = (w - (data.length + 1) * 4) / data.length;
+  const max = Math.max(...data);
+  data.forEach((v, i) => {
+    const bh = (v / max) * (h - 8);
+    const x = 4 + i * (bw + 4);
+    ctx.fillStyle = color;
+    ctx.globalAlpha = 0.15 + (v / max) * 0.85;
+    ctx.beginPath();
+    ctx.roundRect(x, h - bh, bw, bh, 3);
+    ctx.fill();
+  });
+  ctx.globalAlpha = 1;
+}
+
+// Draw mini charts
+drawDonut('heroDonut', [80, 205, 34.4], ['#4338CA', '#0E7490', '#B45309'], 50, 14);
+drawDonut('resultDonut', [80000, 239400, 34400], ['#4338CA', '#0E7490', '#B45309'], 100, 22);
+drawMiniLine('mc1', [3.2, 4.1, 3.8, 5.2, 4.9, 5.5], '#4338CA', true);
+drawMiniBar('mc2', [35, 12, 5, 8], '#4338CA');
+drawMiniLine('mc3', [240, 220, 195, 165, 130, 90, 45], '#4338CA', true);
+
+// Sparkline
+function drawSparkline() {
+  const c = document.getElementById('sparkChart');
+  if (!c) return;
+  const ctx = c.getContext('2d');
+  const w = c.width, h = c.height;
+  ctx.clearRect(0, 0, w, h);
+
+  // Grid
+  ctx.strokeStyle = 'rgba(0,0,0,0.04)';
+  ctx.lineWidth = 1;
+  for (let i = 0; i < 4; i++) {
+    const y = 15 + i * ((h - 50) / 3);
+    ctx.beginPath(); ctx.moveTo(35, y); ctx.lineTo(w - 5, y); ctx.stroke();
+  }
+
+  ctx.fillStyle = '#9CA3AF';
+  ctx.font = '11px Inter';
+  ['Mo','Di','Mi','Do','Fr','Sa','So'].forEach((d, i) => {
+    ctx.fillText(d, 38 + i * ((w - 50) / 6), h - 8);
+  });
+
+  const d1 = [42, 58, 35, 72, 65, 28, 47];
+  const d2 = [120, 145, 98, 178, 156, 85, 132];
+
+  drawSparkSeries(ctx, d2, '#0E7490', w, h);
+  drawSparkSeries(ctx, d1, '#4338CA', w, h);
+
+  ctx.fillStyle = '#4338CA';
+  ctx.beginPath(); ctx.arc(45, h - 26, 4, 0, Math.PI * 2); ctx.fill();
+  ctx.fillStyle = '#4B5563'; ctx.font = '12px Inter'; ctx.fillText('Dashboard', 55, h - 22);
+
+  ctx.fillStyle = '#0E7490';
+  ctx.beginPath(); ctx.arc(140, h - 26, 4, 0, Math.PI * 2); ctx.fill();
+  ctx.fillStyle = '#4B5563'; ctx.fillText('Embeds', 150, h - 22);
+}
+
+function drawSparkSeries(ctx, data, color, w, h) {
+  const max = 200;
+  const pad = { t: 15, b: 50, l: 38, r: 5 };
+  const cw = w - pad.l - pad.r, ch = h - pad.t - pad.b;
+  const pts = data.map((v, i) => ({
+    x: pad.l + (i / (data.length - 1)) * cw,
+    y: pad.t + ch - (v / max) * ch
+  }));
+
+  ctx.beginPath();
+  ctx.moveTo(pts[0].x, pad.t + ch);
+  pts.forEach(p => ctx.lineTo(p.x, p.y));
+  ctx.lineTo(pts[pts.length - 1].x, pad.t + ch);
+  ctx.closePath();
+  const g = ctx.createLinearGradient(0, pad.t, 0, pad.t + ch);
+  g.addColorStop(0, color + '15');
+  g.addColorStop(1, 'transparent');
+  ctx.fillStyle = g;
+  ctx.fill();
+
+  ctx.beginPath();
+  ctx.moveTo(pts[0].x, pts[0].y);
+  for (let i = 1; i < pts.length; i++) {
+    const cpx = (pts[i - 1].x + pts[i].x) / 2;
+    ctx.bezierCurveTo(cpx, pts[i - 1].y, cpx, pts[i].y, pts[i].x, pts[i].y);
+  }
+  ctx.strokeStyle = color;
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  pts.forEach(p => {
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, 3, 0, Math.PI * 2);
+    ctx.fillStyle = color;
+    ctx.fill();
+  });
+}
+
+drawSparkline();
+
+// ===========================
+// MAP
+// ===========================
+const stateNames = {
+  'SH':'Schleswig-Holstein','HH':'Hamburg','NI':'Niedersachsen','HB':'Bremen',
+  'MV':'Mecklenburg-Vorpommern','BB':'Brandenburg','BE':'Berlin','ST':'Sachsen-Anhalt',
+  'NW':'Nordrhein-Westfalen','HE':'Hessen','TH':'Thüringen','SN':'Sachsen',
+  'RP':'Rheinland-Pfalz','SL':'Saarland','BW':'Baden-Württemberg','BY':'Bayern'
+};
+
+function hlState(el) {
+  el.style.fillOpacity = '0.35';
+  el.style.stroke = '#111827';
+  el.style.strokeWidth = '2.5';
+  const tt = document.getElementById('mapTooltip');
+  const s = el.dataset.state;
+  const r = el.dataset.rate;
+  document.getElementById('ttState').textContent = stateNames[s];
+  document.getElementById('ttRate').textContent = r + '% → ' + (350000 * parseFloat(r) / 100).toLocaleString('de-DE') + ' €';
+  const b = el.getBBox();
+  tt.setAttribute('transform', `translate(${b.x + b.width/2 - 90},${b.y - 65})`);
+  tt.style.display = 'block';
+}
+
+function ulState(el) {
+  el.style.fillOpacity = '0.15';
+  el.style.stroke = 'var(--border)';
+  el.style.strokeWidth = '1.5';
+  document.getElementById('mapTooltip').style.display = 'none';
+}
+
+// ===========================
+// COUNT UP
+// ===========================
+const sObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const el = e.target;
+      const target = parseInt(el.dataset.count);
+      const start = performance.now();
+      function up(now) {
+        const p = Math.min((now - start) / 1200, 1);
+        el.textContent = Math.round(target * (1 - Math.pow(1 - p, 4)));
+        if (p < 1) requestAnimationFrame(up);
+      }
+      requestAnimationFrame(up);
+      sObs.unobserve(el);
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('.stat-value[data-count]').forEach(el => sObs.observe(el));
+
+// ===========================
+// SMOOTH SCROLL + NAV
+// ===========================
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+// Nav dark/light based on section
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => {
+  const heroBottom = document.querySelector('.hero').getBoundingClientRect().bottom;
+  const ctaTop = document.querySelector('.cta-section').getBoundingClientRect().top;
+  const ctaBottom = document.querySelector('.cta-section').getBoundingClientRect().bottom;
+
+  if (heroBottom > 64 || (ctaTop < 64 && ctaBottom > 64)) {
+    nav.classList.add('dark-section');
+    nav.querySelector('.nav-logo').style.color = 'var(--text-light)';
+  } else {
+    nav.classList.remove('dark-section');
+    nav.querySelector('.nav-logo').style.color = 'var(--text-primary)';
+  }
+});
+
+// Section nav active
+const navLinks = document.querySelectorAll('.section-nav a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  document.querySelectorAll('[id]').forEach(s => {
+    if (window.scrollY >= s.offsetTop - 200) current = s.id;
+  });
+  navLinks.forEach(l => {
+    l.classList.toggle('active', l.getAttribute('href') === '#' + current);
+  });
+});
+</script>
+</body>
+</html>

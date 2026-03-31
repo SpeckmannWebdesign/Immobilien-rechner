@@ -13,7 +13,7 @@ export default function RechnerUebersicht() {
       <div>
         <h1 className="text-2xl font-bold">Rechner</h1>
         <p className="text-muted-foreground">
-          Wählen Sie einen der 12 professionellen Immobilien-Rechner.
+          Wählen Sie einen der 16 professionellen Immobilien-Rechner.
         </p>
       </div>
 

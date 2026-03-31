@@ -54,7 +54,7 @@ export function HeroSection() {
           transition={{ duration: 0.8, delay: 0.6, ease: [0.25, 0.1, 0, 1] }}
           className="text-[clamp(1.125rem,2vw,1.375rem)] text-[#94A3B8] font-medium leading-[1.4] mt-6 max-w-[640px] mx-auto"
         >
-          12 professionelle Rechner für Makler, Investoren und Hausverwaltungen.
+          16 professionelle Rechner für Makler, Investoren und Hausverwaltungen.
           Im Dashboard nutzen oder direkt auf Ihrer Website einbetten.
         </motion.p>
 

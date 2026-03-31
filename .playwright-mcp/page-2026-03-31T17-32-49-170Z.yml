@@ -1,0 +1,151 @@
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - navigation [ref=e5]:
+      - generic [ref=e6]:
+        - generic [ref=e7]:
+          - link [ref=e162] [cursor=pointer]:
+            - /url: /
+            - text: Coolify
+          - link [ref=e163] [cursor=pointer]:
+            - /url: https://github.com/coollabsio/coolify/releases/tag/v4.0.0-beta.470
+            - text: v4.0.0-beta.470
+        - button [ref=e164]:
+          - img [ref=e12]
+          - generic [ref=e14]: /
+        - button [ref=e165] [cursor=pointer]:
+          - img [ref=e166]
+          - generic [ref=e20]: 9+
+      - combobox [ref=e23]
+      - list [ref=e24]:
+        - listitem [ref=e25]:
+          - list [ref=e26]:
+            - listitem [ref=e27]:
+              - link [ref=e167] [cursor=pointer]:
+                - /url: /
+                - img [ref=e29]
+                - generic [ref=e31]: Dashboard
+            - listitem [ref=e32]:
+              - link [ref=e168] [cursor=pointer]:
+                - /url: /projects
+                - img [ref=e34]
+                - generic [ref=e39]: Projects
+            - listitem [ref=e40]:
+              - link [ref=e169] [cursor=pointer]:
+                - /url: /servers
+                - img [ref=e42]
+                - generic [ref=e47]: Servers
+            - listitem [ref=e48]:
+              - link [ref=e170] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/sources
+                - img [ref=e50]
+                - generic [ref=e52]: Sources
+            - listitem [ref=e53]:
+              - link [ref=e171] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/destinations
+                - img [ref=e55]
+                - generic [ref=e57]: Destinations
+            - listitem [ref=e58]:
+              - link [ref=e172] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/storages
+                - img [ref=e60]
+                - generic [ref=e65]: S3 Storages
+            - listitem [ref=e66]:
+              - link [ref=e173] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/shared-variables
+                - img [ref=e68]
+                - generic [ref=e72]: Shared Variables
+            - listitem [ref=e73]:
+              - link [ref=e174] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/notifications/email
+                - img [ref=e75]
+                - generic [ref=e77]: Notifications
+            - listitem [ref=e78]:
+              - link [ref=e175] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/security/private-key
+                - img [ref=e80]
+                - generic [ref=e82]: Keys & Tokens
+            - listitem [ref=e83]:
+              - link [ref=e176] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/tags
+                - img [ref=e85]
+                - generic [ref=e89]: Tags
+            - listitem [ref=e90]:
+              - link [ref=e177] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/terminal
+                - img [ref=e92]
+                - generic [ref=e95]: Terminal
+            - listitem [ref=e96]:
+              - link [ref=e178] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/profile
+                - img [ref=e98]
+                - generic [ref=e103]: Profile
+            - listitem [ref=e104]:
+              - link [ref=e179] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/team
+                - img [ref=e106]
+                - generic [ref=e114]: Teams
+            - listitem [ref=e115]:
+              - link [ref=e180] [cursor=pointer]:
+                - /url: /settings
+                - img [ref=e117]
+                - generic [ref=e121]: Settings
+            - listitem [ref=e123]:
+              - link [ref=e181] [cursor=pointer]:
+                - /url: https://coolify.io/sponsorships
+                - img [ref=e125]
+                - generic [ref=e129]: Sponsor us
+            - listitem [ref=e130]:
+              - generic [ref=e182] [cursor=pointer]:
+                - img [ref=e134]
+                - generic [ref=e136]: Feedback
+            - listitem [ref=e137]:
+              - button [ref=e183]:
+                - img [ref=e140]
+                - generic [ref=e142]: Logout
+    - main [ref=e143]:
+      - generic [ref=e144]:
+        - generic [ref=e145]:
+          - heading [level=1] [ref=e184]: Sources
+          - button [ref=e185] [cursor=pointer]: + Add
+        - generic [ref=e149]: Git sources for your applications.
+        - generic [ref=e150]:
+          - link [ref=e186] [cursor=pointer]:
+            - /url: http://167.235.136.129:8000/source/github/fwk84kckg8oso40o8wkkswgw
+            - generic [ref=e152]:
+              - generic [ref=e153]: flowers-yoga-coolify
+              - generic [ref=e154]: "Organization: SpeckmannWebdesign"
+          - link [ref=e187] [cursor=pointer]:
+            - /url: http://167.235.136.129:8000/source/github/zsoo40880g40oo0kccwc4kkc
+            - generic [ref=e156]:
+              - generic [ref=e157]: speckmann-crm
+              - generic [ref=e158]: "Organization: SpeckmannWebdesign"
+          - link [ref=e188] [cursor=pointer]:
+            - /url: http://167.235.136.129:8000/source/github/t0kg4844wswkgowg8ook0kww
+            - generic [ref=e161]: bildungsimpulsec
+  - generic [ref=e191]:
+    - generic [ref=e192]:
+      - heading "New GitHub App" [level=3] [ref=e193]
+      - button [ref=e194]:
+        - img [ref=e195]
+    - generic [ref=e198]:
+      - generic [ref=e199]: This is required, if you would like to get full integration (commit / pull request deployments, etc) with GitHub.
+      - generic [ref=e200]:
+        - generic [ref=e201]:
+          - generic [ref=e202]:
+            - text: Name
+            - generic [ref=e203]: "*"
+          - textbox [active] [ref=e204]: excited-eagle-wciilei7qvnn2tca
+        - generic [ref=e205]:
+          - generic [ref=e206]:
+            - text: Organization (on GitHub)
+            - img [ref=e209] [cursor=pointer]
+          - textbox "If empty, your GitHub user will be used." [ref=e211]
+      - generic [ref=e215]:
+        - generic [ref=e216]:
+          - text: System Wide
+          - img [ref=e219] [cursor=pointer]
+        - checkbox "System Wide" [ref=e221] [cursor=pointer]
+      - button "Self-hosted / Enterprise GitHub" [ref=e224]:
+        - heading "Self-hosted / Enterprise GitHub" [level=4] [ref=e225]
+        - img [ref=e226]
+      - button "Continue" [ref=e228] [cursor=pointer]

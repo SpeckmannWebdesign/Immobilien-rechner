@@ -1,0 +1,437 @@
+- generic [active] [ref=e1]:
+  - button "1 deployment" [ref=e4]:
+    - img [ref=e5]
+    - generic [ref=e7]: 1 deployment
+    - img [ref=e8]
+  - generic [ref=e10]:
+    - navigation [ref=e13]:
+      - generic [ref=e14]:
+        - generic [ref=e15]:
+          - link "Coolify" [ref=e16] [cursor=pointer]:
+            - /url: /
+          - link "v4.0.0-beta.470" [ref=e17] [cursor=pointer]:
+            - /url: https://github.com/coollabsio/coolify/releases/tag/v4.0.0-beta.470
+        - button / [ref=e19]:
+          - img [ref=e20]
+          - generic [ref=e22]: /
+        - button "Preferences 9+" [ref=e25] [cursor=pointer]:
+          - img "Preferences" [ref=e26]
+          - generic [ref=e28]: 9+
+      - combobox [ref=e31]:
+        - option "Switch team" [disabled]
+        - option "Root Team" [selected]
+      - list [ref=e32]:
+        - listitem [ref=e33]:
+          - list [ref=e34]:
+            - listitem [ref=e35]:
+              - link "Dashboard" [ref=e36] [cursor=pointer]:
+                - /url: /
+                - img [ref=e37]
+                - generic [ref=e39]: Dashboard
+            - listitem [ref=e40]:
+              - link "Projects" [ref=e41] [cursor=pointer]:
+                - /url: /projects
+                - img [ref=e42]
+                - generic [ref=e47]: Projects
+            - listitem [ref=e48]:
+              - link "Servers" [ref=e49] [cursor=pointer]:
+                - /url: /servers
+                - img [ref=e50]
+                - generic [ref=e55]: Servers
+            - listitem [ref=e56]:
+              - link "Sources" [ref=e57] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/sources
+                - img [ref=e58]
+                - generic [ref=e60]: Sources
+            - listitem [ref=e61]:
+              - link "Destinations" [ref=e62] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/destinations
+                - img [ref=e63]
+                - generic [ref=e65]: Destinations
+            - listitem [ref=e66]:
+              - link "S3 Storages" [ref=e67] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/storages
+                - img [ref=e68]
+                - generic [ref=e73]: S3 Storages
+            - listitem [ref=e74]:
+              - link "Shared Variables" [ref=e75] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/shared-variables
+                - img [ref=e76]
+                - generic [ref=e80]: Shared Variables
+            - listitem [ref=e81]:
+              - link "Notifications" [ref=e82] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/notifications/email
+                - img [ref=e83]
+                - generic [ref=e85]: Notifications
+            - listitem [ref=e86]:
+              - link "Keys & Tokens" [ref=e87] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/security/private-key
+                - img [ref=e88]
+                - generic [ref=e90]: Keys & Tokens
+            - listitem [ref=e91]:
+              - link "Tags" [ref=e92] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/tags
+                - img [ref=e93]
+                - generic [ref=e97]: Tags
+            - listitem [ref=e98]:
+              - link "Terminal" [ref=e99] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/terminal
+                - img [ref=e100]
+                - generic [ref=e103]: Terminal
+            - listitem [ref=e104]:
+              - link "Profile" [ref=e105] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/profile
+                - img [ref=e106]
+                - generic [ref=e111]: Profile
+            - listitem [ref=e112]:
+              - link "Teams" [ref=e113] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/team
+                - img [ref=e114]
+                - generic [ref=e122]: Teams
+            - listitem [ref=e123]:
+              - link "Settings" [ref=e124] [cursor=pointer]:
+                - /url: /settings
+                - img [ref=e125]
+                - generic [ref=e129]: Settings
+            - generic:
+              - listitem:
+                - generic "No upgrade available"
+            - listitem [ref=e131]:
+              - link "Sponsor us" [ref=e132] [cursor=pointer]:
+                - /url: https://coolify.io/sponsorships
+                - img [ref=e133]
+                - generic [ref=e137]: Sponsor us
+            - listitem [ref=e138]:
+              - generic "Send us feedback or get help!" [ref=e141] [cursor=pointer]:
+                - img [ref=e142]
+                - generic [ref=e144]: Feedback
+            - listitem [ref=e145]:
+              - button "Logout" [ref=e147]:
+                - img [ref=e148]
+                - generic [ref=e150]: Logout
+    - main [ref=e151]:
+      - generic [ref=e153]:
+        - heading "Deployments" [level=1] [ref=e154]
+        - navigation [ref=e155]:
+          - navigation [ref=e156]:
+            - list [ref=e157]:
+              - listitem [ref=e158]:
+                - generic [ref=e159]:
+                  - link "Immobilien-Rechner" [ref=e160] [cursor=pointer]:
+                    - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6
+                  - button [ref=e161]:
+                    - img [ref=e162]
+              - listitem [ref=e164]:
+                - generic [ref=e165]:
+                  - link "production" [ref=e166] [cursor=pointer]:
+                    - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj
+                  - button [ref=e167]:
+                    - img [ref=e168]
+              - listitem [ref=e170]:
+                - link "immobilien-rechner:main-v11wkfofuu9mujnnup998xai (localhost)" [ref=e171] [cursor=pointer]:
+                  - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m
+              - generic [ref=e173]:
+                - link "Running" [ref=e176] [cursor=pointer]:
+                  - /url: https://github.com/SpeckmannWebdesign/Immobilien-rechner/commit/bac22e8a2f37d46c58e9ef63a10007d31d5d20db
+                - generic [ref=e177]: (unknown)
+                - img [ref=e181] [cursor=pointer]
+              - button "Refresh Status" [ref=e182]:
+                - img [ref=e183]
+          - generic [ref=e185]:
+            - navigation [ref=e186]:
+              - link "Configuration" [ref=e187] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m
+              - link "Deployments" [ref=e188] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/deployment
+              - link "Logs" [ref=e189] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/logs
+                - generic [ref=e190]: Logs
+              - link "Terminal" [ref=e191] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/terminal
+              - button "Links" [ref=e193]:
+                - generic [ref=e194]: Links
+                - img [ref=e195]
+            - generic [ref=e197]:
+              - button "Advanced" [ref=e200]:
+                - generic [ref=e201]: Advanced
+                - img [ref=e202]
+              - generic [ref=e204]:
+                - button "Redeploy" [ref=e205] [cursor=pointer]:
+                  - img [ref=e206]
+                  - text: Redeploy
+                - button "Restart" [ref=e208] [cursor=pointer]:
+                  - img [ref=e209]
+                  - text: Restart
+                - button "Stop" [ref=e214] [cursor=pointer]:
+                  - img [ref=e215]
+                  - text: Stop
+        - generic [ref=e217]:
+          - generic [ref=e218]:
+            - heading "Deployments (9)" [level=2] [ref=e219]
+            - generic [ref=e220]:
+              - button [disabled] [ref=e221]:
+                - img [ref=e222]
+              - generic [ref=e224]: Page 1 of 1
+              - button [disabled] [ref=e225]:
+                - img [ref=e226]
+          - generic [ref=e228]:
+            - generic [ref=e229]:
+              - generic [ref=e230]: Pull Request Id
+              - spinbutton [ref=e231]
+            - button "Filter" [ref=e232] [cursor=pointer]
+          - generic [ref=e233]:
+            - link:
+              - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/deployment/na80jjema4caemic4vk9n84g
+            - generic [ref=e234]:
+              - 'link "In Progress Started: 2026-03-31 17:36:41 UTC Running for: 00m 02s" [ref=e235] [cursor=pointer]':
+                - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/deployment/na80jjema4caemic4vk9n84g
+                - generic [ref=e237]: In Progress
+                - generic [ref=e238]:
+                  - text: "Started: 2026-03-31 17:36:41 UTC"
+                  - text: "Running for: 00m 02s"
+              - generic [ref=e239]:
+                - link:
+                  - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/deployment/na80jjema4caemic4vk9n84g
+                - generic [ref=e240]:
+                  - link:
+                    - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/deployment/na80jjema4caemic4vk9n84g
+                  - generic [ref=e241]:
+                    - link "Commit:" [ref=e242] [cursor=pointer]:
+                      - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/deployment/na80jjema4caemic4vk9n84g
+                    - link "b474ba4" [ref=e243] [cursor=pointer]:
+                      - /url: https://github.com/SpeckmannWebdesign/Immobilien-rechner/commit/b474ba420c05368b8e016e23340cbb403d6a9f6f
+                    - generic [ref=e244]: Webhook
+          - generic [ref=e245]:
+            - link:
+              - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/deployment/6922ec60-39a4-4983-8d5d-4c852fb933d7
+            - generic [ref=e246]:
+              - 'link "Success Started: 2026-03-31 17:03:56 UTC Ended: 2026-03-31 17:06:08 UTC Duration: 02m 12s Finished 30 minutes ago" [ref=e247] [cursor=pointer]':
+                - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/deployment/6922ec60-39a4-4983-8d5d-4c852fb933d7
+                - generic [ref=e249]: Success
+                - generic [ref=e250]:
+                  - text: "Started: 2026-03-31 17:03:56 UTC"
+                  - text: "Ended: 2026-03-31 17:06:08 UTC"
+                  - text: "Duration: 02m 12s"
+                  - text: Finished 30 minutes ago
+              - generic [ref=e251]:
+                - link:
+                  - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/deployment/6922ec60-39a4-4983-8d5d-4c852fb933d7
+                - generic [ref=e252]:
+                  - link:
+                    - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/deployment/6922ec60-39a4-4983-8d5d-4c852fb933d7
+                  - generic [ref=e253]:
+                    - link "Commit:" [ref=e254] [cursor=pointer]:
+                      - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/deployment/6922ec60-39a4-4983-8d5d-4c852fb933d7
+                    - link "bac22e8" [ref=e255] [cursor=pointer]:
+                      - /url: https://github.com/SpeckmannWebdesign/Immobilien-rechner/commit/bac22e8a2f37d46c58e9ef63a10007d31d5d20db
+                    - generic [ref=e256]: "-"
+                    - 'link "fix: Grunderwerbsteuer Bremen von 5,5% auf 5,0% korrigiert (Senkung seit 01.01.2025)" [ref=e257] [cursor=pointer]':
+                      - /url: https://github.com/SpeckmannWebdesign/Immobilien-rechner/commit/bac22e8a2f37d46c58e9ef63a10007d31d5d20db
+                    - button [ref=e258]:
+                      - img [ref=e259]
+                    - generic [ref=e261]: Manual
+          - generic [ref=e262]:
+            - link:
+              - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/deployment/uyzudz1so13lu9mnccv1i1al
+            - generic [ref=e263]:
+              - 'link "Success Started: 2026-03-30 13:33:03 UTC Ended: 2026-03-30 13:34:09 UTC Duration: 01m 06s Finished 1 day ago" [ref=e264] [cursor=pointer]':
+                - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/deployment/uyzudz1so13lu9mnccv1i1al
+                - generic [ref=e266]: Success
+                - generic [ref=e267]:
+                  - text: "Started: 2026-03-30 13:33:03 UTC"
+                  - text: "Ended: 2026-03-30 13:34:09 UTC"
+                  - text: "Duration: 01m 06s"
+                  - text: Finished 1 day ago
+              - generic [ref=e268]:
+                - link:
+                  - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/deployment/uyzudz1so13lu9mnccv1i1al
+                - generic [ref=e269]:
+                  - link:
+                    - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/deployment/uyzudz1so13lu9mnccv1i1al
+                  - generic [ref=e270]:
+                    - link "Commit:" [ref=e271] [cursor=pointer]:
+                      - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/deployment/uyzudz1so13lu9mnccv1i1al
+                    - link "9975cf7" [ref=e272] [cursor=pointer]:
+                      - /url: https://github.com/SpeckmannWebdesign/Immobilien-rechner/commit/9975cf7c11d35a60d77550ed3cc08a8ebe55de8d
+                    - generic [ref=e273]: "-"
+                    - 'link "feat: Apple-Style Landing Page mit Scroll-Animationen (Light Mode)" [ref=e274] [cursor=pointer]':
+                      - /url: https://github.com/SpeckmannWebdesign/Immobilien-rechner/commit/9975cf7c11d35a60d77550ed3cc08a8ebe55de8d
+                    - button [ref=e275]:
+                      - img [ref=e276]
+                    - generic [ref=e278]: Manual
+          - generic [ref=e279]:
+            - link:
+              - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/deployment/gexwtzjgd5xog5xloi9fknut
+            - generic [ref=e280]:
+              - 'link "Success Started: 2026-03-30 13:14:26 UTC Ended: 2026-03-30 13:15:31 UTC Duration: 01m 05s Finished 1 day ago" [ref=e281] [cursor=pointer]':
+                - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/deployment/gexwtzjgd5xog5xloi9fknut
+                - generic [ref=e283]: Success
+                - generic [ref=e284]:
+                  - text: "Started: 2026-03-30 13:14:26 UTC"
+                  - text: "Ended: 2026-03-30 13:15:31 UTC"
+                  - text: "Duration: 01m 05s"
+                  - text: Finished 1 day ago
+              - generic [ref=e285]:
+                - link:
+                  - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/deployment/gexwtzjgd5xog5xloi9fknut
+                - generic [ref=e286]:
+                  - link:
+                    - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/deployment/gexwtzjgd5xog5xloi9fknut
+                  - generic [ref=e287]:
+                    - link "Commit:" [ref=e288] [cursor=pointer]:
+                      - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/deployment/gexwtzjgd5xog5xloi9fknut
+                    - link "c75cb7c" [ref=e289] [cursor=pointer]:
+                      - /url: https://github.com/SpeckmannWebdesign/Immobilien-rechner/commit/c75cb7c112a0940150891a8c535bd6f2d6d95c96
+                    - generic [ref=e290]: "-"
+                    - 'link "fix: Prisma Seed-Script mit PrismaPg Adapter" [ref=e291] [cursor=pointer]':
+                      - /url: https://github.com/SpeckmannWebdesign/Immobilien-rechner/commit/c75cb7c112a0940150891a8c535bd6f2d6d95c96
+                    - button [ref=e292]:
+                      - img [ref=e293]
+                    - generic [ref=e295]: Manual
+          - generic [ref=e296]:
+            - link:
+              - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/deployment/wztjivi91263u7kd82ocrgpn
+            - generic [ref=e297]:
+              - 'link "Success Started: 2026-03-30 13:11:05 UTC Ended: 2026-03-30 13:12:10 UTC Duration: 01m 05s Finished 1 day ago" [ref=e298] [cursor=pointer]':
+                - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/deployment/wztjivi91263u7kd82ocrgpn
+                - generic [ref=e300]: Success
+                - generic [ref=e301]:
+                  - text: "Started: 2026-03-30 13:11:05 UTC"
+                  - text: "Ended: 2026-03-30 13:12:10 UTC"
+                  - text: "Duration: 01m 05s"
+                  - text: Finished 1 day ago
+              - generic [ref=e302]:
+                - link:
+                  - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/deployment/wztjivi91263u7kd82ocrgpn
+                - generic [ref=e303]:
+                  - link:
+                    - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/deployment/wztjivi91263u7kd82ocrgpn
+                  - generic [ref=e304]:
+                    - link "Commit:" [ref=e305] [cursor=pointer]:
+                      - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/deployment/wztjivi91263u7kd82ocrgpn
+                    - link "c75cb7c" [ref=e306] [cursor=pointer]:
+                      - /url: https://github.com/SpeckmannWebdesign/Immobilien-rechner/commit/c75cb7c112a0940150891a8c535bd6f2d6d95c96
+                    - generic [ref=e307]: "-"
+                    - 'link "fix: Prisma Seed-Script mit PrismaPg Adapter" [ref=e308] [cursor=pointer]':
+                      - /url: https://github.com/SpeckmannWebdesign/Immobilien-rechner/commit/c75cb7c112a0940150891a8c535bd6f2d6d95c96
+                    - button [ref=e309]:
+                      - img [ref=e310]
+                    - generic [ref=e312]: Manual
+          - generic [ref=e313]:
+            - link:
+              - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/deployment/lwnzcgakyrzwtyby6wyi8s1x
+            - generic [ref=e314]:
+              - 'link "Success Started: 2026-03-30 12:59:40 UTC Ended: 2026-03-30 13:00:48 UTC Duration: 01m 08s Finished 1 day ago" [ref=e315] [cursor=pointer]':
+                - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/deployment/lwnzcgakyrzwtyby6wyi8s1x
+                - generic [ref=e317]: Success
+                - generic [ref=e318]:
+                  - text: "Started: 2026-03-30 12:59:40 UTC"
+                  - text: "Ended: 2026-03-30 13:00:48 UTC"
+                  - text: "Duration: 01m 08s"
+                  - text: Finished 1 day ago
+              - generic [ref=e319]:
+                - link:
+                  - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/deployment/lwnzcgakyrzwtyby6wyi8s1x
+                - generic [ref=e320]:
+                  - link:
+                    - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/deployment/lwnzcgakyrzwtyby6wyi8s1x
+                  - generic [ref=e321]:
+                    - link "Commit:" [ref=e322] [cursor=pointer]:
+                      - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/deployment/lwnzcgakyrzwtyby6wyi8s1x
+                    - link "c75cb7c" [ref=e323] [cursor=pointer]:
+                      - /url: https://github.com/SpeckmannWebdesign/Immobilien-rechner/commit/c75cb7c112a0940150891a8c535bd6f2d6d95c96
+                    - generic [ref=e324]: "-"
+                    - 'link "fix: Prisma Seed-Script mit PrismaPg Adapter" [ref=e325] [cursor=pointer]':
+                      - /url: https://github.com/SpeckmannWebdesign/Immobilien-rechner/commit/c75cb7c112a0940150891a8c535bd6f2d6d95c96
+                    - button [ref=e326]:
+                      - img [ref=e327]
+                    - generic [ref=e329]: Manual
+          - generic [ref=e330]:
+            - link:
+              - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/deployment/sab5evdlba8k82s1wzl12k7p
+            - generic [ref=e331]:
+              - 'link "Success Started: 2026-03-30 12:52:01 UTC Ended: 2026-03-30 12:53:51 UTC Duration: 01m 50s Finished 1 day ago" [ref=e332] [cursor=pointer]':
+                - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/deployment/sab5evdlba8k82s1wzl12k7p
+                - generic [ref=e334]: Success
+                - generic [ref=e335]:
+                  - text: "Started: 2026-03-30 12:52:01 UTC"
+                  - text: "Ended: 2026-03-30 12:53:51 UTC"
+                  - text: "Duration: 01m 50s"
+                  - text: Finished 1 day ago
+              - generic [ref=e336]:
+                - link:
+                  - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/deployment/sab5evdlba8k82s1wzl12k7p
+                - generic [ref=e337]:
+                  - link:
+                    - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/deployment/sab5evdlba8k82s1wzl12k7p
+                  - generic [ref=e338]:
+                    - link "Commit:" [ref=e339] [cursor=pointer]:
+                      - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/deployment/sab5evdlba8k82s1wzl12k7p
+                    - link "5f2efda" [ref=e340] [cursor=pointer]:
+                      - /url: https://github.com/SpeckmannWebdesign/Immobilien-rechner/commit/5f2efdae08d919bc418e8bf71d792185aa2e25e6
+                    - generic [ref=e341]: "-"
+                    - 'link "fix: Node.js Version auf 22.14.0 pinnen für Prisma v7" [ref=e342] [cursor=pointer]':
+                      - /url: https://github.com/SpeckmannWebdesign/Immobilien-rechner/commit/5f2efdae08d919bc418e8bf71d792185aa2e25e6
+                    - button [ref=e343]:
+                      - img [ref=e344]
+                    - generic [ref=e346]: Manual
+          - generic [ref=e347]:
+            - link:
+              - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/deployment/kiwo6bddexolp46dfm1y41by
+            - generic [ref=e348]:
+              - 'link "Failed Started: 2026-03-30 12:49:37 UTC Ended: 2026-03-30 12:50:04 UTC Duration: 00m 27s Finished 1 day ago" [ref=e349] [cursor=pointer]':
+                - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/deployment/kiwo6bddexolp46dfm1y41by
+                - generic [ref=e351]: Failed
+                - generic [ref=e352]:
+                  - text: "Started: 2026-03-30 12:49:37 UTC"
+                  - text: "Ended: 2026-03-30 12:50:04 UTC"
+                  - text: "Duration: 00m 27s"
+                  - text: Finished 1 day ago
+              - generic [ref=e353]:
+                - link:
+                  - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/deployment/kiwo6bddexolp46dfm1y41by
+                - generic [ref=e354]:
+                  - link:
+                    - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/deployment/kiwo6bddexolp46dfm1y41by
+                  - generic [ref=e355]:
+                    - link "Commit:" [ref=e356] [cursor=pointer]:
+                      - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/deployment/kiwo6bddexolp46dfm1y41by
+                    - link "8268fb4" [ref=e357] [cursor=pointer]:
+                      - /url: https://github.com/SpeckmannWebdesign/Immobilien-rechner/commit/8268fb40b07e01560843240dbcea4b7d397f05cc
+                    - generic [ref=e358]: "-"
+                    - 'link "feat: Phase 5 — Preise, Rechtsseiten, Profil, Analytics, Sentry, Cookie-Consent" [ref=e359] [cursor=pointer]':
+                      - /url: https://github.com/SpeckmannWebdesign/Immobilien-rechner/commit/8268fb40b07e01560843240dbcea4b7d397f05cc
+                    - button [ref=e360]:
+                      - img [ref=e361]
+                    - generic [ref=e363]: Manual
+          - generic [ref=e364]:
+            - link:
+              - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/deployment/dvo28zn1n0j2d049l819hshw
+            - generic [ref=e365]:
+              - 'link "Failed Started: 2026-03-30 12:45:37 UTC Ended: 2026-03-30 12:47:06 UTC Duration: 01m 29s Finished 1 day ago" [ref=e366] [cursor=pointer]':
+                - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/deployment/dvo28zn1n0j2d049l819hshw
+                - generic [ref=e368]: Failed
+                - generic [ref=e369]:
+                  - text: "Started: 2026-03-30 12:45:37 UTC"
+                  - text: "Ended: 2026-03-30 12:47:06 UTC"
+                  - text: "Duration: 01m 29s"
+                  - text: Finished 1 day ago
+              - generic [ref=e370]:
+                - link:
+                  - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/deployment/dvo28zn1n0j2d049l819hshw
+                - generic [ref=e371]:
+                  - link:
+                    - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/deployment/dvo28zn1n0j2d049l819hshw
+                  - generic [ref=e372]:
+                    - link "Commit:" [ref=e373] [cursor=pointer]:
+                      - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/deployment/dvo28zn1n0j2d049l819hshw
+                    - link "8268fb4" [ref=e374] [cursor=pointer]:
+                      - /url: https://github.com/SpeckmannWebdesign/Immobilien-rechner/commit/8268fb40b07e01560843240dbcea4b7d397f05cc
+                    - generic [ref=e375]: "-"
+                    - 'link "feat: Phase 5 — Preise, Rechtsseiten, Profil, Analytics, Sentry, Cookie-Consent" [ref=e376] [cursor=pointer]':
+                      - /url: https://github.com/SpeckmannWebdesign/Immobilien-rechner/commit/8268fb40b07e01560843240dbcea4b7d397f05cc
+                    - button [ref=e377]:
+                      - img [ref=e378]
+                    - generic [ref=e380]: Manual
+  - img
+  - list

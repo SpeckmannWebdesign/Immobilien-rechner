@@ -1,0 +1,138 @@
+- generic [ref=e2]:
+  - region
+  - generic [ref=e3]:
+    - link "Skip to content" [ref=e4] [cursor=pointer]:
+      - /url: "#start-of-content"
+    - banner "Global Navigation Menu" [ref=e8]:
+      - generic [ref=e9]:
+        - generic [ref=e10]:
+          - button "Open menu" [ref=e12] [cursor=pointer]:
+            - img [ref=e13]
+          - link "Homepage (g then d)" [ref=e15] [cursor=pointer]:
+            - /url: /
+            - img [ref=e16]
+        - button "Search or jump to…" [ref=e21] [cursor=pointer]:
+          - generic [ref=e22]:
+            - generic:
+              - img
+            - generic [ref=e23]:
+              - generic:
+                - text: Type
+                - generic: /
+                - text: to search
+        - generic [ref=e24]:
+          - generic [ref=e25]:
+            - generic [ref=e27]:
+              - link "Chat with Copilot" [ref=e29] [cursor=pointer]:
+                - /url: /copilot
+                - img [ref=e30]
+              - button "Open Copilot…" [ref=e34] [cursor=pointer]:
+                - generic:
+                  - img
+            - button "Create new..." [ref=e36] [cursor=pointer]:
+              - generic [ref=e37]:
+                - generic:
+                  - img
+              - generic:
+                - img
+            - link "Issues (g then i)" [ref=e38] [cursor=pointer]:
+              - /url: /issues
+              - img [ref=e39]
+            - link "Pull requests (g then p)" [ref=e42] [cursor=pointer]:
+              - /url: /pulls
+              - img [ref=e43]
+            - link "Repositories" [ref=e45] [cursor=pointer]:
+              - /url: /repos
+              - img [ref=e46]
+          - link "You have no unread notifications (g then n)" [ref=e48] [cursor=pointer]:
+            - /url: /notifications
+            - img [ref=e49]
+          - button "Open user navigation menu" [ref=e52] [cursor=pointer]:
+            - img "User avatar" [ref=e53]
+  - main [ref=e56]:
+    - generic [ref=e57]:
+      - heading "Install immobilien-rechner" [level=2] [ref=e59]:
+        - text: Install
+        - link "immobilien-rechner" [ref=e60] [cursor=pointer]:
+          - /url: https://github.com/apps/immobilien-rechner
+      - generic [ref=e61]:
+        - paragraph [ref=e62]:
+          - text: Install on your personal account SpeckmannWebdesign
+          - img "@SpeckmannWebdesign" [ref=e63]
+        - generic [ref=e64]:
+          - generic [ref=e65]:
+            - generic [ref=e66]:
+              - paragraph [ref=e67]: "for these repositories:"
+              - radiogroup [ref=e69]:
+                - generic [ref=e70]:
+                  - generic [ref=e71]:
+                    - radio "All repositories" [checked] [ref=e72] [cursor=pointer]
+                    - generic [ref=e73]:
+                      - generic [ref=e74] [cursor=pointer]: All repositories
+                      - generic [ref=e75]: This applies to all current and future repositories owned by the resource owner. Also includes public repositories (read-only).
+                  - generic [ref=e76]:
+                    - radio "Only select repositories" [ref=e77] [cursor=pointer]
+                    - generic [ref=e78]:
+                      - generic [ref=e79] [cursor=pointer]: Only select repositories
+                      - generic [ref=e80]: Select at least one repository. Also includes public repositories (read-only).
+            - paragraph [ref=e81]: "with these permissions:"
+            - list [ref=e83]:
+              - listitem [ref=e84]:
+                - img [ref=e85]
+                - strong [ref=e87]: Read
+                - text: access to administration, code, and metadata
+              - listitem [ref=e88]:
+                - img [ref=e89]
+                - strong [ref=e91]: Read
+                - text: and
+                - strong [ref=e92]: write
+                - text: access to pull requests
+            - separator [ref=e93]
+            - generic [ref=e94]: User permissions
+            - paragraph [ref=e95]: immobilien-rechner can also request users' permission to the following resources. These permissions will be requested and authorized on an individual-user basis.
+            - list [ref=e97]:
+              - listitem [ref=e98]:
+                - img [ref=e99]
+                - strong [ref=e101]: Read
+                - text: access to email addresses
+            - separator [ref=e102]
+            - button "Install" [ref=e103] [cursor=pointer]
+          - link "Cancel" [ref=e104] [cursor=pointer]:
+            - /url: /apps/immobilien-rechner
+        - paragraph [ref=e105]: "Next: you’ll be directed to the GitHub App’s site to complete setup."
+  - contentinfo [ref=e106]:
+    - heading "Footer" [level=2] [ref=e107]
+    - generic [ref=e108]:
+      - generic [ref=e109]:
+        - link "GitHub Homepage" [ref=e110] [cursor=pointer]:
+          - /url: https://github.com
+          - img [ref=e111]
+        - generic [ref=e113]: © 2026 GitHub, Inc.
+      - navigation "Footer" [ref=e114]:
+        - heading "Footer navigation" [level=3] [ref=e115]
+        - list "Footer navigation" [ref=e116]:
+          - listitem [ref=e117]:
+            - link "Terms" [ref=e118] [cursor=pointer]:
+              - /url: https://docs.github.com/site-policy/github-terms/github-terms-of-service
+          - listitem [ref=e119]:
+            - link "Privacy" [ref=e120] [cursor=pointer]:
+              - /url: https://docs.github.com/site-policy/privacy-policies/github-privacy-statement
+          - listitem [ref=e121]:
+            - link "Security" [ref=e122] [cursor=pointer]:
+              - /url: https://github.com/security
+          - listitem [ref=e123]:
+            - link "Status" [ref=e124] [cursor=pointer]:
+              - /url: https://www.githubstatus.com/
+          - listitem [ref=e125]:
+            - link "Community" [ref=e126] [cursor=pointer]:
+              - /url: https://github.community/
+          - listitem [ref=e127]:
+            - link "Docs" [ref=e128] [cursor=pointer]:
+              - /url: https://docs.github.com/
+          - listitem [ref=e129]:
+            - link "Contact" [ref=e130] [cursor=pointer]:
+              - /url: https://support.github.com?tags=dotcom-footer
+          - listitem [ref=e131]:
+            - button "Manage cookies" [ref=e133] [cursor=pointer]
+          - listitem [ref=e134]:
+            - button "Do not share my personal information" [ref=e136] [cursor=pointer]

@@ -1,0 +1,2654 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Immobilien-Rechner — Design Preview "Light Premium Finance"</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ========================================
+   DESIGN SYSTEM — Light Premium Finance
+   Apple-inspired clean & bright
+   ======================================== */
+:root {
+  /* Backgrounds */
+  --bg-base: #FFFFFF;
+  --bg-surface: #F8F9FC;
+  --bg-elevated: #FFFFFF;
+  --bg-elevated-hover: #F1F3F9;
+
+  /* Borders */
+  --border: #E2E5EF;
+  --border-hover: #C7CCD9;
+  --border-subtle: rgba(0,0,0,0.04);
+
+  /* Accent Colors */
+  --primary: #4F46E5;
+  --primary-light: #6366F1;
+  --primary-glow: rgba(79,70,229,0.15);
+  --success: #059669;
+  --success-glow: rgba(5,150,105,0.12);
+  --warning: #D97706;
+  --warning-glow: rgba(217,119,6,0.12);
+  --danger: #DC2626;
+  --danger-glow: rgba(220,38,38,0.12);
+  --info: #0891B2;
+  --info-glow: rgba(8,145,178,0.12);
+
+  /* Text */
+  --text-primary: #111827;
+  --text-secondary: #4B5563;
+  --text-muted: #9CA3AF;
+  --text-accent: #4F46E5;
+
+  /* Gradients */
+  --gradient-hero: linear-gradient(135deg, #4F46E5 0%, #0891B2 50%, #059669 100%);
+  --gradient-card-glow: radial-gradient(ellipse at top, rgba(79,70,229,0.04), transparent 70%);
+  --gradient-shimmer: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 24px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg-base);
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ========================================
+   NAVIGATION
+   ======================================== */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 0 40px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255,255,255,0.78);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid var(--border);
+  transition: all 0.3s ease;
+}
+
+.nav-logo {
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  background: var(--gradient-hero);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--text-primary); }
+
+.nav-cta {
+  background: var(--primary);
+  color: white !important;
+  padding: 8px 20px;
+  border-radius: 999px;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  transition: all 0.2s !important;
+  box-shadow: 0 0 20px var(--primary-glow);
+}
+
+.nav-cta:hover {
+  background: var(--primary-light) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 0 30px var(--primary-glow);
+}
+
+/* ========================================
+   SECTION NAVIGATION (Tab Bar)
+   ======================================== */
+.section-nav {
+  position: fixed;
+  top: 64px;
+  left: 0;
+  right: 0;
+  z-index: 99;
+  background: rgba(248,249,252,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  padding: 8px 20px;
+}
+
+.section-nav a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 6px 16px;
+  border-radius: 999px;
+  transition: all 0.2s;
+}
+
+.section-nav a:hover,
+.section-nav a.active {
+  color: var(--text-primary);
+  background: var(--bg-elevated);
+}
+
+/* ========================================
+   HERO SECTION
+   ======================================== */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 40px 80px;
+  overflow: hidden;
+}
+
+/* Gradient orbs */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  left: -10%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(79,70,229,0.08) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: float 8s ease-in-out infinite;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -10%;
+  right: -5%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(8,145,178,0.06) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: float 10s ease-in-out infinite reverse;
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(30px, -20px) scale(1.05); }
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 32px;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-badge .dot {
+  width: 6px; height: 6px;
+  background: var(--success);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--success-glow);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.hero h1 {
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  text-align: center;
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.hero h1 .gradient-text {
+  background: var(--gradient-hero);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 200% 200%;
+  animation: gradient-shift 4s ease-in-out infinite;
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.hero-subtitle {
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  color: var(--text-secondary);
+  text-align: center;
+  max-width: 600px;
+  margin-bottom: 40px;
+  line-height: 1.5;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 64px;
+  position: relative;
+  z-index: 1;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 14px 32px;
+  border-radius: 999px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 0 30px var(--primary-glow);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: var(--gradient-shimmer);
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  50%, 100% { left: 100%; }
+}
+
+.btn-primary:hover {
+  background: var(--primary-light);
+  transform: translateY(-2px);
+  box-shadow: 0 0 40px var(--primary-glow);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+  padding: 14px 32px;
+  border-radius: 999px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-secondary:hover {
+  border-color: var(--border-hover);
+  color: var(--text-primary);
+  background: var(--bg-elevated);
+}
+
+/* Hero Mockup */
+.hero-mockup {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 900px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow:
+    0 0 0 1px rgba(79,70,229,0.08),
+    0 20px 60px rgba(0,0,0,0.1),
+    0 0 80px rgba(79,70,229,0.04);
+  transform: perspective(1200px) rotateX(2deg);
+  transition: transform 0.5s ease;
+}
+
+.hero-mockup:hover {
+  transform: perspective(1200px) rotateX(0deg);
+}
+
+.mockup-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 20px;
+  background: var(--bg-elevated);
+  border-bottom: 1px solid var(--border);
+}
+
+.mockup-dot {
+  width: 12px; height: 12px;
+  border-radius: 50%;
+}
+
+.mockup-dot.red { background: #FF5F57; }
+.mockup-dot.yellow { background: #FEBC2E; }
+.mockup-dot.green { background: #28C840; }
+
+.mockup-content {
+  padding: 24px;
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 20px;
+  min-height: 380px;
+}
+
+/* ========================================
+   GLASSMORPHIC PANELS
+   ======================================== */
+.glass-panel {
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-panel::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(79,70,229,0.25), transparent);
+}
+
+/* ========================================
+   INPUT FIELDS (Dark Style)
+   ======================================== */
+.input-group {
+  margin-bottom: 16px;
+}
+
+.input-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.input-field {
+  width: 100%;
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  color: var(--text-primary);
+  font-size: 15px;
+  font-family: 'Inter', sans-serif;
+  font-variant-numeric: tabular-nums;
+  transition: all 0.2s;
+  outline: none;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+}
+
+.input-field:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(79,70,229,0.1), 0 1px 3px rgba(0,0,0,0.06);
+}
+
+.input-field::placeholder {
+  color: var(--text-muted);
+}
+
+select.input-field {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748B' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 36px;
+}
+
+/* Range Slider */
+.range-slider {
+  width: 100%;
+  -webkit-appearance: none;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--border);
+  outline: none;
+  margin-top: 8px;
+}
+
+.range-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: var(--primary);
+  cursor: pointer;
+  box-shadow: 0 0 10px var(--primary-glow);
+  transition: all 0.2s;
+}
+
+.range-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 16px var(--primary-glow);
+}
+
+/* ========================================
+   BENTO GRID — Results Dashboard
+   ======================================== */
+.bento-grid {
+  display: grid;
+  gap: 12px;
+}
+
+.bento-grid.cols-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.bento-grid.cols-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.bento-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+.bento-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.bento-card:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-2px);
+}
+
+.bento-card:hover::before { opacity: 1; }
+
+.bento-card.accent-green::before { background: var(--success); box-shadow: 0 0 20px var(--success-glow); }
+.bento-card.accent-red::before { background: var(--danger); box-shadow: 0 0 20px var(--danger-glow); }
+.bento-card.accent-blue::before { background: var(--primary); box-shadow: 0 0 20px var(--primary-glow); }
+.bento-card.accent-amber::before { background: var(--warning); box-shadow: 0 0 20px var(--warning-glow); }
+.bento-card.accent-cyan::before { background: var(--info); box-shadow: 0 0 20px var(--info-glow); }
+
+.bento-card .card-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+
+.bento-card .card-value {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+
+.bento-card .card-value.green { color: var(--success); }
+.bento-card .card-value.red { color: var(--danger); }
+.bento-card .card-value.blue { color: var(--primary-light); }
+.bento-card .card-value.amber { color: var(--warning); }
+.bento-card .card-value.cyan { color: var(--info); }
+
+.bento-card .card-change {
+  font-size: 12px;
+  margin-top: 4px;
+  color: var(--text-muted);
+}
+
+/* Span full width */
+.bento-card.full-width {
+  grid-column: 1 / -1;
+}
+
+/* ========================================
+   CHART AREA
+   ======================================== */
+.chart-container {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.chart-container::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 60%;
+  background: linear-gradient(0deg, var(--bg-elevated), transparent);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.chart-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+canvas {
+  position: relative;
+  z-index: 1;
+}
+
+/* ========================================
+   TOOLS BENTO SECTION
+   ======================================== */
+.section {
+  padding: 100px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--primary-light);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin-bottom: 16px;
+}
+
+.section-subtitle {
+  font-size: 18px;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin-bottom: 48px;
+}
+
+.tools-bento {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto;
+  gap: 16px;
+}
+
+.tool-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.tool-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-card-glow);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.tool-card:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+}
+
+.tool-card:hover::before { opacity: 1; }
+
+.tool-card .tool-icon {
+  width: 40px; height: 40px;
+  border-radius: var(--radius-sm);
+  background: rgba(99,102,241,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  font-size: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.tool-card .tool-name {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  position: relative;
+  z-index: 1;
+}
+
+.tool-card .tool-desc {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.4;
+  position: relative;
+  z-index: 1;
+}
+
+.tool-card .mini-chart {
+  margin-top: 16px;
+  height: 60px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Bento sizes */
+.tool-card.span-2 { grid-column: span 2; }
+.tool-card.span-2-row { grid-row: span 2; }
+
+/* Category badges */
+.tool-category {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 999px;
+  margin-bottom: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+.tool-category.kern { background: rgba(99,102,241,0.15); color: var(--primary-light); }
+.tool-category.erweitert { background: rgba(6,182,212,0.15); color: var(--info); }
+.tool-category.hausverwaltung { background: rgba(16,185,129,0.15); color: var(--success); }
+
+/* ========================================
+   FEATURES SECTION
+   ======================================== */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.feature-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  transition: all 0.3s;
+}
+
+.feature-card:hover {
+  border-color: var(--border-hover);
+  background: var(--bg-elevated);
+}
+
+.feature-icon {
+  width: 48px; height: 48px;
+  border-radius: var(--radius-md);
+  background: rgba(99,102,241,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.feature-card h3 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.feature-card p {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* ========================================
+   STATS SECTION
+   ======================================== */
+.stats-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin: 80px 0;
+}
+
+.stat-item {
+  background: var(--bg-surface);
+  padding: 40px 24px;
+  text-align: center;
+  position: relative;
+}
+
+.stat-value {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  background: var(--gradient-hero);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 8px;
+}
+
+.stat-label {
+  font-size: 14px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* ========================================
+   PRICING SECTION
+   ======================================== */
+.pricing-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 48px;
+}
+
+.pricing-toggle span {
+  font-size: 14px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.pricing-toggle span.active { color: var(--text-primary); }
+
+.toggle-switch {
+  width: 48px; height: 26px;
+  background: var(--border);
+  border-radius: 999px;
+  position: relative;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.toggle-switch.active { background: var(--primary); }
+
+.toggle-switch::after {
+  content: '';
+  position: absolute;
+  top: 3px; left: 3px;
+  width: 20px; height: 20px;
+  background: white;
+  border-radius: 50%;
+  transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.toggle-switch.active::after { transform: translateX(22px); }
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.price-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 32px;
+  transition: all 0.3s;
+  position: relative;
+}
+
+.price-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+}
+
+.price-card.popular {
+  background: #FFFFFF;
+  border-color: var(--primary);
+  box-shadow: 0 0 40px rgba(79,70,229,0.1);
+  transform: scale(1.02);
+}
+
+.price-card.popular:hover {
+  transform: scale(1.02) translateY(-4px);
+}
+
+.popular-badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--primary);
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 16px;
+  border-radius: 999px;
+  box-shadow: 0 4px 12px var(--primary-glow);
+}
+
+.price-card h3 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.price-card .price {
+  font-size: 48px;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  margin-bottom: 4px;
+}
+
+.price-card .price span {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+.price-card .price-period {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+}
+
+.price-features {
+  list-style: none;
+  margin-bottom: 24px;
+}
+
+.price-features li {
+  padding: 8px 0;
+  font-size: 14px;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.price-features .check { color: var(--success); font-size: 16px; }
+.price-features .x { color: var(--text-muted); font-size: 16px; }
+
+.price-btn {
+  width: 100%;
+  padding: 14px;
+  border-radius: var(--radius-md);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  border: none;
+}
+
+.price-btn.primary {
+  background: var(--primary);
+  color: white;
+  box-shadow: 0 0 20px var(--primary-glow);
+}
+
+.price-btn.primary:hover {
+  background: var(--primary-light);
+  box-shadow: 0 0 30px var(--primary-glow);
+}
+
+.price-btn.outline {
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+}
+
+.price-btn.outline:hover {
+  background: var(--bg-elevated);
+  border-color: var(--border-hover);
+}
+
+/* ========================================
+   CALCULATOR PAGE (Rendite-Rechner Demo)
+   ======================================== */
+.calc-section {
+  background: var(--bg-base);
+  border-top: 1px solid var(--border);
+}
+
+.calc-header {
+  padding: 24px 0;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 32px;
+}
+
+.calc-breadcrumb {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.calc-breadcrumb a {
+  color: var(--text-accent);
+  text-decoration: none;
+}
+
+.calc-header h2 {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.calc-layout {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.calc-results {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ========================================
+   DONUT CHART
+   ======================================== */
+.donut-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+}
+
+.donut-center {
+  position: absolute;
+  text-align: center;
+}
+
+.donut-center .donut-value {
+  font-size: 36px;
+  font-weight: 900;
+  color: var(--success);
+  letter-spacing: -0.03em;
+}
+
+.donut-center .donut-label {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* ========================================
+   DEUTSCHLAND KARTE (Grunderwerbsteuer)
+   ======================================== */
+.map-section {
+  border-top: 1px solid var(--border);
+  padding-top: 80px;
+}
+
+.map-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.map-container {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 32px;
+  position: relative;
+}
+
+.map-legend {
+  display: flex;
+  gap: 16px;
+  margin-top: 20px;
+  justify-content: center;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.legend-dot {
+  width: 10px; height: 10px;
+  border-radius: 2px;
+}
+
+/* State table */
+.state-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.state-table th {
+  text-align: left;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.state-table td {
+  padding: 12px 16px;
+  font-size: 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.state-table tr:hover td {
+  background: rgba(79,70,229,0.04);
+}
+
+.state-table .rate {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.rate-bar {
+  height: 4px;
+  border-radius: 2px;
+  background: var(--border);
+  overflow: hidden;
+}
+
+.rate-bar-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.5s ease;
+}
+
+/* ========================================
+   DASHBOARD PREVIEW
+   ======================================== */
+.dashboard-section {
+  border-top: 1px solid var(--border);
+}
+
+.dashboard-layout {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 0;
+  min-height: 600px;
+  background: var(--bg-base);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+}
+
+.sidebar {
+  background: var(--bg-surface);
+  border-right: 1px solid var(--border);
+  padding: 24px 0;
+}
+
+.sidebar-logo {
+  padding: 0 20px 24px;
+  font-size: 16px;
+  font-weight: 800;
+  background: var(--gradient-hero);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.sidebar-nav {
+  list-style: none;
+}
+
+.sidebar-nav li a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 20px;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s;
+  border-left: 2px solid transparent;
+}
+
+.sidebar-nav li a:hover {
+  color: var(--text-secondary);
+  background: rgba(0,0,0,0.03);
+}
+
+.sidebar-nav li a.active {
+  color: var(--primary);
+  background: rgba(79,70,229,0.06);
+  border-left-color: var(--primary);
+}
+
+.sidebar-nav li a .icon {
+  font-size: 18px;
+  width: 20px;
+  text-align: center;
+}
+
+.sidebar-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 16px 0;
+}
+
+.dashboard-main {
+  padding: 32px;
+}
+
+.dashboard-welcome {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+
+.dashboard-date {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-bottom: 32px;
+}
+
+.dashboard-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.dash-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.dash-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+}
+
+.dash-card:nth-child(1)::before { background: var(--primary); }
+.dash-card:nth-child(2)::before { background: var(--success); }
+.dash-card:nth-child(3)::before { background: var(--info); }
+.dash-card:nth-child(4)::before { background: var(--warning); }
+
+.dash-card .dash-label {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.dash-card .dash-value {
+  font-size: 24px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.dash-card .dash-change {
+  font-size: 12px;
+  color: var(--success);
+  margin-top: 4px;
+}
+
+/* Sparkline placeholder */
+.sparkline {
+  margin-top: 8px;
+  height: 30px;
+}
+
+/* Dashboard bottom grid */
+.dashboard-bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.dash-panel {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 20px;
+}
+
+.dash-panel h3 {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.recent-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.recent-item:last-child { border: none; }
+
+.recent-item .recent-name {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.recent-item .recent-value {
+  font-size: 14px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ========================================
+   CTA SECTION
+   ======================================== */
+.cta-section {
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-section::before {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(79,70,229,0.05), transparent 70%);
+  border-radius: 50%;
+}
+
+.cta-section h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin-bottom: 16px;
+  position: relative;
+}
+
+.cta-section p {
+  font-size: 18px;
+  color: var(--text-secondary);
+  margin-bottom: 32px;
+  position: relative;
+}
+
+.cta-section .btn-primary {
+  position: relative;
+  font-size: 18px;
+  padding: 16px 40px;
+}
+
+/* ========================================
+   FOOTER
+   ======================================== */
+.footer {
+  border-top: 1px solid var(--border);
+  padding: 64px 40px 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 48px;
+}
+
+.footer-brand {
+  font-size: 16px;
+  font-weight: 800;
+  background: var(--gradient-hero);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 12px;
+}
+
+.footer-desc {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.footer h4 {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 16px;
+}
+
+.footer ul {
+  list-style: none;
+}
+
+.footer ul li { margin-bottom: 10px; }
+
+.footer ul a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.2s;
+}
+
+.footer ul a:hover { color: var(--text-primary); }
+
+.footer-bottom {
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* ========================================
+   SECTION DIVIDER
+   ======================================== */
+.section-divider {
+  text-align: center;
+  padding: 80px 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-divider h2 {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--primary-light);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  padding: 8px 24px;
+  background: rgba(99,102,241,0.1);
+  border: 1px solid rgba(99,102,241,0.2);
+  border-radius: 999px;
+  display: inline-block;
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+@media (max-width: 768px) {
+  .nav { padding: 0 20px; }
+  .section { padding: 60px 20px; }
+  .hero { padding: 100px 20px 60px; }
+  .hero h1 { font-size: 2.5rem; }
+  .tools-bento { grid-template-columns: 1fr; }
+  .tool-card.span-2 { grid-column: span 1; }
+  .features-grid { grid-template-columns: 1fr; }
+  .stats-bar { grid-template-columns: repeat(2, 1fr); }
+  .pricing-grid { grid-template-columns: 1fr; }
+  .calc-layout { grid-template-columns: 1fr; }
+  .map-layout { grid-template-columns: 1fr; }
+  .dashboard-layout { grid-template-columns: 1fr; }
+  .sidebar { display: none; }
+  .dashboard-cards { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .bento-grid.cols-3 { grid-template-columns: 1fr; }
+  .hero-mockup { transform: none; }
+  .hero-mockup .mockup-content { grid-template-columns: 1fr; }
+  .section-nav { display: none; }
+}
+
+/* Animations */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
+</head>
+<body>
+
+<!-- ========================================
+     NAVIGATION
+     ======================================== -->
+<nav class="nav">
+  <div class="nav-logo">Immobilien-Rechner</div>
+  <ul class="nav-links">
+    <li><a href="#tools">Rechner</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#pricing">Preise</a></li>
+    <li><a href="#" style="color: var(--text-muted);">Anmelden</a></li>
+    <li><a href="#" class="nav-cta">Kostenlos testen</a></li>
+  </ul>
+</nav>
+
+<!-- Section Nav -->
+<div class="section-nav">
+  <a href="#hero" class="active">Landing Page</a>
+  <a href="#calculator">Rechner-Demo</a>
+  <a href="#map">Deutschland-Karte</a>
+  <a href="#dashboard">Dashboard</a>
+</div>
+
+<!-- ========================================
+     HERO SECTION
+     ======================================== -->
+<section class="hero" id="hero">
+  <div class="hero-badge">
+    <span class="dot"></span>
+    12 professionelle Rechner — Jetzt 14 Tage kostenlos
+  </div>
+
+  <h1>
+    Immobilien-<br>
+    <span class="gradient-text">Entscheidungen.</span><br>
+    Datenbasiert. Sofort.
+  </h1>
+
+  <p class="hero-subtitle">
+    Professionelle Analyse-Tools für Makler, Investoren und Hausverwaltungen.
+    Rendite berechnen, Cashflows analysieren, Finanzierungen planen.
+  </p>
+
+  <div class="hero-buttons">
+    <button class="btn-primary">14 Tage kostenlos testen</button>
+    <button class="btn-secondary">Alle Rechner ansehen →</button>
+  </div>
+
+  <!-- Live Calculator Mockup -->
+  <div class="hero-mockup">
+    <div class="mockup-header">
+      <span class="mockup-dot red"></span>
+      <span class="mockup-dot yellow"></span>
+      <span class="mockup-dot green"></span>
+      <span style="flex:1; text-align:center; font-size:13px; color:var(--text-muted); font-weight:500;">Rendite-Rechner</span>
+    </div>
+    <div class="mockup-content">
+      <!-- Left: Inputs -->
+      <div class="glass-panel">
+        <div class="input-group">
+          <label class="input-label">Kaufpreis</label>
+          <input type="text" class="input-field" value="285.000 €" readonly>
+        </div>
+        <div class="input-group">
+          <label class="input-label">Monatliche Kaltmiete</label>
+          <input type="text" class="input-field" value="1.250 €" readonly>
+        </div>
+        <div class="input-group">
+          <label class="input-label">Kaufnebenkosten</label>
+          <input type="text" class="input-field" value="12,5 %" readonly>
+          <input type="range" class="range-slider" value="12.5" min="5" max="20">
+        </div>
+        <div class="input-group">
+          <label class="input-label">Eigenkapital</label>
+          <input type="text" class="input-field" value="80.000 €" readonly>
+        </div>
+      </div>
+
+      <!-- Right: Results -->
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div class="bento-grid cols-3">
+          <div class="bento-card accent-green">
+            <div class="card-label">Brutto-Rendite</div>
+            <div class="card-value green" id="hero-brutto">5,26%</div>
+          </div>
+          <div class="bento-card accent-green">
+            <div class="card-label">Netto-Rendite</div>
+            <div class="card-value green">3,82%</div>
+          </div>
+          <div class="bento-card accent-blue">
+            <div class="card-label">EK-Rendite</div>
+            <div class="card-value blue">12,4%</div>
+          </div>
+        </div>
+        <div class="chart-container" style="flex:1;">
+          <div class="chart-title">Kapitalverteilung</div>
+          <canvas id="heroDonut" width="320" height="180"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================
+     TOOLS BENTO GRID
+     ======================================== -->
+<section class="section" id="tools">
+  <div class="section-label">12 Profi-Rechner</div>
+  <h2 class="section-title">Alle Tools, die Sie brauchen.</h2>
+  <p class="section-subtitle">Von der ersten Analyse bis zur Hausverwaltung — jeder Rechner mit Live-Visualisierung und sofortigen Ergebnissen.</p>
+
+  <div class="tools-bento">
+    <!-- Row 1 -->
+    <div class="tool-card">
+      <span class="tool-category kern">Investoren & Makler</span>
+      <div class="tool-icon">📊</div>
+      <div class="tool-name">Rendite-Rechner</div>
+      <div class="tool-desc">Brutto-, Netto- und Eigenkapitalrendite</div>
+      <div class="mini-chart">
+        <canvas id="miniDonut" width="200" height="55"></canvas>
+      </div>
+    </div>
+
+    <div class="tool-card">
+      <span class="tool-category kern">Investoren & Makler</span>
+      <div class="tool-icon">🏦</div>
+      <div class="tool-name">Kaufnebenkosten</div>
+      <div class="tool-desc">Alle Kosten auf einen Blick</div>
+      <div class="mini-chart">
+        <canvas id="miniBar" width="200" height="55"></canvas>
+      </div>
+    </div>
+
+    <div class="tool-card span-2">
+      <span class="tool-category kern">Investoren & Makler</span>
+      <div class="tool-icon">💰</div>
+      <div class="tool-name">Finanzierungsrechner</div>
+      <div class="tool-desc">Annuitätendarlehen, Zinsbindung & Sondertilgung — mit Restschuld-Prognose</div>
+      <div class="mini-chart">
+        <canvas id="miniArea" width="440" height="55"></canvas>
+      </div>
+    </div>
+
+    <!-- Row 2 -->
+    <div class="tool-card span-2">
+      <span class="tool-category kern">Investoren & Makler</span>
+      <div class="tool-icon">📉</div>
+      <div class="tool-name">Cashflow-Rechner</div>
+      <div class="tool-desc">Monatliche Einnahmen vs. Ausgaben — Waterfall-Visualisierung</div>
+      <div class="mini-chart">
+        <canvas id="miniWaterfall" width="440" height="55"></canvas>
+      </div>
+    </div>
+
+    <div class="tool-card">
+      <span class="tool-category kern">Investoren & Makler</span>
+      <div class="tool-icon">🗺️</div>
+      <div class="tool-name">Grunderwerbsteuer</div>
+      <div class="tool-desc">Interaktive Deutschland-Karte</div>
+      <div class="mini-chart" style="text-align:center; font-size: 32px; line-height: 55px;">🇩🇪</div>
+    </div>
+
+    <div class="tool-card">
+      <span class="tool-category erweitert">Erweitert</span>
+      <div class="tool-icon">💼</div>
+      <div class="tool-name">Steuerersparnis</div>
+      <div class="tool-desc">AfA-Berechnung & Steuervorteil</div>
+    </div>
+
+    <!-- Row 3 -->
+    <div class="tool-card">
+      <span class="tool-category erweitert">Erweitert</span>
+      <div class="tool-icon">📈</div>
+      <div class="tool-name">Mietsteigerung</div>
+      <div class="tool-desc">Prognose über 10-30 Jahre</div>
+      <div class="mini-chart">
+        <canvas id="miniLine" width="200" height="55"></canvas>
+      </div>
+    </div>
+
+    <div class="tool-card">
+      <span class="tool-category erweitert">Erweitert</span>
+      <div class="tool-icon">🔧</div>
+      <div class="tool-name">Instandhaltung</div>
+      <div class="tool-desc">Peters'sche Formel</div>
+    </div>
+
+    <div class="tool-card">
+      <span class="tool-category erweitert">Erweitert</span>
+      <div class="tool-icon">⚖️</div>
+      <div class="tool-name">Objektvergleich</div>
+      <div class="tool-desc">Bis zu 3 Objekte vergleichen</div>
+    </div>
+
+    <div class="tool-card">
+      <span class="tool-category erweitert">Erweitert</span>
+      <div class="tool-icon">📄</div>
+      <div class="tool-name">Tilgungsplan</div>
+      <div class="tool-desc">PDF-Export inklusive</div>
+    </div>
+
+    <!-- Row 4 — Hausverwaltung -->
+    <div class="tool-card span-2">
+      <span class="tool-category hausverwaltung">Hausverwaltungen</span>
+      <div class="tool-icon">🏠</div>
+      <div class="tool-name">Nebenkostenabrechnung</div>
+      <div class="tool-desc">Umlagefähige Kosten berechnen — nach Fläche, Personen oder Einheiten</div>
+    </div>
+
+    <div class="tool-card span-2">
+      <span class="tool-category hausverwaltung">Hausverwaltungen</span>
+      <div class="tool-icon">📝</div>
+      <div class="tool-name">Mieterhöhungs-Rechner</div>
+      <div class="tool-desc">Kappungsgrenzen, Vergleichsmiete, angespannte Märkte — alles rechtssicher</div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================
+     FEATURES SECTION
+     ======================================== -->
+<section class="section" id="features">
+  <div class="section-label">Warum wir</div>
+  <h2 class="section-title">Premium-Tools. Kein Kompromiss.</h2>
+  <p class="section-subtitle">Jedes Detail für Profis gebaut, die schnelle und fundierte Entscheidungen treffen.</p>
+
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">🎯</div>
+      <h3>12 Profi-Rechner</h3>
+      <p>Rendite, Cashflow, Finanzierung, Steuer — alle Analysen die Sie für fundierte Immobilien-Entscheidungen brauchen.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🔗</div>
+      <h3>Auf Ihrer Website einbetten</h3>
+      <p>Embed-Code für Ihre Website. Bieten Sie Ihren Besuchern professionelle Rechner unter Ihrer eigenen Marke.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🛡️</div>
+      <h3>100% DSGVO-konform</h3>
+      <p>Hosting in Deutschland (Hetzner). Keine Daten an Dritte. Keine Cookies für Tracking. Vollständig konform.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">⚡</div>
+      <h3>Sofort einsatzbereit</h3>
+      <p>Kein Setup, keine Installation. Registrieren und sofort alle 12 Rechner nutzen. 14 Tage kostenlos testen.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================
+     STATS
+     ======================================== -->
+<div style="max-width: 1200px; margin: 0 auto; padding: 0 40px;">
+  <div class="stats-bar">
+    <div class="stat-item">
+      <div class="stat-value" data-count="12">0</div>
+      <div class="stat-label">Profi-Rechner</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value" data-count="16">0</div>
+      <div class="stat-label">Bundesländer</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value" data-count="14">0</div>
+      <div class="stat-label">Tage kostenlos</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value" data-count="100">0</div>
+      <div class="stat-label">% DSGVO-konform</div>
+    </div>
+  </div>
+</div>
+
+<!-- ========================================
+     PRICING
+     ======================================== -->
+<section class="section" id="pricing">
+  <div style="text-align: center;">
+    <div class="section-label">Preise</div>
+    <h2 class="section-title" style="text-align:center;">Einfach. Transparent. Fair.</h2>
+    <p class="section-subtitle" style="margin: 0 auto 32px; text-align:center;">14 Tage kostenlos testen. Jederzeit kündbar.</p>
+  </div>
+
+  <div class="pricing-toggle">
+    <span class="active">Monatlich</span>
+    <div class="toggle-switch" onclick="this.classList.toggle('active')"></div>
+    <span>Jährlich <span style="color: var(--success); font-size:12px;">-20%</span></span>
+  </div>
+
+  <div class="pricing-grid">
+    <div class="price-card">
+      <h3>Starter</h3>
+      <div class="price">19€ <span>/ Monat</span></div>
+      <div class="price-period">Nur Dashboard-Zugang</div>
+      <ul class="price-features">
+        <li><span class="check">✓</span> Alle 12 Rechner im Dashboard</li>
+        <li><span class="check">✓</span> Unbegrenzte Berechnungen</li>
+        <li><span class="x">✕</span> Keine Embed-Widgets</li>
+        <li><span class="x">✕</span> Kein PDF-Export</li>
+      </ul>
+      <button class="price-btn outline">Kostenlos testen</button>
+    </div>
+
+    <div class="price-card popular">
+      <div class="popular-badge">Beliebtester Plan</div>
+      <h3>Pro</h3>
+      <div class="price">39€ <span>/ Monat</span></div>
+      <div class="price-period">Dashboard + 1 Embed</div>
+      <ul class="price-features">
+        <li><span class="check">✓</span> Alle 12 Rechner im Dashboard</li>
+        <li><span class="check">✓</span> Unbegrenzte Berechnungen</li>
+        <li><span class="check">✓</span> 1 Embed-Widget für Ihre Website</li>
+        <li><span class="check">✓</span> PDF-Export</li>
+        <li><span class="check">✓</span> Prioritäts-Support</li>
+      </ul>
+      <button class="price-btn primary">Kostenlos testen</button>
+    </div>
+
+    <div class="price-card">
+      <h3>Business</h3>
+      <div class="price">69€ <span>/ Monat</span></div>
+      <div class="price-period">Alles inklusive</div>
+      <ul class="price-features">
+        <li><span class="check">✓</span> Alle 12 Rechner im Dashboard</li>
+        <li><span class="check">✓</span> Unbegrenzte Berechnungen</li>
+        <li><span class="check">✓</span> Alle 12 Embed-Widgets</li>
+        <li><span class="check">✓</span> PDF-Export</li>
+        <li><span class="check">✓</span> Prioritäts-Support</li>
+        <li><span class="check">✓</span> Custom Branding</li>
+      </ul>
+      <button class="price-btn outline">Kostenlos testen</button>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================
+     CTA
+     ======================================== -->
+<section class="section cta-section">
+  <h2>Bereit für bessere<br><span class="gradient-text" style="background: var(--gradient-hero); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Immobilien-Analysen?</span></h2>
+  <p>Starten Sie jetzt kostenlos. Kein Risiko, keine Kreditkarte.</p>
+  <button class="btn-primary">14 Tage kostenlos testen →</button>
+</section>
+
+<!-- ========================================
+     SECTION DIVIDER: RECHNER DEMO
+     ======================================== -->
+<div class="section-divider" id="calculator">
+  <h2>⬇ Rechner-Seite: Rendite-Rechner</h2>
+</div>
+
+<!-- ========================================
+     CALCULATOR PAGE DEMO
+     ======================================== -->
+<section class="section calc-section">
+  <div class="calc-header">
+    <div class="calc-breadcrumb">
+      <a href="#">Dashboard</a> / <a href="#">Rechner</a> / Rendite-Rechner
+    </div>
+    <h2>📊 Rendite-Rechner</h2>
+  </div>
+
+  <div class="calc-layout">
+    <!-- Input Panel -->
+    <div class="glass-panel">
+      <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 20px; color: var(--text-secondary);">Eingaben</h3>
+
+      <div class="input-group">
+        <label class="input-label">Kaufpreis der Immobilie</label>
+        <input type="text" class="input-field" id="calcKaufpreis" value="285.000" placeholder="z.B. 285.000">
+        <input type="range" class="range-slider" min="50000" max="1000000" value="285000" step="5000"
+               oninput="document.getElementById('calcKaufpreis').value = parseInt(this.value).toLocaleString('de-DE')">
+      </div>
+
+      <div class="input-group">
+        <label class="input-label">Monatliche Kaltmiete</label>
+        <input type="text" class="input-field" value="1.250 €">
+      </div>
+
+      <div class="input-group">
+        <label class="input-label">Kaufnebenkosten</label>
+        <input type="text" class="input-field" value="12,07 %">
+        <input type="range" class="range-slider" min="5" max="20" value="12" step="0.1">
+      </div>
+
+      <div class="input-group">
+        <label class="input-label">Eigenkapital</label>
+        <input type="text" class="input-field" value="80.000 €">
+        <input type="range" class="range-slider" min="0" max="285000" value="80000" step="5000">
+      </div>
+
+      <div class="input-group">
+        <label class="input-label">Jährl. Bewirtschaftungskosten</label>
+        <input type="text" class="input-field" value="3.600 €">
+      </div>
+
+      <div class="input-group">
+        <label class="input-label">Zinssatz</label>
+        <input type="text" class="input-field" value="3,50 %">
+        <input type="range" class="range-slider" min="1" max="8" value="3.5" step="0.1">
+      </div>
+
+      <button class="btn-primary" style="width: 100%; margin-top: 16px; border-radius: var(--radius-md);">
+        Berechnen
+      </button>
+    </div>
+
+    <!-- Results Dashboard -->
+    <div class="calc-results">
+      <!-- Top Metrics -->
+      <div class="bento-grid cols-3">
+        <div class="bento-card accent-green">
+          <div class="card-label">Bruttomietrendite</div>
+          <div class="card-value green">5,26%</div>
+          <div class="card-change">↑ Gute Rendite</div>
+        </div>
+        <div class="bento-card accent-green">
+          <div class="card-label">Nettomietrendite</div>
+          <div class="card-value green">3,82%</div>
+          <div class="card-change">Nach Bewirtschaftung</div>
+        </div>
+        <div class="bento-card accent-blue">
+          <div class="card-label">EK-Rendite</div>
+          <div class="card-value blue">12,41%</div>
+          <div class="card-change">Hebel-Effekt aktiv</div>
+        </div>
+      </div>
+
+      <!-- Donut Chart -->
+      <div class="chart-container">
+        <div class="chart-title">Kapitalverteilung</div>
+        <div class="donut-container">
+          <canvas id="resultDonut" width="280" height="280"></canvas>
+          <div class="donut-center">
+            <div class="donut-value">5,26%</div>
+            <div class="donut-label">Brutto-Rendite</div>
+          </div>
+        </div>
+        <div style="display: flex; justify-content: center; gap: 24px; margin-top: 8px;">
+          <div style="display:flex; align-items:center; gap:8px; font-size:13px; color:var(--text-secondary);">
+            <div style="width:12px;height:12px;border-radius:3px;background:#4F46E5;"></div> Eigenkapital
+          </div>
+          <div style="display:flex; align-items:center; gap:8px; font-size:13px; color:var(--text-secondary);">
+            <div style="width:12px;height:12px;border-radius:3px;background:#0891B2;"></div> Fremdkapital
+          </div>
+          <div style="display:flex; align-items:center; gap:8px; font-size:13px; color:var(--text-secondary);">
+            <div style="width:12px;height:12px;border-radius:3px;background:#D97706;"></div> Nebenkosten
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Metrics -->
+      <div class="bento-grid cols-2">
+        <div class="bento-card accent-cyan">
+          <div class="card-label">Gesamtinvestition</div>
+          <div class="card-value cyan">319.400 €</div>
+          <div class="card-change">inkl. Kaufnebenkosten</div>
+        </div>
+        <div class="bento-card accent-amber">
+          <div class="card-label">Kaufnebenkosten</div>
+          <div class="card-value amber">34.400 €</div>
+          <div class="card-change">12,07% vom Kaufpreis</div>
+        </div>
+        <div class="bento-card accent-green">
+          <div class="card-label">Jahresreinertrag</div>
+          <div class="card-value green">11.400 €</div>
+          <div class="card-change">15.000 € Miete − 3.600 € Kosten</div>
+        </div>
+        <div class="bento-card accent-red">
+          <div class="card-label">Jährl. Zinskosten</div>
+          <div class="card-value red">8.379 €</div>
+          <div class="card-change">3,50% auf 239.400 € FK</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================
+     SECTION DIVIDER: DEUTSCHLAND KARTE
+     ======================================== -->
+<div class="section-divider" id="map">
+  <h2>⬇ Grunderwerbsteuer — Deutschland-Karte</h2>
+</div>
+
+<!-- ========================================
+     DEUTSCHLAND KARTE
+     ======================================== -->
+<section class="section map-section">
+  <div class="calc-header">
+    <div class="calc-breadcrumb">
+      <a href="#">Dashboard</a> / <a href="#">Rechner</a> / Grunderwerbsteuer-Rechner
+    </div>
+    <h2>🗺️ Grunderwerbsteuer-Rechner</h2>
+  </div>
+
+  <div class="map-layout">
+    <!-- Karte -->
+    <div class="map-container">
+      <div class="chart-title">Grunderwerbsteuer nach Bundesland</div>
+      <svg id="germanyMap" viewBox="0 0 500 600" style="width:100%; height:auto;">
+        <!-- Simplified Germany Map SVG -->
+        <!-- Schleswig-Holstein -->
+        <path d="M250,30 L280,25 L310,40 L305,70 L290,90 L260,85 L240,65 Z"
+              fill="#10B981" stroke="var(--border)" stroke-width="1.5" data-state="SH" data-rate="6.5"
+              style="cursor:pointer; transition: all 0.3s;" onmouseenter="highlightState(this)" onmouseleave="unhighlightState(this)"/>
+        <!-- Hamburg -->
+        <path d="M270,90 L290,90 L295,105 L275,110 L265,100 Z"
+              fill="#10B981" stroke="var(--border)" stroke-width="1.5" data-state="HH" data-rate="5.5"
+              style="cursor:pointer; transition: all 0.3s;" onmouseenter="highlightState(this)" onmouseleave="unhighlightState(this)"/>
+        <!-- Niedersachsen -->
+        <path d="M160,80 L240,65 L265,100 L275,110 L295,105 L310,120 L340,110 L350,140 L320,170 L290,180 L250,200 L200,190 L170,170 L140,140 L150,100 Z"
+              fill="#F59E0B" stroke="var(--border)" stroke-width="1.5" data-state="NI" data-rate="5.0"
+              style="cursor:pointer; transition: all 0.3s;" onmouseenter="highlightState(this)" onmouseleave="unhighlightState(this)"/>
+        <!-- Bremen -->
+        <path d="M215,105 L235,100 L240,115 L220,118 Z"
+              fill="#F59E0B" stroke="var(--border)" stroke-width="1.5" data-state="HB" data-rate="5.0"
+              style="cursor:pointer; transition: all 0.3s;" onmouseenter="highlightState(this)" onmouseleave="unhighlightState(this)"/>
+        <!-- Mecklenburg-Vorpommern -->
+        <path d="M310,40 L370,30 L420,45 L410,80 L380,90 L340,110 L310,120 L305,70 Z"
+              fill="#EF4444" stroke="var(--border)" stroke-width="1.5" data-state="MV" data-rate="6.0"
+              style="cursor:pointer; transition: all 0.3s;" onmouseenter="highlightState(this)" onmouseleave="unhighlightState(this)"/>
+        <!-- Brandenburg -->
+        <path d="M340,110 L380,90 L410,80 L430,120 L440,170 L420,220 L380,230 L350,210 L320,170 Z"
+              fill="#EF4444" stroke="var(--border)" stroke-width="1.5" data-state="BB" data-rate="6.5"
+              style="cursor:pointer; transition: all 0.3s;" onmouseenter="highlightState(this)" onmouseleave="unhighlightState(this)"/>
+        <!-- Berlin -->
+        <path d="M380,140 L400,135 L405,155 L390,160 Z"
+              fill="#EF4444" stroke="var(--border)" stroke-width="1.5" data-state="BE" data-rate="6.0"
+              style="cursor:pointer; transition: all 0.3s;" onmouseenter="highlightState(this)" onmouseleave="unhighlightState(this)"/>
+        <!-- Sachsen-Anhalt -->
+        <path d="M290,180 L320,170 L350,210 L340,250 L300,260 L270,240 L260,210 Z"
+              fill="#F59E0B" stroke="var(--border)" stroke-width="1.5" data-state="ST" data-rate="5.0"
+              style="cursor:pointer; transition: all 0.3s;" onmouseenter="highlightState(this)" onmouseleave="unhighlightState(this)"/>
+        <!-- NRW -->
+        <path d="M140,140 L170,170 L200,190 L190,230 L160,260 L120,250 L90,220 L100,170 Z"
+              fill="#EF4444" stroke="var(--border)" stroke-width="1.5" data-state="NW" data-rate="6.5"
+              style="cursor:pointer; transition: all 0.3s;" onmouseenter="highlightState(this)" onmouseleave="unhighlightState(this)"/>
+        <!-- Hessen -->
+        <path d="M160,260 L190,230 L200,190 L250,200 L260,210 L250,260 L230,290 L200,300 L170,290 Z"
+              fill="#EF4444" stroke="var(--border)" stroke-width="1.5" data-state="HE" data-rate="6.0"
+              style="cursor:pointer; transition: all 0.3s;" onmouseenter="highlightState(this)" onmouseleave="unhighlightState(this)"/>
+        <!-- Thüringen -->
+        <path d="M260,210 L270,240 L300,260 L340,250 L330,290 L290,300 L260,290 L230,290 L250,260 Z"
+              fill="#EF4444" stroke="var(--border)" stroke-width="1.5" data-state="TH" data-rate="5.0"
+              style="cursor:pointer; transition: all 0.3s;" onmouseenter="highlightState(this)" onmouseleave="unhighlightState(this)"/>
+        <!-- Sachsen -->
+        <path d="M340,250 L350,210 L380,230 L420,220 L430,260 L410,300 L370,310 L330,290 Z"
+              fill="#10B981" stroke="var(--border)" stroke-width="1.5" data-state="SN" data-rate="3.5"
+              style="cursor:pointer; transition: all 0.3s;" onmouseenter="highlightState(this)" onmouseleave="unhighlightState(this)"/>
+        <!-- Rheinland-Pfalz -->
+        <path d="M100,270 L120,250 L160,260 L170,290 L160,330 L130,350 L100,330 L80,300 Z"
+              fill="#F59E0B" stroke="var(--border)" stroke-width="1.5" data-state="RP" data-rate="5.0"
+              style="cursor:pointer; transition: all 0.3s;" onmouseenter="highlightState(this)" onmouseleave="unhighlightState(this)"/>
+        <!-- Saarland -->
+        <path d="M80,300 L100,330 L90,350 L70,340 Z"
+              fill="#EF4444" stroke="var(--border)" stroke-width="1.5" data-state="SL" data-rate="6.5"
+              style="cursor:pointer; transition: all 0.3s;" onmouseenter="highlightState(this)" onmouseleave="unhighlightState(this)"/>
+        <!-- Baden-Württemberg -->
+        <path d="M130,350 L160,330 L170,290 L200,300 L230,290 L240,320 L260,360 L240,400 L210,430 L170,440 L140,410 L120,380 Z"
+              fill="#F59E0B" stroke="var(--border)" stroke-width="1.5" data-state="BW" data-rate="5.0"
+              style="cursor:pointer; transition: all 0.3s;" onmouseenter="highlightState(this)" onmouseleave="unhighlightState(this)"/>
+        <!-- Bayern -->
+        <path d="M230,290 L260,290 L290,300 L330,290 L370,310 L400,340 L420,390 L400,440 L370,470 L330,480 L290,460 L260,430 L210,430 L240,400 L260,360 L240,320 Z"
+              fill="#10B981" stroke="var(--border)" stroke-width="1.5" data-state="BY" data-rate="3.5"
+              style="cursor:pointer; transition: all 0.3s;" onmouseenter="highlightState(this)" onmouseleave="unhighlightState(this)"/>
+
+        <!-- Tooltip (hidden by default) -->
+        <g id="mapTooltip" style="display:none; pointer-events:none;">
+          <rect x="0" y="0" width="180" height="60" rx="8" fill="rgba(255,255,255,0.95)" stroke="var(--border)" style="filter: drop-shadow(0 4px 12px rgba(0,0,0,0.1));"/>
+          <text id="tooltipState" x="12" y="24" fill="#111827" font-size="14" font-weight="700" font-family="Inter, sans-serif"></text>
+          <text id="tooltipRate" x="12" y="46" fill="#059669" font-size="13" font-family="Inter, sans-serif"></text>
+        </g>
+      </svg>
+
+      <div class="map-legend">
+        <div class="legend-item"><div class="legend-dot" style="background:#10B981;"></div> 3,5%</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#F59E0B;"></div> 5,0%</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#EF4444;"></div> 6,0-6,5%</div>
+      </div>
+    </div>
+
+    <!-- State Table -->
+    <div>
+      <div class="glass-panel" style="margin-bottom: 16px;">
+        <div class="input-group" style="margin-bottom: 0;">
+          <label class="input-label">Kaufpreis</label>
+          <input type="text" class="input-field" value="350.000 €">
+        </div>
+      </div>
+
+      <div class="glass-panel" style="padding: 0; overflow: hidden;">
+        <table class="state-table">
+          <thead>
+            <tr>
+              <th>Bundesland</th>
+              <th>Satz</th>
+              <th>Steuer</th>
+              <th style="width:120px;"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Bayern</td><td class="rate" style="color:var(--success)">3,5%</td><td style="font-variant-numeric:tabular-nums;">12.250 €</td><td><div class="rate-bar"><div class="rate-bar-fill" style="width:54%;background:var(--success);box-shadow:0 0 8px var(--success-glow);"></div></div></td></tr>
+            <tr><td>Sachsen</td><td class="rate" style="color:var(--success)">3,5%</td><td style="font-variant-numeric:tabular-nums;">12.250 €</td><td><div class="rate-bar"><div class="rate-bar-fill" style="width:54%;background:var(--success);box-shadow:0 0 8px var(--success-glow);"></div></div></td></tr>
+            <tr><td>Hamburg</td><td class="rate" style="color:var(--warning)">5,5%</td><td style="font-variant-numeric:tabular-nums;">19.250 €</td><td><div class="rate-bar"><div class="rate-bar-fill" style="width:85%;background:var(--warning);box-shadow:0 0 8px var(--warning-glow);"></div></div></td></tr>
+            <tr><td>Niedersachsen</td><td class="rate" style="color:var(--warning)">5,0%</td><td style="font-variant-numeric:tabular-nums;">17.500 €</td><td><div class="rate-bar"><div class="rate-bar-fill" style="width:77%;background:var(--warning);box-shadow:0 0 8px var(--warning-glow);"></div></div></td></tr>
+            <tr><td>Baden-Württemb.</td><td class="rate" style="color:var(--warning)">5,0%</td><td style="font-variant-numeric:tabular-nums;">17.500 €</td><td><div class="rate-bar"><div class="rate-bar-fill" style="width:77%;background:var(--warning);box-shadow:0 0 8px var(--warning-glow);"></div></div></td></tr>
+            <tr><td>Hessen</td><td class="rate" style="color:var(--danger)">6,0%</td><td style="font-variant-numeric:tabular-nums;">21.000 €</td><td><div class="rate-bar"><div class="rate-bar-fill" style="width:92%;background:var(--danger);box-shadow:0 0 8px var(--danger-glow);"></div></div></td></tr>
+            <tr><td>Berlin</td><td class="rate" style="color:var(--danger)">6,0%</td><td style="font-variant-numeric:tabular-nums;">21.000 €</td><td><div class="rate-bar"><div class="rate-bar-fill" style="width:92%;background:var(--danger);box-shadow:0 0 8px var(--danger-glow);"></div></div></td></tr>
+            <tr><td>NRW</td><td class="rate" style="color:var(--danger)">6,5%</td><td style="font-variant-numeric:tabular-nums;">22.750 €</td><td><div class="rate-bar"><div class="rate-bar-fill" style="width:100%;background:var(--danger);box-shadow:0 0 8px var(--danger-glow);"></div></div></td></tr>
+            <tr><td>Brandenburg</td><td class="rate" style="color:var(--danger)">6,5%</td><td style="font-variant-numeric:tabular-nums;">22.750 €</td><td><div class="rate-bar"><div class="rate-bar-fill" style="width:100%;background:var(--danger);box-shadow:0 0 8px var(--danger-glow);"></div></div></td></tr>
+            <tr><td>Schleswig-Holst.</td><td class="rate" style="color:var(--danger)">6,5%</td><td style="font-variant-numeric:tabular-nums;">22.750 €</td><td><div class="rate-bar"><div class="rate-bar-fill" style="width:100%;background:var(--danger);box-shadow:0 0 8px var(--danger-glow);"></div></div></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================
+     SECTION DIVIDER: DASHBOARD
+     ======================================== -->
+<div class="section-divider" id="dashboard">
+  <h2>⬇ Dashboard</h2>
+</div>
+
+<!-- ========================================
+     DASHBOARD DEMO
+     ======================================== -->
+<section class="section dashboard-section">
+  <div class="dashboard-layout">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="sidebar-logo">Immobilien-Rechner</div>
+      <ul class="sidebar-nav">
+        <li><a href="#" class="active"><span class="icon">📊</span> Dashboard</a></li>
+        <li><a href="#"><span class="icon">🧮</span> Rechner</a></li>
+        <li><a href="#"><span class="icon">🔗</span> Einbettung</a></li>
+        <li><a href="#"><span class="icon">📈</span> Analytics</a></li>
+        <li><a href="#"><span class="icon">👤</span> Profil</a></li>
+        <div class="sidebar-divider"></div>
+        <li><a href="#"><span class="icon">💳</span> Abo verwalten</a></li>
+      </ul>
+    </div>
+
+    <!-- Main -->
+    <div class="dashboard-main">
+      <div class="dashboard-welcome">Willkommen zurück, Marcel</div>
+      <div class="dashboard-date">Montag, 31. März 2026</div>
+
+      <div class="dashboard-cards">
+        <div class="dash-card">
+          <div class="dash-label">Aktueller Plan</div>
+          <div class="dash-value" style="color: var(--primary-light);">Pro</div>
+          <div class="dash-change">✓ Aktiv</div>
+        </div>
+        <div class="dash-card">
+          <div class="dash-label">Rechner genutzt</div>
+          <div class="dash-value">12/12</div>
+          <div class="dash-change">↑ Alle verfügbar</div>
+        </div>
+        <div class="dash-card">
+          <div class="dash-label">Embed-Views</div>
+          <div class="dash-value">1.247</div>
+          <div class="dash-change" style="color: var(--success);">↑ +18% diese Woche</div>
+        </div>
+        <div class="dash-card">
+          <div class="dash-label">Berechnungen</div>
+          <div class="dash-value">3.891</div>
+          <div class="dash-change" style="color: var(--success);">↑ +24% diesen Monat</div>
+        </div>
+      </div>
+
+      <div class="dashboard-bottom">
+        <div class="dash-panel">
+          <h3>Letzte Berechnungen</h3>
+          <div class="recent-item">
+            <span class="recent-name">📊 Rendite-Rechner</span>
+            <span class="recent-value" style="color: var(--success);">5,26% Brutto</span>
+          </div>
+          <div class="recent-item">
+            <span class="recent-name">📉 Cashflow-Rechner</span>
+            <span class="recent-value" style="color: var(--success);">+342 €/Monat</span>
+          </div>
+          <div class="recent-item">
+            <span class="recent-name">💰 Finanzierungsrechner</span>
+            <span class="recent-value" style="color: var(--warning);">1.187 €/Monat</span>
+          </div>
+          <div class="recent-item">
+            <span class="recent-name">📄 Tilgungsplan</span>
+            <span class="recent-value" style="color: var(--text-muted);">25 Jahre</span>
+          </div>
+          <div class="recent-item">
+            <span class="recent-name">🗺️ Grunderwerbsteuer</span>
+            <span class="recent-value" style="color: var(--danger);">22.750 €</span>
+          </div>
+        </div>
+
+        <div class="dash-panel">
+          <h3>Nutzung (letzte 7 Tage)</h3>
+          <canvas id="sparklineChart" width="400" height="200"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================
+     FOOTER
+     ======================================== -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">Immobilien-Rechner</div>
+      <p class="footer-desc">Professionelle Immobilien-Tools für Makler, Investoren und Hausverwaltungen. DSGVO-konform, hosted in Deutschland.</p>
+    </div>
+    <div>
+      <h4>Produkt</h4>
+      <ul>
+        <li><a href="#">Alle Rechner</a></li>
+        <li><a href="#">Preise</a></li>
+        <li><a href="#">Einbettung</a></li>
+        <li><a href="#">Changelog</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Rechtliches</h4>
+      <ul>
+        <li><a href="#">Impressum</a></li>
+        <li><a href="#">Datenschutz</a></li>
+        <li><a href="#">AGB</a></li>
+        <li><a href="#">Widerruf</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Support</h4>
+      <ul>
+        <li><a href="#">Kontakt</a></li>
+        <li><a href="#">FAQ</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Speckmann Webdesign GmbH</span>
+    <span>Hosted in 🇩🇪 Deutschland</span>
+  </div>
+</footer>
+
+<!-- ========================================
+     JAVASCRIPT — Charts & Interactions
+     ======================================== -->
+<script>
+// ===========================
+// COUNT UP ANIMATION
+// ===========================
+function countUp(el, target, duration = 1500) {
+  let start = 0;
+  const startTime = performance.now();
+
+  function update(currentTime) {
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 4); // easeOutQuart
+    const current = Math.round(start + (target - start) * eased);
+    el.textContent = current;
+    if (progress < 1) requestAnimationFrame(update);
+  }
+  requestAnimationFrame(update);
+}
+
+// Intersection Observer for stats
+const statsObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      const target = parseInt(el.dataset.count);
+      countUp(el, target);
+      statsObserver.unobserve(el);
+    }
+  });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('.stat-value[data-count]').forEach(el => statsObserver.observe(el));
+
+// ===========================
+// FADE-IN ON SCROLL
+// ===========================
+const fadeObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.tool-card, .feature-card, .bento-card, .price-card').forEach(el => {
+  el.classList.add('fade-in');
+  fadeObserver.observe(el);
+});
+
+// ===========================
+// DONUT CHART (Hero)
+// ===========================
+function drawDonut(canvasId, data, colors, size = 80, lineWidth = 20) {
+  const canvas = document.getElementById(canvasId);
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const centerX = canvas.width / 2;
+  const centerY = canvas.height / 2;
+  const radius = size;
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  let currentAngle = -Math.PI / 2;
+  const total = data.reduce((a, b) => a + b, 0);
+
+  data.forEach((value, i) => {
+    const sliceAngle = (value / total) * Math.PI * 2;
+
+    // Draw slice
+    ctx.beginPath();
+    ctx.arc(centerX, centerY, radius, currentAngle, currentAngle + sliceAngle);
+    ctx.lineWidth = lineWidth;
+    ctx.strokeStyle = colors[i];
+    ctx.lineCap = 'round';
+
+    // Glow effect
+    ctx.shadowColor = colors[i];
+    ctx.shadowBlur = 15;
+    ctx.stroke();
+    ctx.shadowBlur = 0;
+
+    currentAngle += sliceAngle;
+  });
+}
+
+// Hero donut (small)
+drawDonut('heroDonut', [80, 205, 34.4], ['#4F46E5', '#0891B2', '#D97706'], 65, 16);
+
+// Result donut (large)
+drawDonut('resultDonut', [80, 205, 34.4], ['#4F46E5', '#0891B2', '#D97706'], 110, 24);
+
+// ===========================
+// MINI CHARTS
+// ===========================
+function drawMiniLine(canvasId, data, color, fill = false) {
+  const canvas = document.getElementById(canvasId);
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const w = canvas.width;
+  const h = canvas.height;
+  const padding = 5;
+
+  ctx.clearRect(0, 0, w, h);
+
+  const max = Math.max(...data);
+  const min = Math.min(...data);
+  const range = max - min || 1;
+
+  const points = data.map((v, i) => ({
+    x: padding + (i / (data.length - 1)) * (w - padding * 2),
+    y: h - padding - ((v - min) / range) * (h - padding * 2)
+  }));
+
+  // Fill gradient
+  if (fill) {
+    ctx.beginPath();
+    ctx.moveTo(points[0].x, h);
+    points.forEach(p => ctx.lineTo(p.x, p.y));
+    ctx.lineTo(points[points.length - 1].x, h);
+    ctx.closePath();
+    const gradient = ctx.createLinearGradient(0, 0, 0, h);
+    gradient.addColorStop(0, color + '40');
+    gradient.addColorStop(1, 'transparent');
+    ctx.fillStyle = gradient;
+    ctx.fill();
+  }
+
+  // Line
+  ctx.beginPath();
+  ctx.moveTo(points[0].x, points[0].y);
+  for (let i = 1; i < points.length; i++) {
+    const prev = points[i - 1];
+    const curr = points[i];
+    const cpx = (prev.x + curr.x) / 2;
+    ctx.bezierCurveTo(cpx, prev.y, cpx, curr.y, curr.x, curr.y);
+  }
+  ctx.strokeStyle = color;
+  ctx.lineWidth = 2;
+  ctx.shadowColor = color;
+  ctx.shadowBlur = 8;
+  ctx.stroke();
+  ctx.shadowBlur = 0;
+}
+
+function drawMiniBar(canvasId, data, colors) {
+  const canvas = document.getElementById(canvasId);
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const w = canvas.width;
+  const h = canvas.height;
+
+  ctx.clearRect(0, 0, w, h);
+
+  const barWidth = (w - (data.length + 1) * 4) / data.length;
+  const max = Math.max(...data);
+
+  data.forEach((v, i) => {
+    const barH = (v / max) * (h - 10);
+    const x = 4 + i * (barWidth + 4);
+    const y = h - barH;
+
+    ctx.fillStyle = colors[i % colors.length];
+    ctx.shadowColor = colors[i % colors.length];
+    ctx.shadowBlur = 6;
+    ctx.beginPath();
+    ctx.roundRect(x, y, barWidth, barH, 3);
+    ctx.fill();
+    ctx.shadowBlur = 0;
+  });
+}
+
+function drawMiniWaterfall(canvasId) {
+  const canvas = document.getElementById(canvasId);
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const w = canvas.width;
+  const h = canvas.height;
+
+  ctx.clearRect(0, 0, w, h);
+
+  const items = [
+    { v: 50, color: '#10B981' },  // Miete
+    { v: -8, color: '#EF4444' },  // Hausgeld
+    { v: -5, color: '#EF4444' },  // Rücklage
+    { v: -3, color: '#EF4444' },  // Leerstand
+    { v: -25, color: '#EF4444' }, // Kreditrate
+    { v: 9, color: '#06B6D4' },   // = Cashflow
+  ];
+
+  const barWidth = (w - (items.length + 1) * 6) / items.length;
+  let running = 0;
+
+  items.forEach((item, i) => {
+    const x = 6 + i * (barWidth + 6);
+    const barH = Math.abs(item.v) / 50 * (h - 15);
+
+    let y;
+    if (item.v > 0) {
+      y = h - 5 - barH - (running / 50 * (h - 15));
+    } else {
+      y = h - 5 - (running / 50 * (h - 15));
+      running += item.v;
+    }
+    if (item.v > 0 && i > 0) {
+      y = h - 5 - barH;
+    } else if (i === 0) {
+      y = h - 5 - barH;
+      running = item.v;
+    }
+
+    ctx.fillStyle = item.color;
+    ctx.shadowColor = item.color;
+    ctx.shadowBlur = 6;
+    ctx.beginPath();
+    ctx.roundRect(x, Math.max(5, h - 5 - barH - (i === items.length - 1 ? 0 : 0)), barWidth, barH, 3);
+    ctx.fill();
+    ctx.shadowBlur = 0;
+  });
+}
+
+// Draw mini charts
+drawDonut('miniDonut', [5.26, 3.82, 12.4], ['#4F46E5', '#059669', '#0891B2'], 20, 6);
+drawMiniBar('miniBar', [35, 12, 5, 8], ['#4F46E5', '#0891B2', '#059669', '#D97706']);
+drawMiniLine('miniArea', [240, 230, 218, 205, 190, 172, 150, 125, 95, 60, 20], '#4F46E5', true);
+drawMiniLine('miniLine', [1250, 1290, 1330, 1370, 1420, 1470, 1530, 1590, 1660, 1740], '#059669', true);
+drawMiniWaterfall('miniWaterfall');
+
+// Sparkline chart (Dashboard)
+function drawSparkline() {
+  const canvas = document.getElementById('sparklineChart');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const w = canvas.width;
+  const h = canvas.height;
+
+  ctx.clearRect(0, 0, w, h);
+
+  // Grid
+  ctx.strokeStyle = 'rgba(0,0,0,0.06)';
+  ctx.lineWidth = 1;
+  for (let i = 0; i < 5; i++) {
+    const y = 20 + i * ((h - 40) / 4);
+    ctx.beginPath();
+    ctx.moveTo(40, y);
+    ctx.lineTo(w - 10, y);
+    ctx.stroke();
+  }
+
+  // Labels
+  ctx.fillStyle = '#9CA3AF';
+  ctx.font = '11px Inter';
+  const days = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'];
+  days.forEach((d, i) => {
+    ctx.fillText(d, 45 + i * ((w - 60) / 6), h - 5);
+  });
+
+  // Data lines
+  const dashboardData = [42, 58, 35, 72, 65, 28, 47];
+  const embedData = [120, 145, 98, 178, 156, 85, 132];
+
+  // Embed line
+  drawChartLine(ctx, embedData, '#0891B2', w, h);
+  // Dashboard line
+  drawChartLine(ctx, dashboardData, '#4F46E5', w, h);
+
+  // Legend
+  ctx.fillStyle = '#4F46E5';
+  ctx.beginPath();
+  ctx.arc(55, h - 25, 4, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.fillStyle = '#4B5563';
+  ctx.font = '12px Inter';
+  ctx.fillText('Dashboard', 65, h - 21);
+
+  ctx.fillStyle = '#0891B2';
+  ctx.beginPath();
+  ctx.arc(155, h - 25, 4, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.fillStyle = '#4B5563';
+  ctx.fillText('Embed-Views', 165, h - 21);
+}
+
+function drawChartLine(ctx, data, color, w, h) {
+  const max = 200;
+  const padding = { top: 20, bottom: 40, left: 45, right: 10 };
+  const chartW = w - padding.left - padding.right;
+  const chartH = h - padding.top - padding.bottom;
+
+  const points = data.map((v, i) => ({
+    x: padding.left + (i / (data.length - 1)) * chartW,
+    y: padding.top + chartH - (v / max) * chartH
+  }));
+
+  // Fill
+  ctx.beginPath();
+  ctx.moveTo(points[0].x, padding.top + chartH);
+  points.forEach(p => ctx.lineTo(p.x, p.y));
+  ctx.lineTo(points[points.length - 1].x, padding.top + chartH);
+  ctx.closePath();
+  const gradient = ctx.createLinearGradient(0, padding.top, 0, padding.top + chartH);
+  gradient.addColorStop(0, color + '25');
+  gradient.addColorStop(1, 'transparent');
+  ctx.fillStyle = gradient;
+  ctx.fill();
+
+  // Line
+  ctx.beginPath();
+  ctx.moveTo(points[0].x, points[0].y);
+  for (let i = 1; i < points.length; i++) {
+    const prev = points[i - 1];
+    const curr = points[i];
+    const cpx = (prev.x + curr.x) / 2;
+    ctx.bezierCurveTo(cpx, prev.y, cpx, curr.y, curr.x, curr.y);
+  }
+  ctx.strokeStyle = color;
+  ctx.lineWidth = 2.5;
+  ctx.shadowColor = color;
+  ctx.shadowBlur = 10;
+  ctx.stroke();
+  ctx.shadowBlur = 0;
+
+  // Dots
+  points.forEach(p => {
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, 4, 0, Math.PI * 2);
+    ctx.fillStyle = color;
+    ctx.shadowColor = color;
+    ctx.shadowBlur = 8;
+    ctx.fill();
+    ctx.shadowBlur = 0;
+  });
+}
+
+drawSparkline();
+
+// ===========================
+// MAP INTERACTIONS
+// ===========================
+const stateNames = {
+  'SH': 'Schleswig-Holstein', 'HH': 'Hamburg', 'NI': 'Niedersachsen',
+  'HB': 'Bremen', 'MV': 'Mecklenburg-Vorpommern', 'BB': 'Brandenburg',
+  'BE': 'Berlin', 'ST': 'Sachsen-Anhalt', 'NW': 'Nordrhein-Westfalen',
+  'HE': 'Hessen', 'TH': 'Thüringen', 'SN': 'Sachsen',
+  'RP': 'Rheinland-Pfalz', 'SL': 'Saarland', 'BW': 'Baden-Württemberg',
+  'BY': 'Bayern'
+};
+
+function highlightState(el) {
+  el.style.filter = 'brightness(1.4)';
+  el.style.stroke = 'white';
+  el.style.strokeWidth = '2.5';
+
+  const tooltip = document.getElementById('mapTooltip');
+  const stateText = document.getElementById('tooltipState');
+  const rateText = document.getElementById('tooltipRate');
+
+  const state = el.dataset.state;
+  const rate = el.dataset.rate;
+  const tax = (350000 * parseFloat(rate) / 100).toLocaleString('de-DE');
+
+  stateText.textContent = stateNames[state] || state;
+  rateText.textContent = rate + '% → ' + tax + ' €';
+
+  // Position tooltip near the element
+  const bbox = el.getBBox();
+  tooltip.setAttribute('transform', `translate(${bbox.x + bbox.width/2 - 90}, ${bbox.y - 70})`);
+  tooltip.style.display = 'block';
+}
+
+function unhighlightState(el) {
+  el.style.filter = '';
+  el.style.stroke = 'var(--border)';
+  el.style.strokeWidth = '1.5';
+  document.getElementById('mapTooltip').style.display = 'none';
+}
+
+// ===========================
+// SMOOTH SCROLL
+// ===========================
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+
+// Section nav active state
+const sections = document.querySelectorAll('[id]');
+const navLinks = document.querySelectorAll('.section-nav a');
+
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(section => {
+    const top = section.offsetTop - 200;
+    if (window.scrollY >= top) current = section.id;
+  });
+
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + current) {
+      link.classList.add('active');
+    }
+  });
+});
+
+// Animate hero brutto value
+let direction = 1;
+let currentValue = 5.26;
+setInterval(() => {
+  currentValue += direction * 0.01;
+  if (currentValue >= 5.35) direction = -1;
+  if (currentValue <= 5.18) direction = 1;
+  const el = document.getElementById('hero-brutto');
+  if (el) el.textContent = currentValue.toFixed(2).replace('.', ',') + '%';
+}, 150);
+</script>
+
+</body>
+</html>

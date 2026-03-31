@@ -1,0 +1,154 @@
+- generic [active] [ref=e222]:
+  - generic [ref=e223]:
+    - navigation [ref=e226]:
+      - generic [ref=e227]:
+        - generic [ref=e228]:
+          - link "Coolify" [ref=e229] [cursor=pointer]:
+            - /url: /
+          - link "v4.0.0-beta.470" [ref=e230] [cursor=pointer]:
+            - /url: https://github.com/coollabsio/coolify/releases/tag/v4.0.0-beta.470
+        - button / [ref=e232]:
+          - img [ref=e233]
+          - generic [ref=e235]: /
+        - button "Preferences 9+" [ref=e238] [cursor=pointer]:
+          - img "Preferences" [ref=e239]
+          - generic [ref=e241]: 9+
+      - combobox [ref=e244]:
+        - option "Switch team" [disabled]
+        - option "Root Team" [selected]
+      - list [ref=e245]:
+        - listitem [ref=e246]:
+          - list [ref=e247]:
+            - listitem [ref=e248]:
+              - link "Dashboard" [ref=e249] [cursor=pointer]:
+                - /url: /
+                - img [ref=e250]
+                - generic [ref=e252]: Dashboard
+            - listitem [ref=e253]:
+              - link "Projects" [ref=e254] [cursor=pointer]:
+                - /url: /projects
+                - img [ref=e255]
+                - generic [ref=e260]: Projects
+            - listitem [ref=e261]:
+              - link "Servers" [ref=e262] [cursor=pointer]:
+                - /url: /servers
+                - img [ref=e263]
+                - generic [ref=e268]: Servers
+            - listitem [ref=e269]:
+              - link "Sources" [ref=e270] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/sources
+                - img [ref=e271]
+                - generic [ref=e273]: Sources
+            - listitem [ref=e274]:
+              - link "Destinations" [ref=e275] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/destinations
+                - img [ref=e276]
+                - generic [ref=e278]: Destinations
+            - listitem [ref=e279]:
+              - link "S3 Storages" [ref=e280] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/storages
+                - img [ref=e281]
+                - generic [ref=e286]: S3 Storages
+            - listitem [ref=e287]:
+              - link "Shared Variables" [ref=e288] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/shared-variables
+                - img [ref=e289]
+                - generic [ref=e293]: Shared Variables
+            - listitem [ref=e294]:
+              - link "Notifications" [ref=e295] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/notifications/email
+                - img [ref=e296]
+                - generic [ref=e298]: Notifications
+            - listitem [ref=e299]:
+              - link "Keys & Tokens" [ref=e300] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/security/private-key
+                - img [ref=e301]
+                - generic [ref=e303]: Keys & Tokens
+            - listitem [ref=e304]:
+              - link "Tags" [ref=e305] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/tags
+                - img [ref=e306]
+                - generic [ref=e310]: Tags
+            - listitem [ref=e311]:
+              - link "Terminal" [ref=e312] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/terminal
+                - img [ref=e313]
+                - generic [ref=e316]: Terminal
+            - listitem [ref=e317]:
+              - link "Profile" [ref=e318] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/profile
+                - img [ref=e319]
+                - generic [ref=e324]: Profile
+            - listitem [ref=e325]:
+              - link "Teams" [ref=e326] [cursor=pointer]:
+                - /url: http://167.235.136.129:8000/team
+                - img [ref=e327]
+                - generic [ref=e335]: Teams
+            - listitem [ref=e336]:
+              - link "Settings" [ref=e337] [cursor=pointer]:
+                - /url: /settings
+                - img [ref=e338]
+                - generic [ref=e342]: Settings
+            - generic:
+              - listitem:
+                - generic "No upgrade available"
+            - listitem [ref=e344]:
+              - link "Sponsor us" [ref=e345] [cursor=pointer]:
+                - /url: https://coolify.io/sponsorships
+                - img [ref=e346]
+                - generic [ref=e350]: Sponsor us
+            - listitem [ref=e351]:
+              - generic "Send us feedback or get help!" [ref=e354] [cursor=pointer]:
+                - img [ref=e355]
+                - generic [ref=e357]: Feedback
+            - listitem [ref=e358]:
+              - button "Logout" [ref=e360]:
+                - img [ref=e361]
+                - generic [ref=e363]: Logout
+    - main [ref=e364]:
+      - generic [ref=e366]:
+        - generic [ref=e367]:
+          - generic [ref=e368]:
+            - heading "Resources" [level=1] [ref=e369]
+            - link "+ New" [ref=e370] [cursor=pointer]:
+              - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/new
+            - link "Clone" [ref=e371] [cursor=pointer]:
+              - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/clone
+            - button "Delete Environment" [ref=e373] [cursor=pointer]
+          - navigation [ref=e374]:
+            - list [ref=e375]:
+              - listitem [ref=e376]:
+                - generic [ref=e377]:
+                  - link "Immobilien-Rechner" [ref=e378] [cursor=pointer]:
+                    - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6
+                  - button [ref=e379]:
+                    - img [ref=e380]
+              - listitem [ref=e381]:
+                - link "production" [ref=e383] [cursor=pointer]:
+                  - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj
+        - generic [ref=e384]:
+          - textbox "Search for name, fqdn..." [ref=e386]
+          - heading "Applications" [level=2] [ref=e387]
+          - generic [ref=e389]:
+            - 'link "immobilien-rechner:main-v11wkfofuu9mujnnup998xai running https://immobilien-rechner.net,https://www.immobilien-rechner.net Server: localhost" [ref=e390] [cursor=pointer]':
+              - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m
+              - generic [ref=e391]:
+                - generic [ref=e392]:
+                  - generic [ref=e393]: immobilien-rechner:main-v11wkfofuu9mujnnup998xai
+                  - generic "running" [ref=e395]
+                - generic [ref=e396]: https://immobilien-rechner.net,https://www.immobilien-rechner.net
+                - generic [ref=e397]: "Server: localhost"
+            - link "Add tag" [ref=e399] [cursor=pointer]:
+              - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/application/d72171zwny4k2bcy4anoii7m/tags
+          - heading "Databases" [level=2] [ref=e400]
+          - generic [ref=e402]:
+            - 'link "immobilien-rechner-db running Server: localhost" [ref=e403] [cursor=pointer]':
+              - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/database/nohozyitkieplpxe3ftb1wj6
+              - generic [ref=e404]:
+                - generic [ref=e405]:
+                  - generic [ref=e406]: immobilien-rechner-db
+                  - generic "running" [ref=e408]
+                - generic [ref=e409]: "Server: localhost"
+            - link "Add tag" [ref=e411] [cursor=pointer]:
+              - /url: http://167.235.136.129:8000/project/f58voizf801zrtr3iq4bght6/environment/s10qa5xg1yopx14feqflpzmj/database/nohozyitkieplpxe3ftb1wj6/tags
+  - list

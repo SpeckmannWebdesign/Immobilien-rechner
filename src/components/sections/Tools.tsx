@@ -16,6 +16,9 @@ import {
   Receipt,
   TrendingDown,
   ArrowRight,
+  Scale,
+  Ban,
+  Ruler,
 } from "lucide-react"
 
 const toolCategories = [
@@ -37,6 +40,9 @@ const toolCategories = [
       { name: "Instandhaltung", desc: "Peterssche Formel", icon: Wrench, href: "/rechner/instandhaltungskosten-rechner" },
       { name: "Objektvergleich", desc: "Bis zu 3 Objekte", icon: BarChart3, href: "/rechner/objektvergleich" },
       { name: "Tilgungsplan", desc: "PDF-Export", icon: FileSpreadsheet, href: "/rechner/tilgungsplan-generator" },
+      { name: "Kaufen vs. Mieten", desc: "Vermögensvergleich", icon: Scale, href: "/rechner/kaufen-vs-mieten" },
+      { name: "Vorfälligkeit", desc: "Kreditablösung berechnen", icon: Ban, href: "/rechner/vorfaelligkeitsentschaedigung-rechner" },
+      { name: "Beleihungswert", desc: "Max. Darlehen ermitteln", icon: Landmark, href: "/rechner/beleihungswert-rechner" },
     ],
   },
   {
@@ -44,6 +50,7 @@ const toolCategories = [
     tools: [
       { name: "Nebenkosten", desc: "Umlagefähige Kosten", icon: Receipt, href: "/rechner/nebenkostenabrechnung-rechner" },
       { name: "Mieterhöhung", desc: "Mit Kappungsgrenze", icon: TrendingDown, href: "/rechner/mieterhoehungs-rechner" },
+      { name: "Wohnfläche", desc: "Nach WoFlV berechnen", icon: Ruler, href: "/rechner/wohnflaechenberechnung" },
     ],
   },
 ]
@@ -60,7 +67,7 @@ export function ToolsSection() {
         {/* Header */}
         <div data-reveal className="text-center mb-16">
           <p className="text-[#4338CA] text-sm font-medium tracking-[0.06em] uppercase mb-3">
-            12 Tools
+            16 Tools
           </p>
           <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-bold tracking-[-0.02em] text-[#1d1d1f] mb-4">
             Ihre Immobilien-Toolbox.

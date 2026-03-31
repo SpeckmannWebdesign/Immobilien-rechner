@@ -111,13 +111,13 @@ export function ToolsSection() {
         {/* Header */}
         <div data-reveal className="text-center mb-16">
           <p className="text-[#4338CA] text-sm font-medium tracking-[0.06em] uppercase mb-3">
-            16 Tools
+            16 Profi-Rechner
           </p>
-          <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-bold tracking-[-0.02em] text-[#1d1d1f] mb-4">
-            Ihre Immobilien-Toolbox.
+          <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-bold tracking-[-0.02em] text-[#111827] mb-4">
+            Jeder Rechner ein Lead-Magnet.
           </h2>
-          <p className="text-[1.1875rem] text-[#6e6e73] max-w-[600px] mx-auto">
-            Alle Rechner die Sie für fundierte Immobilien-Entscheidungen brauchen — an einem Ort.
+          <p className="text-[1.1875rem] text-[#4B5563] max-w-[640px] mx-auto">
+            Bieten Sie Ihren Website-Besuchern echten Mehrwert. Jeder Rechner löst ein konkretes Problem — und macht aus Besuchern qualifizierte Anfragen.
           </p>
         </div>
 

@@ -5,21 +5,21 @@ import { useSectionReveal } from "@/components/animations/useSectionReveal"
 const testimonials = [
   {
     quote:
-      "Die Rendite-Rechner haben unsere Kundenberatung komplett verändert. Statt Excel-Tabellen zeigen wir jetzt professionelle Analysen direkt im Gespräch.",
+      "Seit wir den Rendite-Rechner auf unserer Website eingebettet haben, bekommen wir 40% mehr qualifizierte Anfragen. Die Besucher beschäftigen sich intensiv mit den Zahlen — und rufen uns danach an.",
     name: "Thomas Bergmann",
-    role: "Immobilienmakler, Hamburg",
+    role: "Geschäftsführer, Bergmann Immobilien, Hamburg",
   },
   {
     quote:
-      "Endlich eine Nebenkostenabrechnung die stimmt. Die Verteilerschlüssel-Berechnung spart uns jeden Monat Stunden.",
+      "Unsere Kunden schätzen es, dass sie Nebenkosten und Mieterhöhungen selbst nachrechnen können. Das spart uns Rückfragen und schafft Vertrauen in unsere Arbeit.",
     name: "Sabine Keller",
     role: "Hausverwaltung Keller GmbH, München",
   },
   {
     quote:
-      "Als Investor vergleiche ich damit regelmäßig Objekte. Die Live-Berechnung ist genial — Ergebnisse ändern sich sofort wenn ich die Zahlen anpasse.",
+      "Der Kaufen-vs-Mieten-Rechner auf unserer Landingpage hat die Conversion-Rate verdoppelt. Interessenten sehen sofort den Mehrwert einer Immobilie — und wollen mehr erfahren.",
     name: "Dr. Markus Weber",
-    role: "Privatinvestor, Frankfurt",
+    role: "Weber & Partner Finanzberatung, Frankfurt",
   },
 ]
 
@@ -42,20 +42,17 @@ export function TestimonialsSection() {
   return (
     <section ref={sectionRef} className="py-[clamp(5rem,12vw,10rem)] px-6 bg-[#F7F8FB]">
       <div className="max-w-[1120px] mx-auto">
-        {/* Section-Label */}
         <p data-reveal className="text-sm font-semibold text-[#4338CA] text-center mb-3">
-          Kundenstimmen
+          Erfolgsgeschichten
         </p>
 
-        {/* Überschrift */}
         <h2
           data-reveal
           className="text-[clamp(2rem,4vw,3rem)] font-bold text-[#111827] text-center tracking-tight mb-12"
         >
-          Das sagen unsere Nutzer
+          So generieren Profis mit unseren Rechnern Leads
         </h2>
 
-        {/* Testimonial-Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {testimonials.map((t) => (
             <div
@@ -63,22 +60,18 @@ export function TestimonialsSection() {
               data-reveal
               className="bg-white border border-[#E3E5EB] rounded-2xl p-6 flex flex-col"
             >
-              {/* Sterne */}
               <div className="flex gap-0.5 mb-4">
                 {Array.from({ length: 5 }).map((_, i) => (
                   <StarIcon key={i} />
                 ))}
               </div>
 
-              {/* Zitat */}
               <p className="text-[#4B5563] italic text-sm leading-relaxed flex-1">
                 &ldquo;{t.quote}&rdquo;
               </p>
 
-              {/* Trennlinie */}
               <div className="border-t border-[#E3E5EB] my-4" />
 
-              {/* Name & Rolle */}
               <p className="text-[#111827] font-semibold text-sm">{t.name}</p>
               <p className="text-[#9CA3AF] text-sm">{t.role}</p>
             </div>

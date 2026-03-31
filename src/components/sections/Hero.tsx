@@ -22,7 +22,7 @@ function MetricBox({ label, value, color }: { label: string; value: string; colo
 
 export function HeroSection() {
   return (
-    <section id="hero-section" className="relative min-h-[100vh] flex items-center justify-center overflow-hidden bg-[#0B0D14] pt-12">
+    <section id="hero-section" className="relative min-h-[100vh] flex items-center justify-center overflow-hidden bg-[#0B0D14] pt-24 pb-12">
       {/* Subtile Gradient-Orbs im Hintergrund */}
       <div className="absolute inset-0 pointer-events-none">
         <div
@@ -48,30 +48,29 @@ export function HeroSection() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="text-[#4338CA] text-sm font-medium tracking-[0.06em] uppercase mb-6"
         >
-          Professionelle Immobilien-Tools
+          Mehr Leads. Mehr Vertrauen. Mehr Abschlüsse.
         </motion.p>
 
-        {/* Headline */}
+        {/* Headline — B2B Lead Gen fokussiert */}
         <motion.h1
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4, ease: [0.25, 0.1, 0, 1] }}
-          className="text-[clamp(2.5rem,6vw,5.5rem)] font-bold leading-[1.05] tracking-[-0.03em] text-[#F1F5F9]"
+          className="text-[clamp(2.5rem,6vw,5rem)] font-bold leading-[1.05] tracking-[-0.03em] text-[#F1F5F9]"
         >
-          Rechner, die{" "}
-          <span className="text-gradient-hero">Entscheidungen</span>{" "}
-          vereinfachen.
+          Immobilien-Rechner,{" "}
+          <span className="text-gradient-hero">die Leads generieren.</span>
         </motion.h1>
 
-        {/* Subline */}
+        {/* Subline — B2B Mehrwert */}
         <motion.p
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6, ease: [0.25, 0.1, 0, 1] }}
-          className="text-[clamp(1.125rem,2vw,1.375rem)] text-[#94A3B8] font-medium leading-[1.4] mt-6 max-w-[640px] mx-auto"
+          className="text-[clamp(1.05rem,2vw,1.25rem)] text-[#94A3B8] font-medium leading-[1.5] mt-6 max-w-[640px] mx-auto"
         >
-          16 professionelle Rechner für Makler, Investoren und Hausverwaltungen.
-          Im Dashboard nutzen oder direkt auf Ihrer Website einbetten.
+          Betten Sie 16 professionelle Rechner auf Ihrer Website ein.
+          Ihre Besucher berechnen Renditen, Finanzierungen und Nebenkosten — und werden zu qualifizierten Leads.
         </motion.p>
 
         {/* CTAs */}
@@ -82,19 +81,19 @@ export function HeroSection() {
           className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-10"
         >
           <Link
-            href="/anmelden"
-            className="bg-[#4338CA] text-white px-8 py-3.5 rounded-full text-lg font-medium
+            href="/registrieren"
+            className="bg-[#4338CA] text-white px-8 py-3.5 rounded-lg text-lg font-medium
                        hover:bg-[#5B52E0] transition-colors duration-300 flex items-center gap-2"
           >
             7 Tage kostenlos testen
             <ArrowRight className="h-4 w-4" />
           </Link>
           <Link
-            href="/rechner"
-            className="text-[#F1F5F9] text-lg font-medium px-8 py-3.5 rounded-full
+            href="/einbettung"
+            className="text-[#F1F5F9] text-lg font-medium px-8 py-3.5 rounded-lg
                        border border-[#2A2D3A] hover:border-[#3A3D4A] transition-all duration-300"
           >
-            Alle Rechner ansehen
+            So funktioniert die Einbettung
           </Link>
         </motion.div>
 
@@ -105,10 +104,10 @@ export function HeroSection() {
           transition={{ delay: 1.0, duration: 0.6 }}
           className="text-[#64748B] text-sm mt-5"
         >
-          Keine Kreditkarte nötig. Jederzeit kündbar.
+          Für Makler, Investoren und Hausverwaltungen. Keine Kreditkarte nötig.
         </motion.p>
 
-        {/* Hero Mockup */}
+        {/* Hero Mockup — Zeigt Embed-Widget auf einer Kunden-Website */}
         <motion.div
           initial={{ opacity: 0, y: 60 }}
           animate={{ opacity: 1, y: 0 }}
@@ -122,17 +121,16 @@ export function HeroSection() {
               transform: "perspective(1200px) rotateX(2deg)",
             }}
           >
-            {/* Browser-Bar mit 3 Dots */}
+            {/* Browser-Bar */}
             <div className="flex items-center gap-2 px-4 py-3 bg-[#1B1D28] border-b border-[#2A2D3A]">
               <div className="w-2.5 h-2.5 rounded-full bg-[#FF5F57]" />
               <div className="w-2.5 h-2.5 rounded-full bg-[#FEBC2E]" />
               <div className="w-2.5 h-2.5 rounded-full bg-[#28C840]" />
-              <span className="flex-1 text-center text-xs text-[#64748B] font-medium">Rendite-Rechner</span>
+              <span className="flex-1 text-center text-xs text-[#64748B] font-medium">ihre-makler-website.de/rendite-rechner</span>
             </div>
 
-            {/* Mockup Body: 2 Spalten */}
+            {/* Mockup Body */}
             <div className="grid grid-cols-1 md:grid-cols-[280px_1fr] gap-5 p-5">
-              {/* Links: Input-Felder (statisch, nur visuell) */}
               <div className="space-y-3">
                 {mockInputs.map((input) => (
                   <div key={input.label}>
@@ -146,28 +144,22 @@ export function HeroSection() {
                 ))}
               </div>
 
-              {/* Rechts: Ergebnis-Kacheln + Mini-Donut */}
               <div className="space-y-3">
-                {/* 3 Metric-Kacheln */}
                 <div className="grid grid-cols-3 gap-2">
                   <MetricBox label="Brutto-Rendite" value="5,26%" color="#059669" />
                   <MetricBox label="Netto-Rendite" value="3,82%" color="#059669" />
                   <MetricBox label="EK-Rendite" value="12,41%" color="#818CF8" />
                 </div>
 
-                {/* Mini Donut Chart (SVG) */}
                 <div className="bg-[#1B1D28] border border-[#2A2D3A] rounded-lg p-4 flex items-center justify-center">
                   <svg width="120" height="120" viewBox="0 0 120 120">
                     <circle cx="60" cy="60" r="45" fill="none" stroke="#2A2D3A" strokeWidth="14" />
-                    {/* Eigenkapital Segment */}
                     <circle cx="60" cy="60" r="45" fill="none" stroke="#4338CA" strokeWidth="14"
                       strokeDasharray="70.69 212.06" strokeDashoffset="0" strokeLinecap="round"
                       transform="rotate(-90 60 60)" />
-                    {/* Fremdkapital Segment */}
                     <circle cx="60" cy="60" r="45" fill="none" stroke="#0E7490" strokeWidth="14"
                       strokeDasharray="144.51 138.24" strokeDashoffset="-70.69" strokeLinecap="round"
                       transform="rotate(-90 60 60)" />
-                    {/* Nebenkosten Segment */}
                     <circle cx="60" cy="60" r="45" fill="none" stroke="#B45309" strokeWidth="14"
                       strokeDasharray="67.55 215.2" strokeDashoffset="-215.2" strokeLinecap="round"
                       transform="rotate(-90 60 60)" />

@@ -1,32 +1,32 @@
 "use client"
 
 import { useSectionReveal } from "@/components/animations/useSectionReveal"
-import { Calculator, Code2, Shield, Zap } from "lucide-react"
+import { Code2, Shield, Users, TrendingUp } from "lucide-react"
 
 const features = [
   {
-    icon: Calculator,
-    title: "16 Profi-Rechner",
+    icon: Code2,
+    title: "Einbetten und Leads generieren",
     description:
-      "Von Rendite über Finanzierung bis Nebenkostenabrechnung. Alle Tools, die Immobilien-Profis täglich brauchen.",
+      "Ihre Besucher nutzen den Rechner direkt auf Ihrer Website — und werden zu qualifizierten Leads. Eine Zeile Code, sofort live.",
   },
   {
-    icon: Code2,
-    title: "Auf Ihrer Website einbetten",
+    icon: Users,
+    title: "Echten Mehrwert für Ihre Kunden",
     description:
-      "Eine Zeile Code — fertig. Ihre Besucher nutzen den Rechner direkt auf Ihrer Website. Funktioniert überall.",
+      "Statt leerer Versprechen: Ihre Kunden berechnen Renditen, Finanzierungen und Nebenkosten selbst. Das schafft Vertrauen und beschleunigt Entscheidungen.",
+  },
+  {
+    icon: TrendingUp,
+    title: "16 Profi-Rechner für jede Situation",
+    description:
+      "Von der Rendite-Analyse bis zur Nebenkostenabrechnung. Ihre Kunden finden den passenden Rechner — Sie gewinnen den Lead.",
   },
   {
     icon: Shield,
-    title: "DSGVO-konform",
+    title: "DSGVO-konform. Made in Germany.",
     description:
-      "Deutsche Server, keine Tracking-Cookies, keine Datenweitergabe. Hosting bei Hetzner in Deutschland.",
-  },
-  {
-    icon: Zap,
-    title: "Sofort einsatzbereit",
-    description:
-      "Account erstellen, Rechner auswählen, einbetten. In unter 5 Minuten sind Ihre Immobilien-Tools live.",
+      "Deutsche Server bei Hetzner, keine Tracking-Cookies, keine Datenweitergabe. Sie können die Rechner bedenkenlos einsetzen.",
   },
 ]
 
@@ -41,11 +41,14 @@ export function FeaturesSection() {
       <div className="max-w-[1120px] mx-auto">
         {/* Header */}
         <div data-reveal className="text-center mb-20">
-          <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-bold tracking-[-0.02em] text-[#1d1d1f] mb-4">
-            Warum Immobilien-Rechner?
+          <p className="text-[#4338CA] text-sm font-medium tracking-[0.06em] uppercase mb-3">
+            Ihr Wettbewerbsvorteil
+          </p>
+          <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-bold tracking-[-0.02em] text-[#111827] mb-4">
+            Warum Ihre Konkurrenz diese Tools bereits nutzt.
           </h2>
-          <p className="text-[1.1875rem] text-[#6e6e73] max-w-[600px] mx-auto">
-            Professionelle Tools, die Ihre Arbeit einfacher machen.
+          <p className="text-[1.1875rem] text-[#4B5563] max-w-[640px] mx-auto">
+            Immobilien-Profis, die interaktive Rechner auf ihrer Website einsetzen, generieren nachweislich mehr qualifizierte Anfragen.
           </p>
         </div>
 

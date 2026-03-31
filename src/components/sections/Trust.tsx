@@ -1,12 +1,12 @@
 "use client"
 
-import { Shield, Server, Lock, Clock } from "lucide-react"
+import { Shield, Server, Users, BarChart3 } from "lucide-react"
 
 const badges = [
-  { icon: Shield, label: "DSGVO-konform" },
+  { icon: Users, label: "Für Makler, Investoren & Hausverwaltungen" },
+  { icon: BarChart3, label: "16 Profi-Rechner" },
   { icon: Server, label: "Hosting in Deutschland" },
-  { icon: Lock, label: "SSL-verschlüsselt" },
-  { icon: Clock, label: "7 Tage kostenlos" },
+  { icon: Shield, label: "DSGVO-konform" },
 ]
 
 export function TrustSection() {

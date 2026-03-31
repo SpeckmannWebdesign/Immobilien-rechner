@@ -1,15 +1,39 @@
 import NextAuth from "next-auth"
 import { PrismaAdapter } from "@auth/prisma-adapter"
 import Google from "next-auth/providers/google"
-import Resend from "next-auth/providers/resend"
+import Credentials from "next-auth/providers/credentials"
+import bcrypt from "bcryptjs"
 import { db } from "@/lib/db"
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   adapter: PrismaAdapter(db),
+  session: { strategy: "jwt" },
   providers: [
-    // E-Mail Magic Link via Resend
-    Resend({
-      from: process.env.EMAIL_FROM || "noreply@immobilien-rechner.net",
+    // E-Mail + Passwort
+    Credentials({
+      name: "credentials",
+      credentials: {
+        email: { label: "E-Mail", type: "email" },
+        password: { label: "Passwort", type: "password" },
+      },
+      async authorize(credentials) {
+        if (!credentials?.email || !credentials?.password) return null
+
+        const user = await db.user.findUnique({
+          where: { email: credentials.email as string },
+        })
+
+        if (!user || !user.password) return null
+
+        const isValid = await bcrypt.compare(
+          credentials.password as string,
+          user.password
+        )
+
+        if (!isValid) return null
+
+        return { id: user.id, email: user.email, name: user.name }
+      },
     }),
     // Google OAuth
     Google({
@@ -19,13 +43,16 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   ],
   pages: {
     signIn: "/anmelden",
-    verifyRequest: "/anmelden/verifizierung",
     error: "/anmelden/fehler",
   },
   callbacks: {
-    async session({ session, user }) {
-      if (session.user) {
-        session.user.id = user.id
+    async jwt({ token, user }) {
+      if (user) token.id = user.id
+      return token
+    },
+    async session({ session, token }) {
+      if (session.user && token.id) {
+        session.user.id = token.id as string
       }
       return session
     },

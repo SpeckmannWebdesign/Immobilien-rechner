@@ -20,6 +20,7 @@ model User {
   email         String    @unique
   emailVerified DateTime?
   image         String?
+  password      String?
 
   // Profil-Felder für Rechnungen
   company       String?   // Firma (optional)
@@ -29,8 +30,12 @@ model User {
   zip           String?
   country       String    @default("DE")
 
-  // Admin-Flag
+  // Admin & Plan-Verwaltung
   isAdmin       Boolean   @default(false)
+  role          String    @default("user") // "user" oder "admin"
+  plan          String    @default("trial") // "trial", "starter", "pro", "business"
+  trialEndsAt   DateTime?
+  planExpiresAt DateTime?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

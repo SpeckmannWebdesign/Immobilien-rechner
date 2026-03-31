@@ -1,14 +1,6 @@
 "use client"
 
 import { useEffect, useState, useCallback } from "react"
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import {
@@ -20,8 +12,9 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
+import { Button } from "@/components/ui/button"
 import { toast } from "sonner"
-import { Save, Trash2, AlertTriangle } from "lucide-react"
+import { Save, Trash2, AlertTriangle, Lock } from "lucide-react"
 
 interface UserProfile {
   id: string
@@ -98,16 +91,15 @@ export function ProfilForm() {
   }
 
   async function handleDelete() {
-    if (deleteConfirm !== "LÖSCHEN") return
+    if (deleteConfirm !== "LOESCHEN") return
     setDeleting(true)
     try {
       const res = await fetch("/api/user", { method: "DELETE" })
       if (res.ok) {
-        toast.success("Account gelöscht. Sie werden abgemeldet.")
-        // Nach Löschung ausloggen
+        toast.success("Account geloescht. Sie werden abgemeldet.")
         window.location.href = "/api/auth/signout"
       } else {
-        toast.error("Fehler beim Löschen des Accounts.")
+        toast.error("Fehler beim Loeschen des Accounts.")
       }
     } catch {
       toast.error("Ein Fehler ist aufgetreten.")
@@ -117,182 +109,220 @@ export function ProfilForm() {
 
   if (loading) {
     return (
-      <div className="space-y-6">
+      <div className="max-w-2xl space-y-6">
         {[1, 2].map((i) => (
-          <Card key={i} className="animate-pulse">
-            <CardHeader>
-              <div className="h-5 w-32 rounded bg-muted" />
-            </CardHeader>
-            <CardContent>
-              <div className="h-32 rounded bg-muted" />
-            </CardContent>
-          </Card>
+          <div
+            key={i}
+            className="animate-pulse rounded-2xl border border-[#E3E5EB] bg-white p-6"
+          >
+            <div className="h-5 w-32 rounded bg-[#F7F8FB]" />
+            <div className="mt-4 h-32 rounded bg-[#F7F8FB]" />
+          </div>
         ))}
       </div>
     )
   }
 
   return (
-    <div className="space-y-6 max-w-2xl">
-      {/* Persönliche Daten */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Persönliche Daten</CardTitle>
-          <CardDescription>
-            Ihr Name und Ihre E-Mail-Adresse.
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
+    <div className="max-w-2xl space-y-6">
+      {/* Persoenliche Daten */}
+      <div className="rounded-2xl border border-[#E3E5EB] bg-white p-6">
+        <h2 className="text-base font-bold text-[#111827]">
+          Persoenliche Daten
+        </h2>
+        <p className="mt-1 text-xs text-[#9CA3AF]">
+          Ihr Name und Ihre E-Mail-Adresse.
+        </p>
+
+        <div className="mt-6 space-y-4">
           <div className="space-y-2">
-            <Label htmlFor="email">E-Mail</Label>
+            <Label htmlFor="email" className="text-sm text-[#4B5563]">
+              E-Mail
+            </Label>
             <Input
               id="email"
               value={profile?.email || ""}
               disabled
-              className="bg-muted"
+              className="border-[#E3E5EB] bg-[#F7F8FB] text-[#9CA3AF]"
             />
-            <p className="text-xs text-muted-foreground">
-              Die E-Mail-Adresse kann nicht geändert werden.
+            <p className="text-xs text-[#9CA3AF]">
+              Die E-Mail-Adresse kann nicht geaendert werden.
             </p>
           </div>
           <div className="space-y-2">
-            <Label htmlFor="name">Name</Label>
+            <Label htmlFor="name" className="text-sm text-[#4B5563]">
+              Name
+            </Label>
             <Input
               id="name"
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="Ihr Name"
+              className="border-[#E3E5EB]"
             />
           </div>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
 
       {/* Rechnungsdaten */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Rechnungsdaten</CardTitle>
-          <CardDescription>
-            Diese Daten erscheinen auf Ihren Rechnungen.
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
+      <div className="rounded-2xl border border-[#E3E5EB] bg-white p-6">
+        <h2 className="text-base font-bold text-[#111827]">Rechnungsdaten</h2>
+        <p className="mt-1 text-xs text-[#9CA3AF]">
+          Diese Daten erscheinen auf Ihren Rechnungen.
+        </p>
+
+        <div className="mt-6 space-y-4">
           <div className="space-y-2">
-            <Label htmlFor="company">Firma (optional)</Label>
+            <Label htmlFor="company" className="text-sm text-[#4B5563]">
+              Firma (optional)
+            </Label>
             <Input
               id="company"
               value={company}
               onChange={(e) => setCompany(e.target.value)}
               placeholder="Firmenname"
+              className="border-[#E3E5EB]"
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="vatId">USt-IdNr. (optional)</Label>
+            <Label htmlFor="vatId" className="text-sm text-[#4B5563]">
+              USt-IdNr. (optional)
+            </Label>
             <Input
               id="vatId"
               value={vatId}
               onChange={(e) => setVatId(e.target.value)}
               placeholder="DE123456789"
+              className="border-[#E3E5EB]"
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="street">Straße und Hausnummer</Label>
+            <Label htmlFor="street" className="text-sm text-[#4B5563]">
+              Strasse und Hausnummer
+            </Label>
             <Input
               id="street"
               value={street}
               onChange={(e) => setStreet(e.target.value)}
-              placeholder="Musterstraße 1"
+              placeholder="Musterstrasse 1"
+              className="border-[#E3E5EB]"
             />
           </div>
           <div className="grid grid-cols-3 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="zip">PLZ</Label>
+              <Label htmlFor="zip" className="text-sm text-[#4B5563]">
+                PLZ
+              </Label>
               <Input
                 id="zip"
                 value={zip}
                 onChange={(e) => setZip(e.target.value)}
                 placeholder="12345"
+                className="border-[#E3E5EB]"
               />
             </div>
-            <div className="space-y-2 col-span-2">
-              <Label htmlFor="city">Ort</Label>
+            <div className="col-span-2 space-y-2">
+              <Label htmlFor="city" className="text-sm text-[#4B5563]">
+                Ort
+              </Label>
               <Input
                 id="city"
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
                 placeholder="Musterstadt"
+                className="border-[#E3E5EB]"
               />
             </div>
           </div>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
+
+      {/* Passwort aendern (Platzhalter) */}
+      <div className="rounded-2xl border border-[#E3E5EB] bg-white p-6">
+        <div className="flex items-center gap-3">
+          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#F7F8FB]">
+            <Lock className="h-5 w-5 text-[#9CA3AF]" />
+          </div>
+          <div>
+            <h2 className="text-base font-bold text-[#111827]">
+              Passwort aendern
+            </h2>
+            <p className="text-xs text-[#9CA3AF]">
+              Diese Funktion wird in Kuerze verfuegbar sein.
+            </p>
+          </div>
+        </div>
+      </div>
 
       {/* Speichern-Button */}
-      <Button onClick={handleSave} disabled={saving} className="gap-2">
+      <button
+        onClick={handleSave}
+        disabled={saving}
+        className="inline-flex items-center gap-2 rounded-lg bg-[#4338CA] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#3730A3] disabled:opacity-50"
+      >
         <Save className="h-4 w-4" />
-        {saving ? "Wird gespeichert..." : "Änderungen speichern"}
-      </Button>
+        {saving ? "Wird gespeichert..." : "Aenderungen speichern"}
+      </button>
 
-      {/* Account löschen */}
-      <Card className="border-destructive/50">
-        <CardHeader>
-          <CardTitle className="text-destructive">Account löschen</CardTitle>
-          <CardDescription>
-            Löscht Ihren Account und alle damit verbundenen Daten unwiderruflich.
-            Ein aktives Abo wird automatisch gekündigt.
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
+      {/* Account loeschen */}
+      <div className="rounded-2xl border border-red-200 bg-white p-6">
+        <h2 className="text-base font-bold text-red-600">Account loeschen</h2>
+        <p className="mt-1 text-xs text-[#9CA3AF]">
+          Loescht Ihren Account und alle damit verbundenen Daten unwiderruflich.
+          Ein aktives Abo wird automatisch gekuendigt.
+        </p>
+        <div className="mt-4">
           <Dialog open={deleteOpen} onOpenChange={setDeleteOpen}>
             <DialogTrigger
               render={
                 <Button variant="destructive" className="gap-2">
                   <Trash2 className="h-4 w-4" />
-                  Account löschen
+                  Account loeschen
                 </Button>
               }
             />
             <DialogContent>
               <DialogHeader>
-                <DialogTitle className="flex items-center gap-2 text-destructive">
+                <DialogTitle className="flex items-center gap-2 text-red-600">
                   <AlertTriangle className="h-5 w-5" />
-                  Account endgültig löschen
+                  Account endgueltig loeschen
                 </DialogTitle>
                 <DialogDescription>
-                  Diese Aktion kann nicht rückgängig gemacht werden. Alle Ihre
+                  Diese Aktion kann nicht rueckgaengig gemacht werden. Alle Ihre
                   Daten, Embed-Keys, Einstellungen und Nutzungsdaten werden
-                  unwiderruflich gelöscht.
+                  unwiderruflich geloescht.
                 </DialogDescription>
               </DialogHeader>
               <div className="space-y-2 py-2">
                 <Label htmlFor="delete-confirm">
-                  Geben Sie <strong>LÖSCHEN</strong> ein, um zu bestätigen:
+                  Geben Sie <strong>LOESCHEN</strong> ein, um zu bestaetigen:
                 </Label>
                 <Input
                   id="delete-confirm"
                   value={deleteConfirm}
                   onChange={(e) => setDeleteConfirm(e.target.value)}
-                  placeholder="LÖSCHEN"
+                  placeholder="LOESCHEN"
                 />
               </div>
               <DialogFooter>
                 <Button
                   variant="destructive"
                   onClick={handleDelete}
-                  disabled={deleteConfirm !== "LÖSCHEN" || deleting}
+                  disabled={deleteConfirm !== "LOESCHEN" || deleting}
                 >
                   {deleting
-                    ? "Wird gelöscht..."
-                    : "Account endgültig löschen"}
+                    ? "Wird geloescht..."
+                    : "Account endgueltig loeschen"}
                 </Button>
               </DialogFooter>
             </DialogContent>
           </Dialog>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
 
       {/* Account-Info */}
       {profile?.createdAt && (
-        <p className="text-xs text-muted-foreground">
+        <p className="text-xs text-[#9CA3AF]">
           Account erstellt am{" "}
           {new Date(profile.createdAt).toLocaleDateString("de-DE", {
             day: "2-digit",

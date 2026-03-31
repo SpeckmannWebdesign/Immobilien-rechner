@@ -32,11 +32,7 @@ export async function POST(request: Request) {
     const embedKey = await db.embedKey.findUnique({
       where: { apiKey },
       include: {
-        user: {
-          include: {
-            subscription: true,
-          },
-        },
+        user: true,
       },
     })
 
@@ -57,39 +53,38 @@ export async function POST(request: Request) {
       )
     }
 
-    // Abo-Status prüfen
-    const subscription = embedKey.user.subscription
-    const plan = subscription?.plan ?? "STARTER"
-    const status = subscription?.status ?? "TRIAL"
-
-    const isSubscriptionActive = status === "TRIAL" || status === "ACTIVE"
-
-    if (!isSubscriptionActive) {
-      return corsResponse(
-        { error: "Kein aktives Abo vorhanden.", code: "SUBSCRIPTION_INACTIVE" },
-        403,
-        origin
-      )
-    }
-
-    // Starter-Plan hat keine Embed-Funktion (außer im Trial)
-    if (plan === "STARTER" && status !== "TRIAL") {
-      return corsResponse(
-        { error: "Das Starter-Abo enthält keine Embed-Funktion.", code: "PLAN_INSUFFICIENT" },
-        403,
-        origin
-      )
-    }
+    // Abo-Status prüfen — User muss aktives Abo oder gültigen Trial haben
+    const user = embedKey.user
+    const plan = user.plan ?? "trial"
+    const now = new Date()
 
     // Trial abgelaufen?
-    if (status === "TRIAL" && subscription?.trialEndsAt) {
-      if (new Date() > subscription.trialEndsAt) {
+    if (plan === "trial") {
+      if (user.trialEndsAt && now > user.trialEndsAt) {
         return corsResponse(
           { error: "Der Testzeitraum ist abgelaufen.", code: "TRIAL_EXPIRED" },
           403,
           origin
         )
       }
+    }
+
+    // Bezahlter Plan abgelaufen?
+    if (plan !== "trial" && user.planExpiresAt && now > user.planExpiresAt) {
+      return corsResponse(
+        { error: "Ihr Abo ist abgelaufen. Bitte verlängern Sie Ihren Plan.", code: "SUBSCRIPTION_EXPIRED" },
+        403,
+        origin
+      )
+    }
+
+    // Starter-Plan hat keine Embed-Funktion (außer im Trial)
+    if (plan === "starter") {
+      return corsResponse(
+        { error: "Das Starter-Abo enthält keine Embed-Funktion.", code: "PLAN_INSUFFICIENT" },
+        403,
+        origin
+      )
     }
 
     // Tool-Berechtigung prüfen (Pro: nur ausgewähltes Tool, Business: alle)

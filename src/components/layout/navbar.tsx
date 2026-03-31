@@ -2,7 +2,8 @@
 
 import Link from "next/link"
 import { useState, useEffect } from "react"
-import { Calculator, Menu, X } from "lucide-react"
+import { Menu, X } from "lucide-react"
+import { Logo } from "@/components/ui/logo"
 import { motion, AnimatePresence } from "framer-motion"
 
 const navigation = [
@@ -73,16 +74,9 @@ export function Navbar() {
           {/* Logo */}
           <Link
             href="/"
-            className={`flex items-center gap-2 transition-colors duration-300 ${
-              isDark
-                ? "text-white hover:text-white/70"
-                : "text-[#111827] hover:opacity-70"
-            }`}
+            className="transition-opacity duration-300 hover:opacity-80"
           >
-            <Calculator className="h-5 w-5" />
-            <span className="text-sm font-semibold tracking-tight">
-              Immobilien-Rechner
-            </span>
+            <Logo variant={isDark ? "light" : "dark"} size="sm" />
           </Link>
 
           {/* Desktop Navigation */}

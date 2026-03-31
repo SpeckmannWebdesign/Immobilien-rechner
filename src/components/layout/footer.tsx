@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Calculator } from "lucide-react"
+import { Logo } from "@/components/ui/logo"
 
 const footerLinks = {
   produkt: [
@@ -27,11 +27,8 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
           {/* Branding */}
           <div className="space-y-4">
-            <Link href="/" className="flex items-center gap-2 text-[#111827]">
-              <Calculator className="h-5 w-5" />
-              <span className="text-sm font-semibold tracking-tight">
-                Immobilien-Rechner
-              </span>
+            <Link href="/" className="inline-block">
+              <Logo size="sm" />
             </Link>
             <p className="text-[13px] text-[#9CA3AF] leading-relaxed">
               Professionelle Immobilien-Tools für Makler, Investoren und Hausverwaltungen.

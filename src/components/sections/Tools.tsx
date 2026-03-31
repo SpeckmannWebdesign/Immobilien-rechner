@@ -1,5 +1,6 @@
 "use client"
 
+import type { ReactNode } from "react"
 import Link from "next/link"
 import { useSectionReveal } from "@/components/animations/useSectionReveal"
 import {
@@ -20,14 +21,57 @@ import {
   Ban,
   Ruler,
 } from "lucide-react"
+import type { LucideIcon } from "lucide-react"
 
-const toolCategories = [
+interface ToolItem {
+  name: string
+  desc: string
+  icon: LucideIcon
+  href: string
+  chart?: ReactNode
+}
+
+interface ToolCategory {
+  label: string
+  tools: ToolItem[]
+}
+
+// Mini-Charts fuer die ersten 3 Tools
+const renditeChart = (
+  <svg width="100%" height="32" viewBox="0 0 180 32" className="mt-3 opacity-40 group-hover:opacity-60 transition-opacity">
+    <circle cx="16" cy="16" r="12" fill="none" stroke="#E3E5EB" strokeWidth="4" />
+    <circle cx="16" cy="16" r="12" fill="none" stroke="#4338CA" strokeWidth="4" strokeDasharray="25 50.4" transform="rotate(-90 16 16)" />
+    <circle cx="16" cy="16" r="12" fill="none" stroke="#0E7490" strokeWidth="4" strokeDasharray="18 57.4" strokeDashoffset="-25" transform="rotate(-90 16 16)" />
+    <rect x="36" y="12" width="30" height="4" rx="2" fill="#E3E5EB" />
+    <rect x="36" y="12" width="22" height="4" rx="2" fill="#4338CA" opacity="0.5" />
+    <rect x="74" y="12" width="30" height="4" rx="2" fill="#E3E5EB" />
+    <rect x="74" y="12" width="26" height="4" rx="2" fill="#0E7490" opacity="0.5" />
+  </svg>
+)
+
+const kaufnebenkostenChart = (
+  <svg width="100%" height="32" viewBox="0 0 180 32" className="mt-3 opacity-40 group-hover:opacity-60 transition-opacity">
+    <rect x="0" y="14" width="45" height="10" rx="3" fill="#4338CA" opacity="0.6" />
+    <rect x="48" y="14" width="25" height="10" rx="3" fill="#0E7490" opacity="0.6" />
+    <rect x="76" y="14" width="15" height="10" rx="3" fill="#059669" opacity="0.6" />
+    <rect x="94" y="14" width="20" height="10" rx="3" fill="#B45309" opacity="0.6" />
+  </svg>
+)
+
+const finanzierungChart = (
+  <svg width="100%" height="32" viewBox="0 0 180 32" className="mt-3 opacity-40 group-hover:opacity-60 transition-opacity">
+    <path d="M0,28 Q30,26 60,22 Q90,16 120,8 Q150,2 180,0" fill="none" stroke="#4338CA" strokeWidth="2" opacity="0.6" />
+    <path d="M0,28 Q30,26 60,22 Q90,16 120,8 Q150,2 180,0 L180,32 L0,32 Z" fill="#4338CA" opacity="0.08" />
+  </svg>
+)
+
+const toolCategories: ToolCategory[] = [
   {
     label: "Investoren & Makler",
     tools: [
-      { name: "Rendite-Rechner", desc: "Brutto- und Nettomietrendite", icon: TrendingUp, href: "/rechner/rendite-rechner" },
-      { name: "Kaufnebenkosten", desc: "Alle Kosten beim Kauf", icon: Calculator, href: "/rechner/kaufnebenkosten-rechner" },
-      { name: "Finanzierung", desc: "Annuität, Tilgung, Zinsen", icon: Building2, href: "/rechner/finanzierungsrechner" },
+      { name: "Rendite-Rechner", desc: "Brutto- und Nettomietrendite", icon: TrendingUp, href: "/rechner/rendite-rechner", chart: renditeChart },
+      { name: "Kaufnebenkosten", desc: "Alle Kosten beim Kauf", icon: Calculator, href: "/rechner/kaufnebenkosten-rechner", chart: kaufnebenkostenChart },
+      { name: "Finanzierung", desc: "Annuität, Tilgung, Zinsen", icon: Building2, href: "/rechner/finanzierungsrechner", chart: finanzierungChart },
       { name: "Cashflow", desc: "Monatlicher Überschuss", icon: PiggyBank, href: "/rechner/cashflow-rechner" },
       { name: "Grunderwerbsteuer", desc: "Alle 16 Bundesländer", icon: Landmark, href: "/rechner/grunderwerbsteuer-rechner" },
     ],
@@ -102,6 +146,7 @@ export function ToolsSection() {
                       <p className="text-[13px] text-[#9CA3AF]">
                         {tool.desc}
                       </p>
+                      {tool.chart && tool.chart}
                     </div>
                   </div>
                 </Link>

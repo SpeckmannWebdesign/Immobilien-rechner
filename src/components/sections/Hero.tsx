@@ -4,6 +4,22 @@ import Link from "next/link"
 import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 
+const mockInputs = [
+  { label: "Kaufpreis", value: "285.000 \u20AC" },
+  { label: "Kaltmiete", value: "1.250 \u20AC" },
+  { label: "Nebenkosten", value: "12,07 %" },
+  { label: "Eigenkapital", value: "80.000 \u20AC" },
+]
+
+function MetricBox({ label, value, color }: { label: string; value: string; color: string }) {
+  return (
+    <div className="bg-[#1B1D28] border border-[#2A2D3A] rounded-lg p-3">
+      <div className="text-[10px] text-[#64748B] font-medium mb-1">{label}</div>
+      <div className="text-lg font-extrabold tabular-nums" style={{ color }}>{value}</div>
+    </div>
+  )
+}
+
 export function HeroSection() {
   return (
     <section id="hero-section" className="relative min-h-[100vh] flex items-center justify-center overflow-hidden bg-[#0B0D14] pt-12">
@@ -24,7 +40,7 @@ export function HeroSection() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 text-center max-w-[900px] mx-auto px-6">
+      <div className="relative z-10 text-center max-w-[900px] mx-auto px-6 flex flex-col items-center">
         {/* Overline */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
@@ -91,6 +107,78 @@ export function HeroSection() {
         >
           Keine Kreditkarte nötig. Jederzeit kündbar.
         </motion.p>
+
+        {/* Hero Mockup */}
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 1.2, ease: [0.25, 0.1, 0, 1] }}
+          className="relative z-10 w-full max-w-[880px] mt-16"
+        >
+          <div
+            className="bg-[#13151E] border border-[#2A2D3A] rounded-2xl overflow-hidden transition-transform duration-500 hover:[transform:perspective(1200px)_rotateX(0deg)]"
+            style={{
+              boxShadow: "0 20px 60px rgba(0,0,0,0.4), 0 0 0 1px rgba(67,56,202,0.08)",
+              transform: "perspective(1200px) rotateX(2deg)",
+            }}
+          >
+            {/* Browser-Bar mit 3 Dots */}
+            <div className="flex items-center gap-2 px-4 py-3 bg-[#1B1D28] border-b border-[#2A2D3A]">
+              <div className="w-2.5 h-2.5 rounded-full bg-[#FF5F57]" />
+              <div className="w-2.5 h-2.5 rounded-full bg-[#FEBC2E]" />
+              <div className="w-2.5 h-2.5 rounded-full bg-[#28C840]" />
+              <span className="flex-1 text-center text-xs text-[#64748B] font-medium">Rendite-Rechner</span>
+            </div>
+
+            {/* Mockup Body: 2 Spalten */}
+            <div className="grid grid-cols-1 md:grid-cols-[280px_1fr] gap-5 p-5">
+              {/* Links: Input-Felder (statisch, nur visuell) */}
+              <div className="space-y-3">
+                {mockInputs.map((input) => (
+                  <div key={input.label}>
+                    <div className="text-[10px] font-semibold text-[#64748B] uppercase tracking-wider mb-1">
+                      {input.label}
+                    </div>
+                    <div className="bg-[#0B0D14] border border-[#2A2D3A] rounded-md px-3 py-2 text-sm text-[#F1F5F9] font-medium tabular-nums">
+                      {input.value}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Rechts: Ergebnis-Kacheln + Mini-Donut */}
+              <div className="space-y-3">
+                {/* 3 Metric-Kacheln */}
+                <div className="grid grid-cols-3 gap-2">
+                  <MetricBox label="Brutto-Rendite" value="5,26%" color="#059669" />
+                  <MetricBox label="Netto-Rendite" value="3,82%" color="#059669" />
+                  <MetricBox label="EK-Rendite" value="12,41%" color="#818CF8" />
+                </div>
+
+                {/* Mini Donut Chart (SVG) */}
+                <div className="bg-[#1B1D28] border border-[#2A2D3A] rounded-lg p-4 flex items-center justify-center">
+                  <svg width="120" height="120" viewBox="0 0 120 120">
+                    <circle cx="60" cy="60" r="45" fill="none" stroke="#2A2D3A" strokeWidth="14" />
+                    {/* Eigenkapital Segment */}
+                    <circle cx="60" cy="60" r="45" fill="none" stroke="#4338CA" strokeWidth="14"
+                      strokeDasharray="70.69 212.06" strokeDashoffset="0" strokeLinecap="round"
+                      transform="rotate(-90 60 60)" />
+                    {/* Fremdkapital Segment */}
+                    <circle cx="60" cy="60" r="45" fill="none" stroke="#0E7490" strokeWidth="14"
+                      strokeDasharray="144.51 138.24" strokeDashoffset="-70.69" strokeLinecap="round"
+                      transform="rotate(-90 60 60)" />
+                    {/* Nebenkosten Segment */}
+                    <circle cx="60" cy="60" r="45" fill="none" stroke="#B45309" strokeWidth="14"
+                      strokeDasharray="67.55 215.2" strokeDashoffset="-215.2" strokeLinecap="round"
+                      transform="rotate(-90 60 60)" />
+                    <text x="60" y="56" textAnchor="middle" fill="#059669" fontSize="16" fontWeight="800" fontFamily="Inter, sans-serif">5,26%</text>
+                    <text x="60" y="72" textAnchor="middle" fill="#64748B" fontSize="9" fontFamily="Inter, sans-serif">Rendite</text>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </motion.div>
       </div>
 
       {/* Scroll Indicator */}

@@ -12,6 +12,10 @@ import { ObjektvergleichRechner } from "@/components/rechner/objektvergleich-rec
 import { TilgungsplanRechner } from "@/components/rechner/tilgungsplan-rechner"
 import { NebenkostenRechner } from "@/components/rechner/nebenkosten-rechner"
 import { MieterhoehungsRechner } from "@/components/rechner/mieterhoehungs-rechner"
+import { KaufenVsMietenRechner } from "@/components/rechner/kaufen-vs-mieten-rechner"
+import { VorfaelligkeitsRechner } from "@/components/rechner/vorfaelligkeits-rechner"
+import { BeleihungswertRechner } from "@/components/rechner/beleihungswert-rechner"
+import { WohnflaechenRechner } from "@/components/rechner/wohnflaechen-rechner"
 
 const rechnerMap: Record<string, React.ComponentType> = {
   "rendite-rechner": RenditeRechner,
@@ -26,6 +30,10 @@ const rechnerMap: Record<string, React.ComponentType> = {
   "tilgungsplan-generator": TilgungsplanRechner,
   "nebenkostenabrechnung-rechner": NebenkostenRechner,
   "mieterhoehungs-rechner": MieterhoehungsRechner,
+  "kaufen-vs-mieten": KaufenVsMietenRechner,
+  "vorfaelligkeitsentschaedigung-rechner": VorfaelligkeitsRechner,
+  "beleihungswert-rechner": BeleihungswertRechner,
+  "wohnflaechenberechnung": WohnflaechenRechner,
 }
 
 interface TeaseredCalculatorProps {

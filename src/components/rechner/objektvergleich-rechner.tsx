@@ -13,7 +13,7 @@ import { ResultCard } from "./result-card"
 import { BentoMetric } from "./result-card"
 import { berechneObjektvergleich, type ObjektInput, formatCurrency, formatPercent } from "@/lib/rechner"
 
-const CHART_COLORS = ["#4338CA", "#0E7490", "#059669", "#B45309"]
+const CHART_COLORS = ["var(--rechner-accent)", "var(--rechner-accent-dark)", "var(--rechner-accent-muted)"]
 
 const DEFAULT_OBJEKT: ObjektInput = {
   name: "Objekt",
@@ -81,19 +81,19 @@ export function ObjektvergleichRechner() {
           label="Beste Bruttorendite"
           value={formatPercent(besteRendite.bruttoRendite)}
           sub={besteRendite.name}
-          color="green"
+          color="positive"
         />
         <BentoMetric
           label="Bester Cashflow/Monat"
           value={formatCurrency(besterCashflow.monatsCashflow)}
           sub={besterCashflow.name}
-          color={besterCashflow.monatsCashflow >= 0 ? "green" : "red"}
+          color={besterCashflow.monatsCashflow >= 0 ? "positive" : "negative"}
         />
         <BentoMetric
           label="Objekte verglichen"
           value={`${objekte.length}`}
           sub="Max. 3 Objekte"
-          color="blue"
+          color="accent"
         />
       </div>
 
@@ -148,7 +148,7 @@ export function ObjektvergleichRechner() {
                   label: "Bruttorendite",
                   value: r.bruttoRendite,
                   type: "percent",
-                  color: r.isBest.rendite ? "green" : "default",
+                  color: r.isBest.rendite ? "positive" : "default",
                   highlight: r.isBest.rendite,
                 },
                 { label: "Nettorendite", value: r.nettoRendite, type: "percent" },
@@ -157,7 +157,7 @@ export function ObjektvergleichRechner() {
                 {
                   label: "Cashflow/Monat",
                   value: r.monatsCashflow,
-                  color: r.isBest.cashflow ? "green" : r.monatsCashflow < 0 ? "red" : "default",
+                  color: r.isBest.cashflow ? "positive" : r.monatsCashflow < 0 ? "negative" : "default",
                   highlight: r.isBest.cashflow,
                 },
                 { label: "EK-Rendite", value: r.eigenkapitalRendite, type: "percent" },

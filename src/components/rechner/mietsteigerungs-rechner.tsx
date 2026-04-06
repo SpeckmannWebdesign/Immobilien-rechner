@@ -10,7 +10,7 @@ import { SelectInput } from "./select-input"
 import { BentoMetric, ResultCard } from "./result-card"
 import { berechneMietsteigerung, formatCurrency, formatPercent } from "@/lib/rechner"
 
-const CHART_COLORS = ["#4338CA", "#0E7490", "#059669", "#B45309"]
+const CHART_COLORS = ["var(--rechner-accent)", "var(--rechner-accent-dark)", "var(--rechner-accent-muted)"]
 
 const TOOLTIP_STYLE = {
   background: "white",
@@ -80,19 +80,19 @@ export function MietsteigerungsRechner() {
               label={`Miete nach ${zeitraum} Jahren`}
               value={formatCurrency(result.endMonatsmiete)}
               sub={`+${formatCurrency(result.steigerungAbsolut)} pro Monat`}
-              color="green"
+              color="positive"
             />
             <BentoMetric
               label="Kumulative Einnahmen"
               value={formatCurrency(result.gesamtMieteinnahmen)}
               sub={`Über ${zeitraum} Jahre`}
-              color="blue"
+              color="accent"
             />
             <BentoMetric
               label="Steigerung gesamt"
               value={formatPercent(result.steigerungProzent)}
               sub={`${formatCurrency(aktuelleMonatsmiete)} → ${formatCurrency(result.endMonatsmiete)}`}
-              color="amber"
+              color="muted"
             />
           </div>
 
@@ -102,13 +102,13 @@ export function MietsteigerungsRechner() {
               label={`Jahresmiete nach ${zeitraum} Jahren`}
               value={formatCurrency(result.endJahresmiete)}
               sub="Jährliche Mieteinnahmen am Ende"
-              color="green"
+              color="positive"
             />
             <BentoMetric
               label="Steigerung absolut"
               value={`+${formatCurrency(result.steigerungAbsolut)}`}
               sub="Mehrbetrag pro Monat"
-              color="amber"
+              color="muted"
             />
           </div>
 

@@ -84,7 +84,7 @@ export function WohnflaechenRechner() {
           label="Anrechenbare Wohnfläche"
           value={`${result.anrechenbare.toFixed(2).replace(".", ",")} m²`}
           sub="Nach WoFlV"
-          color="blue"
+          color="accent"
         />
         <BentoMetric
           label="Grundfläche gesamt"
@@ -95,7 +95,7 @@ export function WohnflaechenRechner() {
           label="Nicht anrechenbar"
           value={`${result.nichtAnrechenbare.toFixed(2).replace(".", ",")} m²`}
           sub="Abzüge nach WoFlV"
-          color="red"
+          color="negative"
         />
       </div>
 

@@ -50,7 +50,7 @@ export function KaufenVsMietenRechner() {
   )
 
   const kaufBesser = result.vermoegenKauf > result.vermoegenMiete
-  const differenzColor = kaufBesser ? "green" as const : "red" as const
+  const differenzColor = kaufBesser ? "positive" as const : "negative" as const
   const differenzBetrag = Math.abs(result.vermoegenKauf - result.vermoegenMiete)
 
   return (
@@ -144,13 +144,13 @@ export function KaufenVsMietenRechner() {
               label="Vermögen Kauf"
               value={formatCurrency(result.vermoegenKauf)}
               sub="Immobilienwert − Restschuld"
-              color="blue"
+              color="accent"
             />
             <BentoMetric
               label="Vermögen Miete"
               value={formatCurrency(result.vermoegenMiete)}
               sub="Eigenkapital + angelegte Ersparnis"
-              color="amber"
+              color="muted"
             />
             <BentoMetric
               label="Differenz"
@@ -195,16 +195,16 @@ export function KaufenVsMietenRechner() {
                 <Area
                   type="monotone"
                   dataKey="kumuliertKauf"
-                  stroke="#4338CA"
-                  fill="#4338CA"
+                  stroke="var(--rechner-accent)"
+                  fill="var(--rechner-accent)"
                   fillOpacity={0.1}
                   strokeWidth={2}
                 />
                 <Area
                   type="monotone"
                   dataKey="kumuliertMiete"
-                  stroke="#059669"
-                  fill="#059669"
+                  stroke="var(--rechner-positive)"
+                  fill="var(--rechner-positive)"
                   fillOpacity={0.1}
                   strokeWidth={2}
                 />
@@ -218,32 +218,32 @@ export function KaufenVsMietenRechner() {
               label="Immobilienwert Ende"
               value={formatCurrency(result.immobilienwertEnde)}
               sub={`Nach ${zeitraumJahre} Jahren mit ${wertsteigerung.toFixed(1).replace(".", ",")}% p.a.`}
-              color="blue"
+              color="accent"
             />
             <BentoMetric
               label="Restschuld"
               value={formatCurrency(result.restschuld)}
               sub={result.restschuld === 0 ? "Vollständig getilgt" : "Noch offen nach Zeitraum"}
-              color={result.restschuld === 0 ? "green" : "red"}
+              color={result.restschuld === 0 ? "positive" : "negative"}
             />
             <BentoMetric
               label="Gesamtkosten Kauf"
               value={formatCurrency(result.gesamtkostenKauf)}
               sub="Zinsen + Tilgung + Instandhaltung + Nebenkosten"
-              color="amber"
+              color="muted"
             />
             <BentoMetric
               label="Gesamtkosten Miete"
               value={formatCurrency(result.gesamtkostenMiete)}
               sub={`Miete über ${zeitraumJahre} Jahre (inkl. Steigerung)`}
-              color="amber"
+              color="muted"
             />
             {result.kaufLohntAbJahr !== null && (
               <BentoMetric
                 label="Kauf lohnt sich ab"
                 value={`Jahr ${result.kaufLohntAbJahr}`}
                 sub="Ab diesem Jahr übersteigt das Kauf-Vermögen das Miet-Vermögen"
-                color="green"
+                color="positive"
                 className="sm:col-span-2"
               />
             )}

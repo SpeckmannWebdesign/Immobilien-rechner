@@ -1,8 +1,9 @@
 "use client"
 
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Disclaimer } from "./disclaimer"
-import { Download, Mail } from "lucide-react"
+import { Download, Mail, Palette } from "lucide-react"
 import type { LucideIcon } from "lucide-react"
 
 interface CalculatorLayoutProps {
@@ -28,12 +29,33 @@ export function CalculatorLayout({
   onDownloadPdf,
   onSendEmail,
 }: CalculatorLayoutProps) {
+  const [brandColor, setBrandColor] = useState("#205090")
+  const [showBranding, setShowBranding] = useState(false)
+
+  useEffect(() => {
+    const root = document.documentElement
+    root.style.setProperty("--rechner-accent", brandColor)
+
+    // Dunklere Variante berechnen
+    const r = parseInt(brandColor.slice(1, 3), 16)
+    const g = parseInt(brandColor.slice(3, 5), 16)
+    const b = parseInt(brandColor.slice(5, 7), 16)
+    const darkR = Math.round(r * 0.7)
+    const darkG = Math.round(g * 0.7)
+    const darkB = Math.round(b * 0.7)
+    const mutedR = Math.round(r + (255 - r) * 0.4)
+    const mutedG = Math.round(g + (255 - g) * 0.4)
+    const mutedB = Math.round(b + (255 - b) * 0.4)
+    root.style.setProperty("--rechner-accent-dark", `#${darkR.toString(16).padStart(2, "0")}${darkG.toString(16).padStart(2, "0")}${darkB.toString(16).padStart(2, "0")}`)
+    root.style.setProperty("--rechner-accent-muted", `#${mutedR.toString(16).padStart(2, "0")}${mutedG.toString(16).padStart(2, "0")}${mutedB.toString(16).padStart(2, "0")}`)
+  }, [brandColor])
+
   return (
     <div className="space-y-6">
       {/* Header */}
       <div className="flex items-center gap-3 pb-6 border-b">
-        <div className="w-10 h-10 rounded-xl bg-muted border flex items-center justify-center flex-shrink-0">
-          <Icon className="h-5 w-5 text-muted-foreground" />
+        <div className="w-10 h-10 rounded-xl border flex items-center justify-center flex-shrink-0" style={{ backgroundColor: `${brandColor}15` }}>
+          <Icon className="h-5 w-5" style={{ color: brandColor }} />
         </div>
         <div>
           <h1 className="text-2xl font-extrabold tracking-tight">{title}</h1>
@@ -78,6 +100,40 @@ export function CalculatorLayout({
           {/* Disclaimer */}
           <Disclaimer showTaxDisclaimer={showTaxDisclaimer} />
         </div>
+      </div>
+
+      {/* Branding Farbe */}
+      <div className="border-t pt-6">
+        <button
+          onClick={() => setShowBranding(!showBranding)}
+          className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition"
+        >
+          <Palette className="h-4 w-4" />
+          Branding-Farbe anpassen
+        </button>
+        {showBranding && (
+          <div className="flex items-center gap-3 mt-3">
+            <input
+              type="color"
+              value={brandColor}
+              onChange={(e) => setBrandColor(e.target.value)}
+              className="w-10 h-10 rounded-lg border cursor-pointer"
+            />
+            <input
+              type="text"
+              value={brandColor}
+              onChange={(e) => {
+                const val = e.target.value
+                if (/^#[0-9A-Fa-f]{6}$/.test(val)) {
+                  setBrandColor(val)
+                }
+              }}
+              placeholder="#205090"
+              className="bg-card border rounded-lg px-3 py-2 text-sm font-mono w-28"
+            />
+            <span className="text-xs text-muted-foreground">Hex-Code eingeben — Rechner passt sich an</span>
+          </div>
+        )}
       </div>
     </div>
   )

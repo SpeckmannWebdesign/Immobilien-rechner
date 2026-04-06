@@ -99,14 +99,14 @@ export function VorfaelligkeitsRechner() {
               label="Vorfälligkeitsentschädigung"
               value={formatCurrency(result.vorfaelligkeitsentschaedigung)}
               sub="Geschätzter Gesamtbetrag"
-              color="red"
+              color="negative"
               className="text-3xl"
             />
             <BentoMetric
               label="Zinsmargenschaden"
               value={formatCurrency(result.zinsmargenschaden)}
               sub="Entgangener Zinsgewinn der Bank"
-              color="amber"
+              color="muted"
             />
             <BentoMetric
               label="Bearbeitungsgebühr"
@@ -122,13 +122,13 @@ export function VorfaelligkeitsRechner() {
               label="Ersparnis durch Sondertilgungsrecht"
               value={formatCurrency(result.eingesparter)}
               sub={`${sondertilgungRecht} % jährliches Sondertilgungsrecht`}
-              color="green"
+              color="positive"
             />
             <BentoMetric
               label="VFE ohne Sondertilgung"
               value={formatCurrency(result.ersparnisOhneSondertilgung)}
               sub="Ohne Abzug des Sondertilgungsrechts"
-              color="blue"
+              color="accent"
             />
             <BentoMetric
               label="Restlaufzeit"

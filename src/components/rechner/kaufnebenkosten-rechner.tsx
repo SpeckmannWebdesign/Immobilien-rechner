@@ -123,19 +123,19 @@ export function KaufnebenkostenRechner() {
               label="Gesamtnebenkosten"
               value={formatCurrency(result.gesamtNebenkosten)}
               sub={`${formatPercent(result.gesamtNebenkostenProzent)} vom Kaufpreis`}
-              color="red"
+              color="negative"
             />
             <BentoMetric
               label="Grunderwerbsteuer"
               value={formatCurrency(result.grunderwerbsteuer)}
               sub={`${bundesland}`}
-              color="amber"
+              color="muted"
             />
             <BentoMetric
               label="Notar + Grundbuch"
               value={formatCurrency(notarUndGrundbuch)}
               sub={`${formatPercent(notarSatz + grundbuchSatz)} vom Kaufpreis`}
-              color="blue"
+              color="accent"
             />
           </div>
 
@@ -156,14 +156,14 @@ export function KaufnebenkostenRechner() {
                 label="Maklerkosten"
                 value={formatCurrency(result.maklerkosten)}
                 sub={`${formatPercent(maklerSatz)} vom Kaufpreis`}
-                color="amber"
+                color="muted"
               />
             )}
             <BentoMetric
               label="Gesamtkosten inkl. Kaufpreis"
               value={formatCurrency(result.gesamtKosten)}
               sub={`Kaufpreis ${formatCurrency(kaufpreis)} + Nebenkosten`}
-              color="blue"
+              color="accent"
             />
           </div>
         </>

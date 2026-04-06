@@ -105,19 +105,19 @@ export function NebenkostenRechner() {
           label="Gesamtkosten"
           value={formatCurrency(result.gesamtKosten)}
           sub="Alle Kostenpositionen"
-          color="blue"
+          color="accent"
         />
         <BentoMetric
           label="Umlegbare Kosten"
           value={formatCurrency(result.umlegbareKosten)}
           sub="Auf Mieter verteilbar"
-          color="green"
+          color="positive"
         />
         <BentoMetric
           label="Nicht-umlegbar"
           value={formatCurrency(result.nichtUmlegbareKosten)}
           sub="Verbleiben beim Vermieter"
-          color="red"
+          color="negative"
         />
       </div>
 

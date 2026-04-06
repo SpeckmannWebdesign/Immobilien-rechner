@@ -8,7 +8,7 @@ import { CurrencyInput } from "./currency-input"
 import { BentoMetric } from "./result-card"
 import { berechneRendite, formatCurrency, formatPercent } from "@/lib/rechner"
 
-const CHART_COLORS = ["#4338CA", "#0E7490", "#B45309"]
+const CHART_COLORS = ["var(--rechner-accent)", "var(--rechner-accent-dark)", "var(--rechner-accent-muted)"]
 
 export function RenditeRechner() {
   const [kaufpreis, setKaufpreis] = useState(285000)
@@ -30,9 +30,9 @@ export function RenditeRechner() {
     [kaufpreis, monatlicheKaltmiete, kaufnebenkosten, eigenkapital, bewirtschaftungskosten]
   )
 
-  const bruttoColor = result.bruttoMietrendite >= 5 ? "green" as const : result.bruttoMietrendite >= 3 ? "amber" as const : "red" as const
-  const nettoColor = result.nettoMietrendite >= 3 ? "green" as const : result.nettoMietrendite >= 2 ? "amber" as const : "red" as const
-  const ekColor = result.eigenkapitalRendite >= 6 ? "green" as const : result.eigenkapitalRendite >= 0 ? "blue" as const : "red" as const
+  const bruttoColor = result.bruttoMietrendite >= 5 ? "positive" as const : result.bruttoMietrendite >= 3 ? "muted" as const : "negative" as const
+  const nettoColor = result.nettoMietrendite >= 3 ? "positive" as const : result.nettoMietrendite >= 2 ? "muted" as const : "negative" as const
+  const ekColor = result.eigenkapitalRendite >= 6 ? "positive" as const : result.eigenkapitalRendite >= 0 ? "accent" as const : "negative" as const
 
   const chartData = [
     { name: "Eigenkapital", value: eigenkapital },
@@ -90,7 +90,7 @@ export function RenditeRechner() {
             <BentoMetric
               label="Bruttomietrendite"
               value={formatPercent(result.bruttoMietrendite)}
-              sub={bruttoColor === "green" ? "Gute Rendite" : bruttoColor === "amber" ? "Mittlere Rendite" : "Niedrige Rendite"}
+              sub={bruttoColor === "positive" ? "Gute Rendite" : bruttoColor === "muted" ? "Mittlere Rendite" : "Niedrige Rendite"}
               color={bruttoColor}
             />
             <BentoMetric
@@ -157,19 +157,19 @@ export function RenditeRechner() {
               label="Gesamtinvestition"
               value={formatCurrency(result.gesamtinvestition)}
               sub="inkl. Kaufnebenkosten"
-              color="blue"
+              color="accent"
             />
             <BentoMetric
               label="Kaufnebenkosten"
               value={formatCurrency(kaufnebenkosten)}
               sub={`${((kaufnebenkosten / kaufpreis) * 100).toFixed(1).replace(".", ",")}% vom Kaufpreis`}
-              color="amber"
+              color="muted"
             />
             <BentoMetric
               label="Jahreskaltmiete"
               value={formatCurrency(result.jahresKaltmiete)}
               sub={`${formatCurrency(monatlicheKaltmiete)} × 12 Monate`}
-              color="green"
+              color="positive"
             />
             <BentoMetric
               label="Darlehen"

@@ -9,7 +9,7 @@ interface ResultItem {
   type?: "currency" | "percent" | "number" | "text"
   textValue?: string
   highlight?: boolean
-  color?: "green" | "red" | "yellow" | "default"
+  color?: "positive" | "negative" | "neutral" | "accent" | "default"
 }
 
 interface ResultCardProps {
@@ -37,9 +37,9 @@ export function ResultCard({ title, items, className }: ResultCardProps) {
             <span
               className={cn(
                 "font-semibold tabular-nums",
-                item.color === "green" && "text-[#059669]",
-                item.color === "red" && "text-[#DC2626]",
-                item.color === "yellow" && "text-[#B45309]"
+                item.color === "positive" && "text-[var(--rechner-accent)]",
+                item.color === "negative" && "text-[var(--rechner-accent-muted)]",
+                item.color === "neutral" && "text-foreground",
               )}
             >
               {item.textValue
@@ -62,7 +62,7 @@ interface BentoMetricProps {
   label: string
   value: string
   sub?: string
-  color?: "green" | "red" | "blue" | "amber" | "default"
+  color?: "positive" | "negative" | "accent" | "muted" | "default"
   className?: string
 }
 
@@ -76,10 +76,10 @@ export function BentoMetric({ label, value, sub, color = "default", className }:
       <div
         className={cn(
           "text-2xl font-extrabold tracking-tight tabular-nums",
-          color === "green" && "text-[#059669]",
-          color === "red" && "text-[#DC2626]",
-          color === "blue" && "text-[#4338CA]",
-          color === "amber" && "text-[#B45309]",
+          color === "positive" && "text-[var(--rechner-accent)]",
+          color === "negative" && "text-[var(--rechner-accent-muted)]",
+          color === "accent" && "text-[var(--rechner-accent-dark)]",
+          color === "muted" && "text-muted-foreground",
           color === "default" && "text-foreground"
         )}
       >

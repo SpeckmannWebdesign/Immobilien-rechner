@@ -32,10 +32,10 @@ export function MieterhoehungsRechner() {
 
   // Farblogik für Erhöhung
   const erhoehungColor = result.erhoehungsBetrag > 50
-    ? "green" as const
+    ? "positive" as const
     : result.erhoehungsBetrag > 0
-      ? "amber" as const
-      : "red" as const
+      ? "muted" as const
+      : "negative" as const
 
   return (
     <CalculatorLayout
@@ -110,13 +110,13 @@ export function MieterhoehungsRechner() {
               label="Neue Miete"
               value={formatCurrency(result.neueMiete)}
               sub="Nach Erhöhung"
-              color="blue"
+              color="accent"
             />
             <BentoMetric
               label={`Kappungsgrenze (${result.kappungsgrenzeProzent}%)`}
               value={formatCurrency(result.kappungsgrenzeAbsolut)}
               sub={angespannterMarkt ? "Angespannter Markt" : "Normaler Markt"}
-              color="amber"
+              color="muted"
             />
           </div>
 
@@ -131,7 +131,7 @@ export function MieterhoehungsRechner() {
               label="Frühester Zeitpunkt"
               value={result.fruehesterZeitpunkt.toLocaleDateString("de-DE")}
               sub={result.erhoehungMoeglich ? "Erhöhung jetzt möglich" : "Noch nicht möglich"}
-              color={result.erhoehungMoeglich ? "green" : "red"}
+              color={result.erhoehungMoeglich ? "positive" : "negative"}
             />
           </div>
 

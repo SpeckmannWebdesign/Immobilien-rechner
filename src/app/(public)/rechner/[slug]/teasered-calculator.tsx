@@ -1,7 +1,5 @@
 "use client"
 
-import { useState } from "react"
-import { TeaserOverlay } from "@/components/rechner/teaser-overlay"
 import { RenditeRechner } from "@/components/rechner/rendite-rechner"
 import { KaufnebenkostenRechner } from "@/components/rechner/kaufnebenkosten-rechner"
 import { FinanzierungsRechner } from "@/components/rechner/finanzierungs-rechner"
@@ -35,7 +33,6 @@ interface TeaseredCalculatorProps {
 }
 
 export function TeaseredCalculator({ slug }: TeaseredCalculatorProps) {
-  const [hasCalculated, setHasCalculated] = useState(false)
   const RechnerComponent = rechnerMap[slug]
 
   if (!RechnerComponent) {
@@ -46,17 +43,5 @@ export function TeaseredCalculator({ slug }: TeaseredCalculatorProps) {
     )
   }
 
-  return (
-    <div
-      onClick={() => {
-        // Nach dem ersten Klick auf "Berechnen" wird das Ergebnis angeteasert
-        // Wir nutzen einen einfachen Timer um zu erkennen wann berechnet wurde
-        setTimeout(() => setHasCalculated(true), 500)
-      }}
-    >
-      <TeaserOverlay showOverlay={hasCalculated}>
-        <RechnerComponent />
-      </TeaserOverlay>
-    </div>
-  )
+  return <RechnerComponent />
 }

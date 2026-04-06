@@ -49,6 +49,9 @@
 }
 
 :root {
+  --rechner-accent: #205090;
+  --rechner-accent-dark: #183b6b;
+  --rechner-accent-muted: #6b8bb5;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);

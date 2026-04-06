@@ -9,7 +9,7 @@ import { PercentInput } from "./percent-input"
 import { BentoMetric } from "./result-card"
 import { berechneCashflow, formatCurrency } from "@/lib/rechner"
 
-const CHART_COLORS = ["#4338CA", "#0E7490", "#059669", "#B45309"]
+const CHART_COLORS = ["var(--rechner-accent)", "var(--rechner-accent-dark)", "var(--rechner-accent-muted)"]
 
 const TOOLTIP_STYLE = {
   background: "white",
@@ -43,10 +43,10 @@ export function CashflowRechner() {
 
   const cashflowColor =
     result.cashflowStatus === "positiv"
-      ? "green" as const
+      ? "positive" as const
       : result.cashflowStatus === "knapp"
-        ? "amber" as const
-        : "red" as const
+        ? "muted" as const
+        : "negative" as const
 
   return (
     <CalculatorLayout
@@ -104,7 +104,7 @@ export function CashflowRechner() {
             <BentoMetric
               label="Monatlicher Cashflow"
               value={formatCurrency(result.monatsCashflow)}
-              sub={cashflowColor === "green" ? "Positiver Cashflow" : cashflowColor === "amber" ? "Knapper Cashflow" : "Negativer Cashflow"}
+              sub={cashflowColor === "positive" ? "Positiver Cashflow" : cashflowColor === "muted" ? "Knapper Cashflow" : "Negativer Cashflow"}
               color={cashflowColor}
             />
             <BentoMetric
@@ -117,7 +117,7 @@ export function CashflowRechner() {
               label="Netto-Mieteinnahmen"
               value={formatCurrency(result.nettoMieteinnahmen)}
               sub={`Brutto: ${formatCurrency(result.bruttoMieteinnahmen)}`}
-              color="blue"
+              color="accent"
             />
           </div>
 
@@ -127,13 +127,13 @@ export function CashflowRechner() {
               label="Gesamte Kosten"
               value={formatCurrency(result.gesamtKosten)}
               sub="Alle monatlichen Ausgaben"
-              color="red"
+              color="negative"
             />
             <BentoMetric
               label="Mietausfall-Abzug"
               value={formatCurrency(result.mietausfallAbzug)}
               sub={`${mietausfallRisiko} % Risikopuffer`}
-              color="amber"
+              color="muted"
             />
           </div>
 
@@ -172,8 +172,8 @@ export function CashflowRechner() {
                 <Bar dataKey="Hausgeld" stackId="a" fill={CHART_COLORS[1]} />
                 <Bar dataKey="Nebenkosten" stackId="a" fill={CHART_COLORS[2]} />
                 <Bar dataKey="Kreditrate" stackId="a" fill={CHART_COLORS[3]} />
-                <Bar dataKey="Instandhaltung" stackId="a" fill="#4338CA" />
-                <Bar dataKey="Mietausfall" stackId="a" fill="#DC2626" />
+                <Bar dataKey="Instandhaltung" stackId="a" fill="var(--rechner-accent)" />
+                <Bar dataKey="Mietausfall" stackId="a" fill="var(--rechner-negative)" />
               </BarChart>
             </ResponsiveContainer>
           </div>

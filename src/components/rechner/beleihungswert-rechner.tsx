@@ -29,8 +29,8 @@ export function BeleihungswertRechner() {
     [verkehrswert, beleihungsabschlag, beleihungsauslauf, eigenkapital, kaufnebenkosten]
   )
 
-  const ekColor = result.eigenkapitalAusreichend ? "green" as const : "red" as const
-  const lueckeColor = result.finanzierungsluecke > 0 ? "red" as const : "green" as const
+  const ekColor = result.eigenkapitalAusreichend ? "positive" as const : "negative" as const
+  const lueckeColor = result.finanzierungsluecke > 0 ? "negative" as const : "positive" as const
 
   return (
     <CalculatorLayout
@@ -84,13 +84,13 @@ export function BeleihungswertRechner() {
               label="Beleihungswert"
               value={formatCurrency(result.beleihungswert)}
               sub={`${beleihungsabschlag} % Abschlag vom Verkehrswert`}
-              color="blue"
+              color="accent"
             />
             <BentoMetric
               label="Max. Darlehen"
               value={formatCurrency(result.maxDarlehen)}
               sub={`${beleihungsauslauf} % Beleihungsauslauf`}
-              color="blue"
+              color="accent"
             />
             <BentoMetric
               label="Beleihungsquote"
@@ -117,13 +117,13 @@ export function BeleihungswertRechner() {
               label="Gesamtkosten"
               value={formatCurrency(result.gesamtkosten)}
               sub="Kaufpreis inkl. Nebenkosten"
-              color="amber"
+              color="muted"
             />
             <BentoMetric
               label="Kaufnebenkosten"
               value={formatCurrency(result.nebenkosten)}
               sub={`${kaufnebenkosten} % vom Verkehrswert`}
-              color="amber"
+              color="muted"
             />
           </div>
         </>

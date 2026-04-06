@@ -18,7 +18,7 @@ import {
 } from "@/components/ui/table"
 import { berechneTilgungsplan, formatCurrency, formatYears } from "@/lib/rechner"
 
-const CHART_COLORS = ["#4338CA", "#0E7490", "#059669", "#B45309"]
+const CHART_COLORS = ["var(--rechner-accent)", "var(--rechner-accent-dark)", "var(--rechner-accent-muted)"]
 
 export function TilgungsplanRechner() {
   const [darlehenssumme, setDarlehenssumme] = useState(240000)
@@ -67,10 +67,10 @@ export function TilgungsplanRechner() {
 
   // Farblogik für Laufzeit
   const laufzeitColor = result.laufzeit <= 20
-    ? "green" as const
+    ? "positive" as const
     : result.laufzeit <= 30
-      ? "amber" as const
-      : "red" as const
+      ? "muted" as const
+      : "negative" as const
 
   return (
     <CalculatorLayout
@@ -124,13 +124,13 @@ export function TilgungsplanRechner() {
               label="Monatliche Rate"
               value={formatCurrency(result.monatlicheRate)}
               sub="Zins + Tilgung"
-              color="blue"
+              color="accent"
             />
             <BentoMetric
               label="Gesamte Zinskosten"
               value={formatCurrency(result.gesamtZinsen)}
               sub="Über die gesamte Laufzeit"
-              color="red"
+              color="negative"
             />
             <BentoMetric
               label="Laufzeit"
@@ -146,7 +146,7 @@ export function TilgungsplanRechner() {
               label="Gesamte Tilgung"
               value={formatCurrency(result.gesamtTilgung + result.gesamtSondertilgung)}
               sub={result.gesamtSondertilgung > 0 ? `davon ${formatCurrency(result.gesamtSondertilgung)} Sondertilgung` : "Reguläre Tilgung"}
-              color="green"
+              color="positive"
             />
             <BentoMetric
               label="Restschuld nach Zinsbindung"
@@ -154,7 +154,7 @@ export function TilgungsplanRechner() {
                 result.tilgungsplan.find((z) => z.jahr === zinsbindung)?.restschuldEnde ?? 0
               )}
               sub={`Nach ${zinsbindung} Jahren`}
-              color="amber"
+              color="muted"
             />
           </div>
 

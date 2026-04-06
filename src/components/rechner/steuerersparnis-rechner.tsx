@@ -29,8 +29,8 @@ export function SteuerersparnisRechner() {
     [kaufpreisGebaeude, baujahr, grenzsteuersatz, jaehrlicheWerbungskosten, jaehrlicheMieteinnahmen]
   )
 
-  const ersparnisColor = result.steuerersparnisJahr > 0 ? "green" as const : "red" as const
-  const einkuenfteColor = result.istSteuerlichNegativ ? "green" as const : "red" as const
+  const ersparnisColor = result.steuerersparnisJahr > 0 ? "positive" as const : "negative" as const
+  const einkuenfteColor = result.istSteuerlichNegativ ? "positive" as const : "negative" as const
 
   return (
     <CalculatorLayout
@@ -93,7 +93,7 @@ export function SteuerersparnisRechner() {
               label="Jährliche AfA"
               value={formatCurrency(result.jaehrlicheAfa)}
               sub={result.afaLabel}
-              color="blue"
+              color="accent"
             />
             <BentoMetric
               label="Steuerliche Einkünfte"
@@ -115,7 +115,7 @@ export function SteuerersparnisRechner() {
               label="Werbungskosten gesamt"
               value={formatCurrency(jaehrlicheWerbungskosten + result.jaehrlicheAfa)}
               sub="Inkl. AfA-Betrag"
-              color="amber"
+              color="muted"
             />
           </div>
         </>

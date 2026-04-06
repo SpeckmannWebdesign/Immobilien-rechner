@@ -28,10 +28,10 @@ export function InstandhaltungsRechner() {
 
   // Farblogik: monatliche Rücklage bewerten
   const monatlichColor = result.monatlicheRuecklage <= 150
-    ? "green" as const
+    ? "positive" as const
     : result.monatlicheRuecklage <= 300
-      ? "amber" as const
-      : "red" as const
+      ? "muted" as const
+      : "negative" as const
 
   return (
     <CalculatorLayout
@@ -91,13 +91,13 @@ export function InstandhaltungsRechner() {
               label="Jährliche Rücklage"
               value={formatCurrency(result.jaehrlicheRuecklage)}
               sub={`${result.ruecklageProQm.toFixed(2).replace(".", ",")} €/m² pro Monat`}
-              color="blue"
+              color="accent"
             />
             <BentoMetric
               label="Peters-Faktor"
               value={petersFaktor.toFixed(1).replace(".", ",")}
               sub="Multiplikator der Formel"
-              color="amber"
+              color="muted"
             />
           </div>
 
@@ -112,7 +112,7 @@ export function InstandhaltungsRechner() {
               label="Gebäudealter"
               value={`${result.alterGebaeude} Jahre`}
               sub={`Baujahr ${baujahr}`}
-              color={result.alterGebaeude > 30 ? "amber" : "green"}
+              color={result.alterGebaeude > 30 ? "muted" : "positive"}
             />
           </div>
 

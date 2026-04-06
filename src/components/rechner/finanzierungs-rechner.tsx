@@ -10,7 +10,7 @@ import { NumberInput } from "./number-input"
 import { BentoMetric, ResultCard } from "./result-card"
 import { berechneFinanzierung, formatCurrency, formatYears } from "@/lib/rechner"
 
-const CHART_COLORS = ["#4338CA", "#0E7490", "#059669", "#B45309"]
+const CHART_COLORS = ["var(--rechner-accent)", "var(--rechner-accent-dark)", "var(--rechner-accent-muted)"]
 
 const TOOLTIP_STYLE = {
   background: "white",
@@ -40,8 +40,8 @@ export function FinanzierungsRechner() {
     [darlehenssumme, sollzinsSatz, anfangsTilgung, zinsbindung, sondertilgungJahr]
   )
 
-  const rateColor = result.monatlicheRate <= 1500 ? "green" as const : result.monatlicheRate <= 2500 ? "amber" as const : "red" as const
-  const restschuldColor = result.restschuldNachZinsbindung > 0 ? "red" as const : "green" as const
+  const rateColor = result.monatlicheRate <= 1500 ? "positive" as const : result.monatlicheRate <= 2500 ? "muted" as const : "negative" as const
+  const restschuldColor = result.restschuldNachZinsbindung > 0 ? "negative" as const : "positive" as const
 
   return (
     <CalculatorLayout
@@ -102,7 +102,7 @@ export function FinanzierungsRechner() {
               label={`Zinskosten (${zinsbindung} J.)`}
               value={formatCurrency(result.zinsKostenZinsbindung)}
               sub="Gezahlte Zinsen in Zinsbindung"
-              color="red"
+              color="negative"
             />
             <BentoMetric
               label={`Restschuld nach ${zinsbindung} J.`}
@@ -118,13 +118,13 @@ export function FinanzierungsRechner() {
               label="Gesamtlaufzeit"
               value={formatYears(result.gesamtlaufzeit)}
               sub="Bis zur vollständigen Tilgung"
-              color="blue"
+              color="accent"
             />
             <BentoMetric
               label="Getilgter Betrag"
               value={formatCurrency(result.getilgterBetrag)}
               sub={`Nach ${zinsbindung} Jahren Zinsbindung`}
-              color="green"
+              color="positive"
             />
           </div>
 

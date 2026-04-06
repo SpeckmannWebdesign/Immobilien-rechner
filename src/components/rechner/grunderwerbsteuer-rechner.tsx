@@ -47,10 +47,10 @@ export function GrunderwerbsteuerRechner() {
 
   // Farblogik: je höher der Steuersatz, desto "schlechter"
   const steuerColor = result.gewaehltesSteuer.satz <= 3.5
-    ? "green" as const
+    ? "positive" as const
     : result.gewaehltesSteuer.satz <= 5.0
-      ? "amber" as const
-      : "red" as const
+      ? "muted" as const
+      : "negative" as const
 
   return (
     <CalculatorLayout
@@ -92,13 +92,13 @@ export function GrunderwerbsteuerRechner() {
               label="Gesamtkosten"
               value={formatCurrency(kaufpreis + result.gewaehltesSteuer.betrag)}
               sub="Kaufpreis + Steuer"
-              color="blue"
+              color="accent"
             />
             <BentoMetric
               label="Mögliche Ersparnis"
               value={formatCurrency(result.differenz)}
               sub={`vs. günstigstes: ${result.guenstigstes.bundesland}`}
-              color={result.differenz > 0 ? "amber" : "green"}
+              color={result.differenz > 0 ? "muted" : "positive"}
             />
           </div>
 
@@ -108,13 +108,13 @@ export function GrunderwerbsteuerRechner() {
               label={`Günstigstes: ${result.guenstigstes.bundesland}`}
               value={formatCurrency(result.guenstigstes.betrag)}
               sub={`${result.guenstigstes.satz.toFixed(1).replace(".", ",")}% Steuersatz`}
-              color="green"
+              color="positive"
             />
             <BentoMetric
               label={`Teuerstes: ${result.teuerstes.bundesland}`}
               value={formatCurrency(result.teuerstes.betrag)}
               sub={`${result.teuerstes.satz.toFixed(1).replace(".", ",")}% Steuersatz`}
-              color="red"
+              color="negative"
             />
           </div>
 
